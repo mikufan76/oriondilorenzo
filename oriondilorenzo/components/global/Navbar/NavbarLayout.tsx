@@ -22,7 +22,7 @@ export default function Navbar(props: NavbarProps) {
   const logoImageUrl = customLogo && urlForLogo(customLogo)?.url()
 
   return (
-    <div className="flex flex-wrap justify-between items-center gap-x-5 px-4 py-4 md:px-5 md:py-4 lg:px-5">
+    <div className="flex flex-wrap justify-between items-center gap-x-5 px-4 py-4 md:px-5 md:py-4 lg:px-5 w-full">
       {customLogo && customLogo ? (
         <Link
           href={`/`}

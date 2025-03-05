@@ -68,11 +68,11 @@ export default async function IndexRoute({
 }) {
   return (
     <>
-      <div className="flex min-h-screen flex-col text-secondary">
+      <div className="flex min-h-screen flex-col text-secondary w-screen border-4 border-indigo-50 justify-center items-center">
         <Suspense>
           <Navbar />
         </Suspense>
-        <div className="mt-16 flex-grow px-4 md:px-5 lg:px-5">
+        <div className="mt-16 flex-grow px-4 md:px-5 lg:px-5  w-11/12">
           <Suspense>{children}</Suspense>
         </div>
         <Suspense>

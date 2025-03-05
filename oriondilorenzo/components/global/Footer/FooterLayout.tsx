@@ -11,7 +11,7 @@ export default function Footer(props: FooterProps) {
   const lastUpdated = props.homepage?._updatedAt ?? ''
   const displayLastUpdate = props.data?.displayLastUpdated
   return (
-    <footer className="bottom-0 grid grid-cols-1 md:grid-cols-3 items-center mt-12 gap-3 md:gap-x-5 px-4 md:px-5 py-2 md:py-5 lg:px-5">
+    <footer className="bottom-0 grid grid-cols-1 md:grid-cols-3 items-center mt-12 gap-3 md:gap-x-5 px-4 md:px-5 py-2 md:py-5 lg:px-5 w-full">
       <div className="text-xl text-center md:text-left md:text-2xl">
         {title && (
           <div>
