@@ -8,6 +8,7 @@ import {
   aboutPageQuery,
   homePageQuery,
   homePageTitleQuery,
+  linksPageQuery,
   moreProjectsQuery,
   projectBySlugQuery,
   settingsQuery,
@@ -16,6 +17,7 @@ import { token } from '@/sanity/lib/token'
 import {
   AboutPayload,
   HomePagePayload,
+  linksPayload,
   ProjectPayload,
   SettingsPayload,
 } from '@/types'
@@ -83,7 +85,7 @@ export function loadHomePage() {
 export function loadMoreProjects() {
   return loadQuery<HomePagePayload | null>(
     moreProjectsQuery,
-    { },
+    {},
     { next: { tags: ['home', 'project'] } },
   )
 }
@@ -101,6 +103,14 @@ export function getAboutPage() {
     aboutPageQuery,
     {},
     { next: { tags: ['about'] } },
+  )
+}
+
+export function getLinksPage() {
+  return loadQuery<linksPayload | null>(
+    linksPageQuery,
+    {},
+    { next: { tags: ['links'] } },
   )
 }
 

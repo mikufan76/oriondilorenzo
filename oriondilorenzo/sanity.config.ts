@@ -17,6 +17,7 @@ import { pageStructure, singletonPlugin } from '@/sanity/plugins/settings'
 import project from '@/sanity/schemas/documents/project'
 import about from '@/sanity/schemas/singletons/about'
 import home from '@/sanity/schemas/singletons/home'
+import links from '@/sanity/schemas/singletons/links'
 import settings from '@/sanity/schemas/singletons/settings'
 
 const title =
@@ -35,6 +36,7 @@ export default defineConfig({
       // Singletons
       home,
       about,
+      links,
       settings,
       // Documents
       project,
@@ -42,7 +44,7 @@ export default defineConfig({
   },
   plugins: [
     structureTool({
-      structure: pageStructure([home, settings, about]),
+      structure: pageStructure([home, settings, about, links]),
     }),
     presentationTool({
       resolve,

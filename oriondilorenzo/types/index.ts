@@ -104,3 +104,8 @@ export interface AboutPayload {
   }
   aboutLinks?: LinkItem[]
 }
+
+export interface linksPayload {
+  title?: string,
+  linksLinks?: LinkItem[],
+}

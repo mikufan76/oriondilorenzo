@@ -62,6 +62,18 @@ export const aboutPageQuery = groq`
   }
 `
 
+export const linksPageQuery = groq`
+  *[_type == "links"][0]{
+    _id,
+    title,
+    linksLinks[]{
+      _type,
+      title,
+      url,
+    },
+  }
+`
+
 export const homePageTitleQuery = groq`
   *[_type == "home"][0].title
 `
