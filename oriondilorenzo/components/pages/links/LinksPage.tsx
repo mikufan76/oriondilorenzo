@@ -17,7 +17,7 @@ export function LinksPage({ data }: linksPageProps) {
     <div className="h-full mt-4 grid gap-5 grid-cols-1 xl:grid-cols-2">
       <div className="w-full">
         {/* Title */}
-        <div>{title && title}</div>
+        <div className='text-3xl mb-2'>{title && title}</div>
 
         {/* Links */}
         {linksLinks &&
@@ -26,7 +26,7 @@ export function LinksPage({ data }: linksPageProps) {
               <div key={key} className="flex flex-wrap">
                 <Link
                   target="_blank"
-                  className={`flex flex-wrap text-xl text-secondary underline md:text-2xl`}
+                  className={`flex flex-wrap text-lg text-secondary underline`}
                   href={link.url!}
                 >
                   {link.title}
