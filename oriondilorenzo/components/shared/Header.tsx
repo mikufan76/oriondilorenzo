@@ -10,10 +10,16 @@ interface HeaderProps {
 export function Header(props: HeaderProps) {
   return (
     <div className="w-full h-screen bg-[url(/header-bg.png)] bg-cover flex justify-center items-center">
-      <div className="w-5/6 flex flex-col items-center justify-center text-center bg-bg text-primary h-5/6">
-        {/* <Name className="w-1/6" />
-        <Logo strokeWidth=".50" className="w-1/6" /> */}
-        <StarBar className="w-1/2"  />
+      {/* Foreground */}
+      <div className="w-[90%] h-[90%] flex flex-col text-center bg-bg text-primary p-2">
+        {/** Title plate */}
+        <div className="flex flex-col w-1/2 min-w-[250px]">
+          <Name className="w-5/6 min-w-[208px] translate-y-[75%] p-1" />
+          <div className="h-1/3 overflow-visible">
+          <StarBar />
+          </div>
+        </div>
+        <Logo className="h-1/2 w-min animate-in fade-in" />
       </div>
     </div>
   )

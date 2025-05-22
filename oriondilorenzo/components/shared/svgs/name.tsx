@@ -9,8 +9,8 @@ const SvgComponent = (props) => (
         d="M22.6 1.7c.5.7.4 1.6-.2 2.2s-1.6.4-2.1-.2-.4-1.6.2-2.2c.6-.5 1.6-.4 2.1.2M63 1.7c.5.7.4 1.6-.2 2.2s-1.6.4-2.1-.2c-.5-.7-.4-1.6.2-2.2.6-.5 1.6-.4 2.1.2"
         fill="none"
         stroke="#fff9cb"
+        className="stroke-name"
         strokeMiterlimit="10"
-        strokeWidth=".5"
       />
     </g>
   </svg>

@@ -18,6 +18,15 @@ module.exports = {
       purple: '#a100ff',
       cyan: '#9ff8ff',
     },
+    extend: {
+      strokeWidth: {
+        starline: '1.5%',
+        star: '4.5%',
+        name: '1%',
+        logosm: '.9%',
+        logo:'1.3%',
+      }
+    },
   },
   plugins: [require('@tailwindcss/typography')],
 }
