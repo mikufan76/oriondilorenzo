@@ -3,7 +3,7 @@ import Star from './svgs/star'
 const SVGComponent = (props) => {
   const width = props.width || 39
   const length = props.length || 80
-  const strokeWidth = props.strokeWidth || 0.5
+  const strokeWidth = props.strokeWidth || 1
   return (
     <div className={`w-full flex flex-row gap-x-0`}>
       <Star
