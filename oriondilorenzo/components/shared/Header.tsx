@@ -13,7 +13,7 @@ export function Header(props: HeaderProps) {
       {/* Foreground */}
       <div className="w-[90%] h-[90%] flex flex-col text-center bg-bg text-primary p-2">
         {/** Title plate */}
-        <div className="flex flex-col w-1/2 min-w-[250px]">
+        <div className="flex flex-col w-2/3 min-w-[250px] h-min">
           <Name className="w-5/6 min-w-[208px] translate-y-[75%] p-1" />
           <div className="h-1/3 overflow-visible">
           <StarBar />
