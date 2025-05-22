@@ -1,5 +1,5 @@
 'use client'
-
+// .template Wraps layout or page
 import { motion } from 'framer-motion'
 
 // On load fade in animation setup
@@ -22,12 +22,6 @@ const variants = {
     transition: { duration: duration, ease: 'linear', when: 'beforeChildren' },
   },
 }
-
-// Console Credits
-console.log(
-  '%cDesign & Web Development by Danil Vladimirov \n– https://danilvladimirov.co.uk',
-  'display:block;font-family:courier;font-size:12px;font-weight:bold;line-height:1;color:black;',
-)
 
 // Wrapping with framer motion
 export default function Template({ children }: { children: React.ReactNode }) {

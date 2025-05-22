@@ -7,7 +7,6 @@ import { toPlainText } from 'next-sanity'
 import { Suspense } from 'react'
 
 import { Footer } from '@/components/global/Footer'
-import { Navbar } from '@/components/global/Navbar'
 import { urlForImage, urlForOpenGraphImage } from '@/sanity/lib/utils'
 import { loadHomePage, loadSettings } from '@/sanity/loader/loadQuery'
 
@@ -68,16 +67,8 @@ export default async function IndexRoute({
 }) {
   return (
     <>
-      <div className="flex min-h-screen flex-col text-secondary w-screen border-4 border-indigo-50 justify-center items-center">
-        <Suspense>
-          <Navbar />
-        </Suspense>
-        <div className="mt-16 flex-grow px-4 md:px-5 lg:px-5  w-11/12">
+      <div>
           <Suspense>{children}</Suspense>
-        </div>
-        <Suspense>
-          <Footer />
-        </Suspense>
       </div>
       {draftMode().isEnabled && <LiveVisualEditing />}
     </>

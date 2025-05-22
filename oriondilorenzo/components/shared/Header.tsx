@@ -1,22 +1,20 @@
-import { CustomPortableText } from '@/components/shared/CustomPortableText'
+import Image from 'next/image'
+import Logo from './svgs/logo'
+import Name from './svgs/name'
+import StarBar from './starBar'
+import Star from './svgs/star'
 
 interface HeaderProps {
   description?: any
 }
 export function Header(props: HeaderProps) {
-  const { description } = props
-  if (!description) {
-    return null
-  }
   return (
-    <div className="w-full md:w-4/6">
-      {description && (
-        <div className="mt-4 text-3xl md:text-4.5xl">
-          {description.displayText == true && (
-            <CustomPortableText value={description.text} />
-          )}
-        </div>
-      )}
+    <div className="w-full h-screen bg-[url(/header-bg.png)] bg-cover flex justify-center items-center">
+      <div className="w-5/6 flex flex-col items-center justify-center text-center bg-bg text-primary h-5/6">
+        {/* <Name className="w-1/6" />
+        <Logo strokeWidth=".50" className="w-1/6" /> */}
+        <StarBar className="w-1/2"  />
+      </div>
     </div>
   )
 }

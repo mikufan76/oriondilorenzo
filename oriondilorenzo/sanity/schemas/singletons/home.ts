@@ -16,12 +16,13 @@ export default defineType({
       type: 'string',
       validation: (rule) => rule.required(),
     }),
+
     defineField({
-      name: 'customLogo',
-      description: 
-        'Upload your custom logo, it will replace your title in the header of your website. Use SVG or PNG with a transparent background.',
-      title: 'Custom logo (Optional)',
-      type: 'image',
+      name: 'subtitle',
+      description: 'This field is the sub title of your personal website.',
+      title: 'Subtitle',
+      type: 'string',
+      validation: (rule) => rule.required(),
     }),
     defineField({
       name: 'overview',
@@ -29,51 +30,45 @@ export default defineType({
         'This text is your description. Used for the introduction paragraph at a Home page and also for the <meta> description tag for SEO.',
       title: 'Introduction text',
       type: 'object',
-      fields:[
+      fields: [
         {
-        name: 'text',
-        type: 'array',
-        of: [
-          // Paragraphs
-          defineArrayMember({
-            lists: [],
-            marks: {
-              annotations: [
-                {
-                  name: 'link',
-                  type: 'object',
-                  title: 'Link',
-                  fields: [
-                    {
-                      name: 'href',
-                      type: 'url',
-                      title: 'Url',
-                    },
-                  ],
-                },
-              ],
-              decorators: [
-                {
-                  title: 'Italic',
-                  value: 'em',
-                },
-                {
-                  title: 'Strong',
-                  value: 'strong',
-                },
-              ],
-            },
-            styles: [],
-            type: 'block',
-          }),
-        ],
-        validation: (rule) => rule.max(155).required(),
-        },
-        {
-          title: 'Display this introduction on Home page?',
-          description: 'If you turn in off it still be used for SEO description',
-          name: 'displayText',
-          type: 'boolean',
+          name: 'text',
+          type: 'array',
+          of: [
+            // Paragraphs
+            defineArrayMember({
+              lists: [],
+              marks: {
+                annotations: [
+                  {
+                    name: 'link',
+                    type: 'object',
+                    title: 'Link',
+                    fields: [
+                      {
+                        name: 'href',
+                        type: 'url',
+                        title: 'Url',
+                      },
+                    ],
+                  },
+                ],
+                decorators: [
+                  {
+                    title: 'Italic',
+                    value: 'em',
+                  },
+                  {
+                    title: 'Strong',
+                    value: 'strong',
+                  },
+                ],
+              },
+              styles: [],
+              type: 'block',
+            }),
+          ],
+          validation: (rule) => rule.max(155).required(),
         },
       ],
     }),
