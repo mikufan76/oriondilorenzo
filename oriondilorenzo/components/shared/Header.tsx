@@ -16,12 +16,13 @@ export function Header(props: HeaderProps) {
         <div className="h-full w-[62.5%] relative">
           {/** Title plate */}
           <div className="flex flex-col w-full min-w-[300px] h-2/5 border-2 border-green">
-            <Name className="w-5/6 min-w-[220px] p-1" />
+            <Name className="w-5/6 min-w-[220px] pl-2" />
             <div className="h-1/5 md:h-2/5 overflow-visible border-blue border-2 translate-y-[-45%]">
               <StarBar />
             </div>
-            <div className="min-w-[300px] cascadia-code border-red border-2 text-wrap text-left w-full translate-y-[-205%] md:translate-y-[-405%]">
-              Fullstack Developer
+            <div className="min-w-[300px] cascadia-code border-red border-2 text-wrap text-left w-full translate-y-[-105%] md:translate-y-[-205%] pl-2">
+              <h2>Fullstack Developer</h2>
+              <h2>& Designer</h2>
             </div>
           </div>
           <Logo className="h-1/2 w-min animate-in fade-in" />

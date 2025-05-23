@@ -19,7 +19,7 @@ const SVGComponent = (props) => {
           y1="50%"
           x2="100%"
           y2="50%"
-          className="stroke-starline"
+          className="stroke-[1.5%] transition-stroke "
           stroke="var(--primary-color)"
         />
       </svg>

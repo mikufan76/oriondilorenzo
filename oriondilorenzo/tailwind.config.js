@@ -24,9 +24,12 @@ module.exports = {
         star: '4.5%',
         name: '1%',
         logosm: '.9%',
-        logo:'1.3%',
-      }
+        logo: '1.3%',
+      },
     },
   },
-  plugins: [require('@tailwindcss/typography')],
+  plugins: [
+    require('@tailwindcss/typography'),
+    ['prettier-plugin-tailwindcss'],
+  ],
 }
