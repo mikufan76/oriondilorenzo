@@ -6,13 +6,10 @@ const SVGComponent = (props) => {
   const strokeWidth = props.strokeWidth || 1
   return (
     <div className={`w-full h-full flex flex-row gap-x-0`}>
-      {/* <Star
-        strokeWidth={strokeWidth}
-        className="h-full w-1/4  max-w-10"
-      /> */}
+      <Star className=" sm:hidden sm:width-[0px] h-full sm:h-[0px] block" />
       <svg
         xmlns="http://www.w3.org/2000/svg"
-        className="grow h-full w-full translate-x-[2%]"
+        className="grow h-full w-full scale-[103%] sm:scale-100 sm:translate-x-[2%]"
       >
         <line
           x1="0%"

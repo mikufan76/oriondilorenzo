@@ -1,9 +1,5 @@
-import Image from 'next/image'
 import Logo from './svgs/logo'
-import Name from './svgs/name'
-import StarBar from './starBar'
-import Star from './svgs/star'
-
+import TitlePlate from './TitlePlate'
 interface HeaderProps {
   description?: any
 }
@@ -11,21 +7,13 @@ export function Header(props: HeaderProps) {
   return (
     <div className="w-full h-screen bg-[url(/header-bg.png)] bg-cover flex justify-center items-center">
       {/* Foreground */}
-      <div className="w-[90%] h-[90%] min-w-[300px] flex flex-col text-center bg-bg text-primary px-2">
+      <div className="w-[90%] h-[90%] min-w-[300px] flex flex-row text-center bg-bg text-primary px-2 py-4">
         {/* Left Side */}
-        <div className="h-full w-[62.5%] relative">
-          {/** Title plate */}
-          <div className="flex flex-col w-full min-w-[300px] h-2/5 ">
-            <Name className="w-5/6 min-w-[220px] pl-2" />
-            <div className="h-[10vw] min-h-[40px] overflow-visible translate-y-[-45%]">
-              <StarBar />
-            </div>
-            <div className="min-w-[300px] cascadia-code text-wrap text-left w-full text-xl sm:text-[4vw] translate-y-[-9vw] lg:translate-y-[-8vw] px-2">
-              <h2>Fullstack Developer</h2>
-              <h2 className='lg:translate-y-[90%] '>& Designer</h2>
-            </div>
+        <div className="h-full w-full md:px-0 md:w-[62.5%] relative border-yellow border-2">
+          <TitlePlate />
+          <div className="logo-wrapper h-1/2 w-full border-2 border-blue flex justify-center items-center ">
+            <Logo className="h-full w-min animate-in fade-in border-2 border-red rotate-[-10deg] min-w-[300px] scale-125" />
           </div>
-          <Logo className="h-1/2 w-min animate-in fade-in" />
         </div>
       </div>
     </div>
