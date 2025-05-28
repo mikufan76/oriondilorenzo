@@ -31,5 +31,6 @@ module.exports = {
   plugins: [
     require('@tailwindcss/typography'),
     ['prettier-plugin-tailwindcss'],
+    require("tailwindcss-animate"),
   ],
 }

@@ -1,6 +1,7 @@
 import Logo from './svgs/logo'
 import TitlePlate from './TitlePlate'
 import Navbar from './Navbar'
+import { Projects } from './Projects'
 interface HeaderProps {
   description?: any
 }
@@ -12,7 +13,8 @@ export function Header(props: HeaderProps) {
         {/* Left Side */}
         <div className="grow h-5/6  w-full md:px-0 sm:w-[62.5%]sm:h-full max-w-[1000px]">
           <TitlePlate />
-          <div className="logo-wrapper h-1/2 w-full  flex justify-center items-center sm:items-normal ">
+          <div className="logo-wrapper h-1/2 w-full  flex flex-col sm:flex-row justify-center items-center sm:items-normal ">
+          <Projects/>
             <Logo className="h-full w-min animate-in fade-in rotate-[-10deg] min-w-[300px] scale-125 " />
           </div>
         </div>
