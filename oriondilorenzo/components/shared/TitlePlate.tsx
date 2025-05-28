@@ -3,12 +3,12 @@ import Name from './svgs/name'
 
 const TitlePlate = () => {
   return (
-    <div className="flex flex-col w-full min-w-[300px] h-2/5 justify-center items-center sm:justify-normal sm:items-stretch">
-      <Name className="w-5/6 min-w-[220px] pl-2" />
+    <div className="flex flex-col w-full min-w-[300px] h-2/5 justify-center items-center sm:justify-start sm:items-start">
+      <Name className="w-5/6 min-w-[220px] pl-2 max-w-[1000px]" />
       <div className="h-[10vw] min-h-[40px] overflow-visible translate-y-[-45%] w-full">
         <StarBar />
       </div>
-      <div className="min-w-[300px] cascadia-code text-wrap text-center sm:text-left w-full text-xl sm:text-[4vw] translate-y-[-9vw] lg:translate-y-[-8vw] px-2">
+      <div className="min-w-[300px] cascadia-code text-wrap text-center sm:text-left w-full text-xl sm:text-[4vw] 2xl:text-[60px] translate-y-[-9vw] lg:translate-y-[-8vw] px-2">
         <h2>Fullstack Developer</h2>
         <h2 className="lg:translate-y-[100%] ">& Designer</h2>
       </div>
