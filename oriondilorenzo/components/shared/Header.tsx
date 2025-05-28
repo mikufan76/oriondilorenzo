@@ -4,7 +4,7 @@ import Navbar from './Navbar'
 import { Projects } from './Projects'
 export function Header() {
   return (
-    <div className="w-screen h-screen bg-[url(/header-bg.png)] bg-cover flex justify-center items-center overflow-hidden">
+    <div className="absolute w-full h-full bg-[url(/header-bg.png)] bg-cover flex justify-center items-center overflow-hidden">
       {/* Foreground */}
       <div className="mx-[5%] w-full  h-full mt-[5%]  min-w-[300px] flex flex-col sm:flex-row sm:justify-between  bg-bg text-primary px-2 md:px-4 py-4">
         {/* Left Side */}

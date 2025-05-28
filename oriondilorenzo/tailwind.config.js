@@ -17,6 +17,7 @@ module.exports = {
       green: '#7bff3e',
       purple: '#a100ff',
       cyan: '#9ff8ff',
+      brown: '#79443B',
     },
     extend: {
       strokeWidth: {
