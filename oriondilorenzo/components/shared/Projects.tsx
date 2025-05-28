@@ -11,10 +11,7 @@ import {
 
 export function Projects() {
   return (
-    <Dialog>
-      <DialogTrigger asChild>
-        <Button variant="outline">Projects</Button>
-      </DialogTrigger>
+    <Dialog open={true}>
       <DialogContent className="sm:max-w-[425px]">
         <DialogHeader>
           <DialogTitle>Edit profile</DialogTitle>
