@@ -8,35 +8,56 @@ import { DataTable } from '@/components/ui/DataTable'
 import { ColumnDef } from '@tanstack/react-table'
 import { urlForImage } from '@/sanity/lib/utils'
 import Image from 'next/image'
-
-const columns = [
-  {
-    accessorKey: 'icon',
-    cell: ({ row }) => {
-      const icon = row.getValue('icon')
-      const imageUrl =
-        icon && urlForImage(icon)?.height(10).width(10).fit('crop').url()
-      return <Image src={imageUrl} width={10} height={10} alt={''} />
-    },
-    header: '',
-  },
-  {
-    accessorKey: 'title',
-    header: 'Project',
-  },
-
-  {
-    accessorKey: 'page',
-    header: 'Page',
-  },
-]
+import { useState, useRef, createRef } from 'react'
+import { Button } from '@/components/ui/Button'
+import PageFlip from 'page-flip'
 
 export default function Book({ data, encodeDataAttribute }: HomePageProps) {
   const { overview = [], showcaseProjects = [] } = data ?? {}
-  showcaseProjects.forEach((project, index) => project.page = index+1)
+  showcaseProjects.forEach((project, index) => (project.page = index + 1))
+  const book = useRef<PageFlip>(new PageFlip({
+  }))
+
+  const columns = [
+    {
+      accessorKey: 'icon',
+      cell: ({ row }) => {
+        const icon = row.getValue('icon')
+        const imageUrl =
+          icon && urlForImage(icon)?.height(10).width(10).fit('crop').url()
+        return <Image src={imageUrl} width={10} height={10} alt={''} />
+      },
+      header: '',
+    },
+    {
+      accessorKey: 'title',
+      header: 'Project',
+    },
+
+    {
+      accessorKey: 'page',
+      cell: ({ row }) => {
+        return (
+          <Button
+            variant={'outline'}
+            onClick={() => {
+              const page = row.getValue('page') // Access the page number
+              console.log('Turning to page:', page - 1)
+              console.log('Book ref:', book.current)
+              book.current.pageflip.flip(2)
+            }}
+          >
+            {row.getValue('page')}
+          </Button>
+        )
+      },
+    },
+  ]
+
   return (
     <div className="w-2/3 h-min flex items-center justify-center  bg-brown py-2 px-2 max-w-[1200px] rounded">
       <HTMLFlipBook
+        ref={book}
         width={300}
         height={500}
         style={{}}
@@ -48,7 +69,7 @@ export default function Book({ data, encodeDataAttribute }: HomePageProps) {
         minHeight={500}
         maxHeight={800}
         drawShadow={false}
-        flippingTime={300}
+        flippingTime={600}
         usePortrait={true}
         startZIndex={0}
         autoSize={true}
@@ -62,7 +83,7 @@ export default function Book({ data, encodeDataAttribute }: HomePageProps) {
         disableFlipByClick={false}
       >
         <div className="flex flex-col">
-          <PageOne showcaseProjects={showcaseProjects} />
+          <PageOne showcaseProjects={showcaseProjects} columns={columns} />
         </div>
         <div className="demoPage bg-blue shadow-xl">Page 2</div>
         <div className="demoPage bg-green shadow-xl">Page 3</div>
@@ -74,32 +95,8 @@ export default function Book({ data, encodeDataAttribute }: HomePageProps) {
   )
 }
 
-function PageOne({ showcaseProjects }) {
+function PageOne({ showcaseProjects, columns }) {
   return (
     <DataTable columns={columns} data={showcaseProjects} showHeader={true} />
   )
-}
-// {imageUrl && <Image src={imageUrl} width={10} height={10} alt={''} />}
-// <TextBox project={project} />
-
-{
-  /* {showcaseProjects.map((project, key) => {
-            const href = resolveHref(project?._type, project?.slug)
-            if (!href) {
-              return null
-            }
-            return (
-              <Link
-                key={key}
-                href={href}
-                data-sanity={encodeDataAttribute?.([
-                  'showcaseProjects',
-                  key,
-                  'slug',
-                ])}
-              >
-                <ProjectListItem project={project} />
-              </Link>
-            )
-          })} */
 }
