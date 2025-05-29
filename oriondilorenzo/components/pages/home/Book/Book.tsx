@@ -13,7 +13,7 @@ const columns = [
   {
     accessorKey: 'icon',
     cell: ({ row }) => {
-      const icon = row.getValue('icon');
+      const icon = row.getValue('icon')
       const imageUrl =
         icon && urlForImage(icon)?.height(10).width(10).fit('crop').url()
       return <Image src={imageUrl} width={10} height={10} alt={''} />
@@ -22,12 +22,18 @@ const columns = [
   },
   {
     accessorKey: 'title',
-    header: '',
+    header: 'Project',
+  },
+
+  {
+    accessorKey: 'page',
+    header: 'Page',
   },
 ]
 
 export default function Book({ data, encodeDataAttribute }: HomePageProps) {
   const { overview = [], showcaseProjects = [] } = data ?? {}
+  showcaseProjects.forEach((project, index) => project.page = index+1)
   return (
     <div className="w-2/3 h-min flex items-center justify-center  bg-brown py-2 px-2 max-w-[1200px] rounded">
       <HTMLFlipBook
@@ -69,7 +75,9 @@ export default function Book({ data, encodeDataAttribute }: HomePageProps) {
 }
 
 function PageOne({ showcaseProjects }) {
-  return <DataTable columns={columns} data={showcaseProjects} showHeader={false} />
+  return (
+    <DataTable columns={columns} data={showcaseProjects} showHeader={true} />
+  )
 }
 // {imageUrl && <Image src={imageUrl} width={10} height={10} alt={''} />}
 // <TextBox project={project} />

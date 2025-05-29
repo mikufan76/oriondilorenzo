@@ -27,6 +27,7 @@ export interface LinkItem {
 }
 
 export interface ShowcaseProject {
+  page?: number
   icon?: Image
   _type: string
   coverImage?: Image
