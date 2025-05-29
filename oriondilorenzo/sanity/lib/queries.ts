@@ -17,6 +17,7 @@ export const homePageQuery = groq`
         "lqip": asset->metadata.lqip,
       },
       overview,
+      icon,
       "slug": slug.current,
       title,
       year,

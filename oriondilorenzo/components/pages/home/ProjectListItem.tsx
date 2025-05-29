@@ -1,23 +1,23 @@
 import ImageBox from '@/components/shared/ImageBox'
 import type { ShowcaseProject } from '@/types'
+import Image from 'next/image'
+import { urlForImage } from '@/sanity/lib/utils'
 
 interface ProjectProps {
   project: ShowcaseProject
 }
 
 export function ProjectListItem(props: ProjectProps) {
-  const { project } = props
+  const { project } = props;
+  const { icon } = project;
+  const imageUrl =
+    icon && urlForImage(icon)?.height(10).width(10).fit('crop').url()
+    console.log('imageUrl', imageUrl);
 
   return (
-    <div className={`flex flex-col gap-x-5`}>
-      <div className="w-full">
-        <ImageBox
-          image={project.coverImage}
-          alt={`Cover image from ${project.title}`}
-          classesWrapper="relative aspect-[16/9]"
-        />
-      </div>
+    <div className={`flex flex-row`}>
       <div className="flex">
+        {imageUrl && <Image src={imageUrl} width={10} height={10} alt={''} />}
         <TextBox project={project} />
       </div>
     </div>
@@ -26,15 +26,10 @@ export function ProjectListItem(props: ProjectProps) {
 
 function TextBox({ project }: { project: ShowcaseProject }) {
   return (
-    <div className="flex flex-wrap justify-between mt-2 mb-2 w-full text-lg md:text-2xl flex-strech">
+    <div className="flex row">
       {/* Title */}
-      <div className="flex">
-        {project.title}
-      </div>
+      <div className="">{project.title}</div>
       {/* Year */}
-      <div className="flex">
-        {project.year}
-      </div>
     </div>
   )
 }

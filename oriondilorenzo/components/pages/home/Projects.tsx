@@ -1,8 +1,8 @@
 import * as React from 'react'
 
-import { ScrollArea, ScrollBar } from '@/components/ui/ScrollArea'
+import { ScrollArea} from '@/components/ui/ScrollArea'
 import { Scrollbar } from '@radix-ui/react-scroll-area'
-import Book  from '@/components/pages/home/Book'
+import Book  from '@/components/pages/home/Book/Book'
 import { HomePageProps } from './HomePage'
 
 const tags = Array.from({ length: 50 }).map(

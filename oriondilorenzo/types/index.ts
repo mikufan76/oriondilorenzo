@@ -27,6 +27,7 @@ export interface LinkItem {
 }
 
 export interface ShowcaseProject {
+  icon?: Image
   _type: string
   coverImage?: Image
   overview?: PortableTextBlock[]
