@@ -11,12 +11,12 @@ import Image from 'next/image'
 import { useState, useRef, createRef } from 'react'
 import { Button } from '@/components/ui/Button'
 import PageFlip from 'page-flip'
+import { set } from 'sanity'
 
 export default function Book({ data, encodeDataAttribute }: HomePageProps) {
   const { overview = [], showcaseProjects = [] } = data ?? {}
   showcaseProjects.forEach((project, index) => (project.page = index + 1))
-  const book = useRef<PageFlip>(new PageFlip({
-  }))
+  let book:any = null;
 
   const columns = [
     {
@@ -44,7 +44,7 @@ export default function Book({ data, encodeDataAttribute }: HomePageProps) {
               const page = row.getValue('page') // Access the page number
               console.log('Turning to page:', page - 1)
               console.log('Book ref:', book.current)
-              book.current.pageflip.flip(2)
+              book.getPageflip.flip(2)
             }}
           >
             {row.getValue('page')}
@@ -57,7 +57,7 @@ export default function Book({ data, encodeDataAttribute }: HomePageProps) {
   return (
     <div className="w-2/3 h-min flex items-center justify-center  bg-brown py-2 px-2 max-w-[1200px] rounded">
       <HTMLFlipBook
-        ref={book}
+        ref={(component) => (book = component)}
         width={300}
         height={500}
         style={{}}
