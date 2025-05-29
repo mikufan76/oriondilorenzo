@@ -19,11 +19,13 @@ import {
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[]
   data: TData[]
+  showHeader: boolean
 }
 
 export function DataTable<TData, TValue>({
   columns,
   data,
+  showHeader,
 }: DataTableProps<TData, TValue>) {
   const table = useReactTable({
     data,
@@ -34,7 +36,7 @@ export function DataTable<TData, TValue>({
   return (
     <div className="rounded-md border w-full h-full">
       <Table>
-        <TableHeader>
+        <TableHeader className={showHeader ? '' : 'hidden'}>
           {table.getHeaderGroups().map((headerGroup) => (
             <TableRow key={headerGroup.id}>
               {headerGroup.headers.map((header) => {

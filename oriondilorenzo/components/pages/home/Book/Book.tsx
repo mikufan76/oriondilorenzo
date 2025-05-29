@@ -69,7 +69,7 @@ export default function Book({ data, encodeDataAttribute }: HomePageProps) {
 }
 
 function PageOne({ showcaseProjects }) {
-  return <DataTable columns={columns} data={showcaseProjects} />
+  return <DataTable columns={columns} data={showcaseProjects} showHeader={false} />
 }
 // {imageUrl && <Image src={imageUrl} width={10} height={10} alt={''} />}
 // <TextBox project={project} />
