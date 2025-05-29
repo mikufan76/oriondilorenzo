@@ -1,7 +1,8 @@
-import Logo from './svgs/logo'
-import TitlePlate from './TitlePlate'
+import Logo from '@/components/shared/svgs/logo'
 import Navbar from './Navbar'
 import { Projects } from './Projects'
+import TitlePlate from './TitlePlate'
+
 export function Header() {
   return (
     <div className="absolute w-full h-full bg-[url(/header-bg.png)] bg-cover flex justify-center items-center overflow-hidden">

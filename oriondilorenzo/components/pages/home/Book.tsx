@@ -1,14 +1,15 @@
 "use client"
 import { resolveHref } from '@/sanity/lib/utils'
 import Link from 'next/link'
-import { ProjectListItem } from '../pages/home/ProjectListItem'
-import { HomePageProps } from '../pages/home/HomePage'
+import { ProjectListItem } from './ProjectListItem'
+import { HomePageProps } from './HomePage'
 import HTMLFlipBook from 'react-pageflip'
 
 export default function Book({ data, encodeDataAttribute }: HomePageProps) {
   const { overview = [], showcaseProjects = [] } = data ?? {}
   return (
-    <div className="w-2/3 flex items-center justify-center  bg-brown py-2 px-2 max-w-[1200px]">
+
+    <div className="w-2/3 h-min flex items-center justify-center  bg-brown py-2 px-2 max-w-[1200px]">
       <HTMLFlipBook
         width={300}
         height={500}

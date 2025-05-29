@@ -1,7 +1,7 @@
 import type { EncodeDataAttributeCallback } from '@sanity/react-loader'
 
-import { Header } from '@/components/shared/Header'
-import { Projects } from '@/components/shared/Projects'
+import { Header } from './Header'
+import { Projects } from '@/components/pages/home/Projects'
 import type { HomePagePayload } from '@/types'
 
 export interface HomePageProps {
