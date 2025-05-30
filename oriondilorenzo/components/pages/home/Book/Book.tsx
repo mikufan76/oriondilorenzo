@@ -1,20 +1,18 @@
 'use client'
-import { resolveHref } from '@/sanity/lib/utils'
-import Link from 'next/link'
-import { ProjectListItem } from '../ProjectListItem'
-import { HomePageProps } from '../HomePage'
-import HTMLFlipBook from 'react-pageflip'
-import { DataTable } from '@/components/ui/DataTable'
-import { ColumnDef } from '@tanstack/react-table'
-import { urlForImage } from '@/sanity/lib/utils'
 import Image from 'next/image'
-import { useState, useRef, createRef } from 'react'
+import { useRef } from 'react'
+import HTMLFlipBook from 'react-pageflip'
+
+import { CustomPortableText } from '@/components/shared/CustomPortableText'
 import { Button } from '@/components/ui/Button'
-import PageFlip from 'page-flip'
-import { set } from 'sanity'
+import { DataTable } from '@/components/ui/DataTable'
+import { urlForImage } from '@/sanity/lib/utils'
+
+import { HomePageProps } from '../HomePage'
 
 export default function Book({ data, encodeDataAttribute }: HomePageProps) {
   const { overview = [], showcaseProjects = [] } = data ?? {}
+  console.log(overview)
   showcaseProjects.forEach((project, index) => (project.page = index + 1))
   const book = useRef(null) as any
 
@@ -39,12 +37,10 @@ export default function Book({ data, encodeDataAttribute }: HomePageProps) {
       cell: ({ row }) => {
         return (
           <Button
-            variant={'outline'}
+            variant={'ghost'}
             onClick={() => {
               const page = row.getValue('page') // Access the page number
-              console.log('Requested page:', page)
-              console.log('currentPage', book.current.pageFlip().getCurrentPageIndex())
-              console.log('Book ref:', book.current.pageFlip().flip(page))
+              book.current.pageFlip().flip(page)
             }}
           >
             {row.getValue('page')}
@@ -82,10 +78,11 @@ export default function Book({ data, encodeDataAttribute }: HomePageProps) {
         showPageCorners={true}
         disableFlipByClick={false}
       >
+        {/* PAGE 1 */}
         <div className="flex flex-col h-full w-full items-end justify-end border-2 border-red">
-          <div className="h-1/2">
-          </div>
+          <CustomPortableText value={overview.text}></CustomPortableText>
           <DataTable
+            variants={{ rowVariants: 'tableOfContents' }}
             columns={columns}
             data={showcaseProjects}
             showHeader={true}

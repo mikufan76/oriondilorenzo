@@ -6,6 +6,7 @@ import {
   getCoreRowModel,
   useReactTable,
 } from '@tanstack/react-table'
+import { cva, type VariantProps } from 'class-variance-authority'
 
 import {
   Table,
@@ -15,17 +16,32 @@ import {
   TableHeader,
   TableRow,
 } from '@/components/ui/Table'
+import { cn } from '@/sanity/lib/utils'
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[]
   data: TData[]
   showHeader: boolean
+  variants: VariantProps<typeof tableVariants>
 }
+
+const tableVariants = cva('', {
+  variants: {
+    rowVariants: {
+      default: '',
+      tableOfContents: 'odd:bg-darkBrown',
+    },
+    defaultVariants: {
+      rowVariants: 'default',
+    },
+  },
+})
 
 export function DataTable<TData, TValue>({
   columns,
   data,
   showHeader,
+  variants,
 }: DataTableProps<TData, TValue>) {
   const table = useReactTable({
     data,
@@ -60,6 +76,9 @@ export function DataTable<TData, TValue>({
               <TableRow
                 key={row.id}
                 data-state={row.getIsSelected() && 'selected'}
+                className={cn(
+                  tableVariants({ rowVariants: variants?.rowVariants }),
+                )}
               >
                 {row.getVisibleCells().map((cell) => (
                   <TableCell key={cell.id}>
