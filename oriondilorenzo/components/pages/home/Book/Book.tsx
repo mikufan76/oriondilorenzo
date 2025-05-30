@@ -16,7 +16,7 @@ import { set } from 'sanity'
 export default function Book({ data, encodeDataAttribute }: HomePageProps) {
   const { overview = [], showcaseProjects = [] } = data ?? {}
   showcaseProjects.forEach((project, index) => (project.page = index + 1))
-  let book:any = null;
+  const book = useRef(null) as any
 
   const columns = [
     {
@@ -42,9 +42,9 @@ export default function Book({ data, encodeDataAttribute }: HomePageProps) {
             variant={'outline'}
             onClick={() => {
               const page = row.getValue('page') // Access the page number
-              console.log('Turning to page:', page - 1)
-              console.log('Book ref:', book.current)
-              book.getPageflip.flip(2)
+              console.log('Requested page:', page)
+              console.log('currentPage', book.current.pageFlip().getCurrentPageIndex())
+              console.log('Book ref:', book.current.pageFlip().flip(page))
             }}
           >
             {row.getValue('page')}
@@ -57,7 +57,7 @@ export default function Book({ data, encodeDataAttribute }: HomePageProps) {
   return (
     <div className="w-2/3 h-min flex items-center justify-center  bg-brown py-2 px-2 max-w-[1200px] rounded">
       <HTMLFlipBook
-        ref={(component) => (book = component)}
+        ref={book}
         width={300}
         height={500}
         style={{}}
@@ -82,21 +82,21 @@ export default function Book({ data, encodeDataAttribute }: HomePageProps) {
         showPageCorners={true}
         disableFlipByClick={false}
       >
-        <div className="flex flex-col">
-          <PageOne showcaseProjects={showcaseProjects} columns={columns} />
+        <div className="flex flex-col h-full w-full items-end justify-end border-2 border-red">
+          <div className="h-1/2">
+          </div>
+          <DataTable
+            columns={columns}
+            data={showcaseProjects}
+            showHeader={true}
+          />
         </div>
-        <div className="demoPage bg-blue shadow-xl">Page 2</div>
-        <div className="demoPage bg-green shadow-xl">Page 3</div>
-        <div className="demoPage bg-purple shadow-xl">Page 4</div>
-        <div className="demoPage bg-red shadow-xl">Page 1</div>
-        <div className="demoPage bg-blue shadow-xl">Page 2</div>
+        <div className="demoPage bg-blue shadow-xl">Page 1</div>
+        <div className="demoPage bg-green shadow-xl">Page 2</div>
+        <div className="demoPage bg-purple shadow-xl">Page 3</div>
+        <div className="demoPage bg-red shadow-xl">Page 4</div>
+        <div className="demoPage bg-blue shadow-xl">Page 5</div>
       </HTMLFlipBook>
     </div>
-  )
-}
-
-function PageOne({ showcaseProjects, columns }) {
-  return (
-    <DataTable columns={columns} data={showcaseProjects} showHeader={true} />
   )
 }
