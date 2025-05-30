@@ -9,10 +9,12 @@ import { DataTable } from '@/components/ui/DataTable'
 import { urlForImage } from '@/sanity/lib/utils'
 
 import { HomePageProps } from '../HomePage'
+import { PortableText } from 'next-sanity'
+import { ScrollBar, ScrollArea } from '@/components/ui/ScrollArea'
 
 export default function Book({ data, encodeDataAttribute }: HomePageProps) {
   const { overview = [], showcaseProjects = [] } = data ?? {}
-  console.log(overview)
+  console.log(showcaseProjects)
   showcaseProjects.forEach((project, index) => (project.page = index + 1))
   const book = useRef(null) as any
 
@@ -51,7 +53,7 @@ export default function Book({ data, encodeDataAttribute }: HomePageProps) {
   ]
 
   return (
-    <div className="w-2/3 h-min flex items-center justify-center  bg-brown py-2 px-2 max-w-[1200px] rounded">
+    <div className="w-2/3 h-min flex items-center justify-center  bg-brown py-2 px-2 max-w-[1200px] rounded ">
       <HTMLFlipBook
         ref={book}
         width={300}
@@ -64,12 +66,12 @@ export default function Book({ data, encodeDataAttribute }: HomePageProps) {
         maxWidth={600}
         minHeight={500}
         maxHeight={800}
-        drawShadow={false}
-        flippingTime={600}
+        drawShadow={true}
+        flippingTime={1000}
         usePortrait={true}
         startZIndex={0}
         autoSize={true}
-        maxShadowOpacity={50}
+        maxShadowOpacity={0.5}
         showCover={false}
         mobileScrollSupport={true}
         clickEventForward={true}
@@ -79,7 +81,7 @@ export default function Book({ data, encodeDataAttribute }: HomePageProps) {
         disableFlipByClick={false}
       >
         {/* PAGE 1 */}
-        <div className="flex flex-col h-full w-full items-end justify-end border-2 border-red">
+        <div className="flex flex-col h-full w-full items-end justify-end p-4">
           <CustomPortableText value={overview.text}></CustomPortableText>
           <DataTable
             variants={{ rowVariants: 'tableOfContents' }}
@@ -88,11 +90,41 @@ export default function Book({ data, encodeDataAttribute }: HomePageProps) {
             showHeader={true}
           />
         </div>
-        <div className="demoPage bg-blue shadow-xl">Page 1</div>
-        <div className="demoPage bg-green shadow-xl">Page 2</div>
-        <div className="demoPage bg-purple shadow-xl">Page 3</div>
-        <div className="demoPage bg-red shadow-xl">Page 4</div>
-        <div className="demoPage bg-blue shadow-xl">Page 5</div>
+        {/* PROJECT POSTS */}
+        {showcaseProjects.map((project) => {
+          const { coverImage } = project
+          const coverImgUrl =
+            coverImage &&
+            urlForImage(coverImage)?.height(300).width(500).fit('crop').url()
+
+          return (
+            project && (
+              <div
+                key={project.slug}
+                className="flex flex-col h-full w-full bg-paper p-4 content-evenly"
+              >
+                <div className="w-full h-1/3 overflow-hidden">
+                  {coverImgUrl && (
+                    <Image
+                      className="w-full h-min"
+                      width={500}
+                      height={300}
+                      src={coverImgUrl}
+                      alt={''}
+                    />
+                  )}
+                </div>
+                <h3 className="text-2xl w-full h-1/6 text-center indie-flower ">
+                  {project.title}
+                </h3>
+                <ScrollArea className="w-full h-1/3 ">
+                  <PortableText value={project.overview || []} />
+                  <ScrollBar />
+                </ScrollArea>
+              </div>
+            )
+          )
+        })}
       </HTMLFlipBook>
     </div>
   )

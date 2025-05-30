@@ -30,7 +30,7 @@ export interface ShowcaseProject {
   page?: number
   icon?: Image
   _type: string
-  coverImage?: Image
+  coverImage: Image
   overview?: PortableTextBlock[]
   slug?: string
   tags?: string[]

@@ -19,6 +19,7 @@ module.exports = {
       brown: '#6C4B3E',
       darkBrown: '#48271A',
       shade: 'rgba(13, 8, 84, 0.7)',
+      paper: '#FFFFF6',
     },
     // Overriding fontFamily to use @next/font loaded families
 
