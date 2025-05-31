@@ -86,7 +86,7 @@ export default function Book({ data, encodeDataAttribute }: HomePageProps) {
         clickEventForward={true}
         useMouseEvents={true}
         swipeDistance={30}
-        showPageCorners={false}
+        showPageCorners={true}
         disableFlipByClick={false}
       >
         {/* PAGE 1 */}
@@ -99,6 +99,7 @@ export default function Book({ data, encodeDataAttribute }: HomePageProps) {
             showHeader={true}
           />
         </div>
+        <div className='bg-red'></div>
         {/* PROJECT POSTS */}
         {showcaseProjects.map((project) => {
           const { coverImage } = project
