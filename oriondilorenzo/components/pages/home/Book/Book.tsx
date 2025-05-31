@@ -61,7 +61,7 @@ export default function Book({ data, encodeDataAttribute }: HomePageProps) {
 
   return (
     <div
-      className={`w-full h-[90vh] sm:h-min  sm:w-2/3 min-h-[400]  min-w-[300] flex items-center justify-center  bg-brown p-4 max-w-[1200px] rounded ${nanumPen.className}`}
+      className={`w-full h-[90vh] sm:h-min  sm:w-2/3 min-h-[400]  min-w-[300] flex items-center justify-center  bg-brown p-4 max-w-[1200px] rounded-lg ${nanumPen.className}`}
     >
       <HTMLFlipBook
         ref={book}
