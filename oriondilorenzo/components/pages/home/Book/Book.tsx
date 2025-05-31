@@ -61,7 +61,7 @@ export default function Book({ data, encodeDataAttribute }: HomePageProps) {
 
   return (
     <div
-      className={`w-2/3 h-min flex items-center justify-center  bg-brown py-4 max-w-[1200px] rounded ${nanumPen.className}`}
+      className={`w-full h-[90vh] sm:h-min  sm:w-2/3 min-h-[400]  min-w-[300] flex items-center justify-center  bg-brown p-4 max-w-[1200px] rounded ${nanumPen.className}`}
     >
       <HTMLFlipBook
         ref={book}
@@ -71,9 +71,9 @@ export default function Book({ data, encodeDataAttribute }: HomePageProps) {
         className={''}
         size={'stretch'}
         startPage={0}
-        minWidth={300}
+        minWidth={250}
         maxWidth={600}
-        minHeight={500}
+        minHeight={400}
         maxHeight={800}
         drawShadow={true}
         flippingTime={1000}
@@ -86,11 +86,11 @@ export default function Book({ data, encodeDataAttribute }: HomePageProps) {
         clickEventForward={true}
         useMouseEvents={true}
         swipeDistance={30}
-        showPageCorners={true}
+        showPageCorners={false}
         disableFlipByClick={false}
       >
         {/* PAGE 1 */}
-        <div className="flex flex-col h-full w-full items-end justify-end p-4">
+        <div className="flex flex-col h-full w-full items-end justify-end p-4 bg-brown">
           <CustomPortableText value={overview.text}></CustomPortableText>
           <DataTable
             variants={{ rowVariants: 'tableOfContents' }}
@@ -112,7 +112,7 @@ export default function Book({ data, encodeDataAttribute }: HomePageProps) {
                 key={project.slug}
                 className="flex flex-col h-full w-full bg-paper py-2 px-4 content-between"
               >
-                <div className="w-full h-1/2 overflow-hidden">
+                <div className="w-full h-1/2">
                   {coverImgUrl && (
                     <Image
                       className="w-full"
