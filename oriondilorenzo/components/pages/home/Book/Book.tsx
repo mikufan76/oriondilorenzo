@@ -12,6 +12,13 @@ import { HomePageProps } from '../HomePage'
 import { PortableText } from 'next-sanity'
 import { ScrollBar, ScrollArea } from '@/components/ui/ScrollArea'
 
+import { Nanum_Pen_Script } from '@next/font/google'
+
+const nanumPen = Nanum_Pen_Script({
+  subsets: ['latin'],
+  weight: ['400'],
+})
+
 export default function Book({ data, encodeDataAttribute }: HomePageProps) {
   const { overview = [], showcaseProjects = [] } = data ?? {}
   console.log(showcaseProjects)
@@ -53,7 +60,9 @@ export default function Book({ data, encodeDataAttribute }: HomePageProps) {
   ]
 
   return (
-    <div className="w-2/3 h-min flex items-center justify-center  bg-brown py-2 px-2 max-w-[1200px] rounded ">
+    <div
+      className={`w-2/3 h-min flex items-center justify-center  bg-brown py-4 max-w-[1200px] rounded ${nanumPen.className}`}
+    >
       <HTMLFlipBook
         ref={book}
         width={300}
@@ -101,25 +110,24 @@ export default function Book({ data, encodeDataAttribute }: HomePageProps) {
             project && (
               <div
                 key={project.slug}
-                className="flex flex-col h-full w-full bg-paper p-4 content-evenly"
+                className="flex flex-col h-full w-full bg-paper py-2 px-4 content-between"
               >
-                <div className="w-full h-1/3 overflow-hidden">
+                <div className="w-full h-1/2 overflow-hidden">
                   {coverImgUrl && (
                     <Image
-                      className="w-full h-min"
+                      className="w-full"
                       width={500}
                       height={300}
                       src={coverImgUrl}
                       alt={''}
                     />
                   )}
+                  <div className="text-3xl w-full h-[9%] text-center text-bold flex items-center justify-center">
+                    <h3 className="w-min h-min">{project.title}</h3>
+                  </div>
                 </div>
-                <h3 className="text-2xl w-full h-1/6 text-center indie-flower ">
-                  {project.title}
-                </h3>
-                <ScrollArea className="w-full h-1/3 ">
+                <ScrollArea className="w-full h-1/2 text-xl p-4 shadow-inner">
                   <PortableText value={project.overview || []} />
-                  <ScrollBar />
                 </ScrollArea>
               </div>
             )

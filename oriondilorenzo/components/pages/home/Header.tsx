@@ -1,6 +1,5 @@
 import Logo from '@/components/shared/svgs/logo'
 import Navbar from './Navbar'
-import { Projects } from './Projects'
 import TitlePlate from './TitlePlate'
 
 export function Header() {
