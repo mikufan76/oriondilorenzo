@@ -2,7 +2,7 @@ import Logo from '@/components/shared/svgs/logo'
 import Navbar from './Navbar'
 import TitlePlate from './TitlePlate'
 
-export function Header() {
+export function Header({projectOnClick}: { projectOnClick?: () => void }) {
   return (
     <div className="absolute w-full h-full bg-[url(/header-bg.png)] bg-cover flex justify-center items-center overflow-hidden">
       {/* Foreground */}
@@ -15,7 +15,7 @@ export function Header() {
           </div>
         </div>
         <div className='flex flex-col shrink w-full sm:w-1/5 h-[15vw] sm:h-full justify-between items-center p-2 sm:p-6'>
-          <Navbar projectOnClick={undefined} />
+          <Navbar projectOnClick={projectOnClick} />
         </div>
       </div>
     </div>

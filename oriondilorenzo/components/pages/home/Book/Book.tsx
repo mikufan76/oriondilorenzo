@@ -60,7 +60,7 @@ export default function Book({ data, encodeDataAttribute }: HomePageProps) {
 
   return (
     <div
-      className={`w-full h-[90vh] sm:h-min  sm:w-2/3 min-h-[400]  min-w-[300] flex items-center justify-center  p-4 max-w-[1200px] rounded-lg ${nanumPen.className}`}
+      className={`w-full h-[90vh] sm:h-min  sm:w-2/3 min-h-[400]  min-w-[300] flex items-center justify-center  max-w-[1200px] rounded-lg ${nanumPen.className}`}
     >
       <HTMLFlipBook
         ref={book}
@@ -91,7 +91,7 @@ export default function Book({ data, encodeDataAttribute }: HomePageProps) {
         {/* front cover */}
         <div className="bg-brown"></div>
         {/* PAGE 1 */}
-        <div className="flex flex-col h-full w-full items-end justify-end p-4 bg-brown">
+        <div className="flex flex-col h-full w-full items-end justify-end p-4 bg-brown border-2">
           <CustomPortableText value={overview.text}></CustomPortableText>
           <DataTable
             variants={{ rowVariants: 'tableOfContents' }}

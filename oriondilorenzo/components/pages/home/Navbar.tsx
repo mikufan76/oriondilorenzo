@@ -22,7 +22,7 @@ export default function Navbar({ projectOnClick }) {
       <a href="https://drive.google.com/file/d/1UYg4wzn0-01qWauXlJBj43hBRcVB5aqQ/view?usp=sharing">
         <FontAwesomeIcon icon={faFilePdf} className="h-5/6" />
       </a>
-      <FontAwesomeIcon icon={faBook} className="h-5/6 hover:cursor-pointer" />
+      <FontAwesomeIcon icon={faBook} className="h-5/6 hover:cursor-pointer" onClick={projectOnClick} />
     </div>
   )
 }

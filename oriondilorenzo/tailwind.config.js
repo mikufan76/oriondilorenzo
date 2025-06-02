@@ -33,11 +33,16 @@ module.exports = {
       },
       animation: {
         wiggle: 'wiggle 4s ease-in-out infinite',
+        'slide-out-book': 'slide-out 1s ease-in forwards',
       },
       keyframes: {
         wiggle: {
           '0%, 100%': { transform: 'rotate(10deg) scale(1.25, 1.25)' },
           '50%': { transform: 'rotate(-10deg) scale(1.25, 1.25)' },
+        },
+        'slide-out': {
+          '0%': { transform: 'translateY(0)' },
+          '100%': { transform: 'translateY(500%)' },
         },
       },
     },
