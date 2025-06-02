@@ -11,12 +11,8 @@ const tags = Array.from({ length: 50 }).map(
 
 export function Projects({ data, encodeDataAttribute }: HomePageProps) {
   return (
-    <ScrollArea className="h-screen w-screen z-50 smooth-scroll">
-      <div className="h-screen w-screen opacity-0" />{' '}
       <div className="h-screen w-screen flex flex-row justify-center items-center transition-all hover:backdrop-blur-sm">
         <Book data={data} encodeDataAttribute={encodeDataAttribute} />
       </div>
-      <Scrollbar />
-    </ScrollArea>
   )
 }

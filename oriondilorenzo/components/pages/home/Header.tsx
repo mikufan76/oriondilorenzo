@@ -15,7 +15,7 @@ export function Header() {
           </div>
         </div>
         <div className='flex flex-col shrink w-full sm:w-1/5 h-[15vw] sm:h-full justify-between items-center p-2 sm:p-6'>
-          <Navbar/>
+          <Navbar projectOnClick={undefined} />
         </div>
       </div>
     </div>
