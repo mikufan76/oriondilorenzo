@@ -11,8 +11,6 @@ export interface linksPageProps {
 export function LinksPage({ data }: linksPageProps) {
   // Default to an empty object to allow previews on non-existent documents
   const { title, linksLinks } = data ?? {}
-  console.log(JSON.stringify(data, null, 2))
-
   return (
     <div className="h-full mt-4 grid gap-5 grid-cols-1 xl:grid-cols-2">
       <div className="w-full">

@@ -12,7 +12,6 @@ export function ProjectListItem(props: ProjectProps) {
   const { icon } = project;
   const imageUrl =
     icon && urlForImage(icon)?.height(10).width(10).fit('crop').url()
-    console.log('imageUrl', imageUrl);
 
   return (
     <div className={`flex flex-row`}>

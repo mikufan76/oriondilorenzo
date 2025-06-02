@@ -21,7 +21,6 @@ const nanumPen = Nanum_Pen_Script({
 
 export default function Book({ data, encodeDataAttribute }: HomePageProps) {
   const { overview = [], showcaseProjects = [] } = data ?? {}
-  console.log(showcaseProjects)
   showcaseProjects.forEach((project, index) => (project.page = index + 1))
   const book = useRef(null) as any
 
@@ -61,7 +60,7 @@ export default function Book({ data, encodeDataAttribute }: HomePageProps) {
 
   return (
     <div
-      className={`w-full h-[90vh] sm:h-min  sm:w-2/3 min-h-[400]  min-w-[300] flex items-center justify-center  bg-brown p-4 max-w-[1200px] rounded-lg ${nanumPen.className}`}
+      className={`w-full h-[90vh] sm:h-min  sm:w-2/3 min-h-[400]  min-w-[300] flex items-center justify-center  p-4 max-w-[1200px] rounded-lg ${nanumPen.className}`}
     >
       <HTMLFlipBook
         ref={book}
@@ -76,12 +75,12 @@ export default function Book({ data, encodeDataAttribute }: HomePageProps) {
         minHeight={400}
         maxHeight={800}
         drawShadow={true}
-        flippingTime={1000}
+        flippingTime={800}
         usePortrait={true}
         startZIndex={0}
         autoSize={true}
         maxShadowOpacity={0.5}
-        showCover={false}
+        showCover={true}
         mobileScrollSupport={true}
         clickEventForward={true}
         useMouseEvents={true}
@@ -89,6 +88,8 @@ export default function Book({ data, encodeDataAttribute }: HomePageProps) {
         showPageCorners={true}
         disableFlipByClick={false}
       >
+        {/* front cover */}
+        <div className="bg-brown"></div>
         {/* PAGE 1 */}
         <div className="flex flex-col h-full w-full items-end justify-end p-4 bg-brown">
           <CustomPortableText value={overview.text}></CustomPortableText>
@@ -99,7 +100,7 @@ export default function Book({ data, encodeDataAttribute }: HomePageProps) {
             showHeader={true}
           />
         </div>
-        <div className='bg-red'></div>
+        <div className="bg-paper"></div>
         {/* PROJECT POSTS */}
         {showcaseProjects.map((project) => {
           const { coverImage } = project
@@ -134,6 +135,11 @@ export default function Book({ data, encodeDataAttribute }: HomePageProps) {
             )
           )
         })}
+        <div className="bg-paper"></div>
+        {/* back inner cover */}
+        <div className="bg-brown"></div>
+        {/* back cover */}
+        <div className="bg-brown"></div>
       </HTMLFlipBook>
     </div>
   )
