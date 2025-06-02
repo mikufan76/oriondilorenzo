@@ -31,6 +31,15 @@ module.exports = {
         shade: 'rgba(13, 8, 84, 0.7)',
         paper: '#FFFFF6',
       },
+      animation: {
+        wiggle: 'wiggle 4s ease-in-out infinite',
+      },
+      keyframes: {
+        wiggle: {
+          '0%, 100%': { transform: 'rotate(10deg) scale(1.25, 1.25)' },
+          '50%': { transform: 'rotate(-10deg) scale(1.25, 1.25)' },
+        },
+      },
     },
   },
   plugins: [

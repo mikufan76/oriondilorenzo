@@ -11,7 +11,7 @@ const tags = Array.from({ length: 50 }).map(
 
 export function Projects({ data, encodeDataAttribute }: HomePageProps) {
   return (
-      <div className="h-screen w-screen flex flex-row justify-center items-center transition-all hover:backdrop-blur-sm">
+      <div className=" hidden h-screen w-screen flex flex-row justify-center items-center transition-all hover:backdrop-blur-sm">
         <Book data={data} encodeDataAttribute={encodeDataAttribute} />
       </div>
   )
