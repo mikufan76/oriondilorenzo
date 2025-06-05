@@ -43,32 +43,39 @@ export function HomePage({ data, encodeDataAttribute }: HomePageProps) {
     }
   }
 
+  const closeBook = () => {
+    setBookState(BookState.Closed)
+  }
+
   return (
-    <div className="overflow-hidden h-screen w-screen">
+    <div className="overflow-hidden h-screen w-screen ">
       {/* Header */}
       <Header projectOnClick={handleBookClick} />
-      {bookState == BookState.Open && <BgBlur bookState={bookState}/>}
-      {bookState == BookState.Closed && <BgBlur bookState={bookState} />}
+      {bookState == (BookState.Open || BookState.Closed) && (
+        <BgBlur bookState={bookState} onClick={closeBook} />
+      )}
       <div className={style}>
         <Book data={data} encodeDataAttribute={encodeDataAttribute} />
         <Button
-          className="z-50 absolute"
-          onClick={() => {
-            setBookState(BookState.Closed)
-          }}
-        />
+          variant={'outline'}
+          className="absolute top-0 right-0 sm:top-1 sm:right-1 bg-bg text-primary sm:text-2xl hover:bg-primary hover:text-bg transition-colors rounded"
+          onClick={closeBook}
+        >
+          X
+        </Button>
       </div>
     </div>
   )
 }
 
-const BgBlur = ({ bookState }) => {
+const BgBlur = ({ bookState, onClick }) => {
   const animation =
     bookState === BookState.Open
       ? 'animate-in fade-in duration-500 ease-out'
       : 'animate-custom-fade '
   return (
     <div
+      onClick={onClick}
       className={`absolute w-screen h-screen backdrop-blur-lg ${animation}`}
     ></div>
   )

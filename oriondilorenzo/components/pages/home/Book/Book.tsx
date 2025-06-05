@@ -71,10 +71,10 @@ export default function Book({ data, encodeDataAttribute }: HomePageProps) {
         className={''}
         size={'stretch'}
         startPage={0}
+        maxWidth={1000}
+        maxHeight={1000}
         minWidth={250}
-        maxWidth={600}
         minHeight={400}
-        maxHeight={800}
         drawShadow={true}
         flippingTime={800}
         usePortrait={true}
@@ -85,14 +85,16 @@ export default function Book({ data, encodeDataAttribute }: HomePageProps) {
         mobileScrollSupport={true}
         clickEventForward={true}
         useMouseEvents={true}
-        swipeDistance={30}
+        swipeDistance={10}
         showPageCorners={true}
         disableFlipByClick={false}
       >
         {/* front cover */}
         <div className="bg-brown"></div>
         {/* PAGE 1 */}
-        <div className="flex flex-col h-full w-full items-end justify-end p-4 bg-brown border-2">
+        <div className="flex flex-col h-full w-full items-end justify-end p-4 bg-brown"
+
+        >
           <CustomPortableText value={overview.text}></CustomPortableText>
           <DataTable
             variants={{ rowVariants: 'tableOfContents' }}
@@ -101,7 +103,6 @@ export default function Book({ data, encodeDataAttribute }: HomePageProps) {
             showHeader={true}
           />
         </div>
-        <div className="bg-paper"></div>
         {/* PROJECT POSTS */}
         {showcaseProjects.map((project) => {
           const { coverImage } = project

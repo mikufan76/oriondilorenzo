@@ -37,8 +37,8 @@ module.exports = {
       },
       animation: {
         wiggle: 'wiggle 4s ease-in-out infinite',
-        'slide-out-book': 'slide-out 1s ease-in forwards',
-        'custom-fade': 'fade-out 1s ease-in forwards',
+        'slide-out-book': 'slide-out .5s ease-in forwards',
+        'custom-fade': 'fade-out .9s ease-in forwards',
       },
       keyframes: {
         wiggle: {
