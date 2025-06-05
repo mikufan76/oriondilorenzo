@@ -31,9 +31,13 @@ const tableVariants = cva('', {
       default: '',
       tableOfContents: 'odd:bg-darkBrown',
     },
-    defaultVariants: {
-      rowVariants: 'default',
+    table: {
+      default: 'text-2xl text-primary',
     },
+  },
+  defaultVariants: {
+    rowVariants: 'default',
+    table: 'default',
   },
 })
 
@@ -50,7 +54,7 @@ export function DataTable<TData, TValue>({
   })
 
   return (
-    <div className="rounded-md border">
+    <div className={tableVariants({ table: variants?.table })}>
       <Table>
         <TableHeader className={showHeader ? '' : 'hidden'}>
           {table.getHeaderGroups().map((headerGroup) => (

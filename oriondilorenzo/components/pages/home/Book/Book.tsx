@@ -19,7 +19,6 @@ const nanumPen = Nanum_Pen_Script({
   weight: ['400'],
 })
 
-
 export default function Book({ data, encodeDataAttribute }: HomePageProps) {
   const { overview = [], showcaseProjects = [] } = data ?? {}
   showcaseProjects.forEach((project, index) => (project.page = index + 1))
@@ -31,29 +30,31 @@ export default function Book({ data, encodeDataAttribute }: HomePageProps) {
       cell: ({ row }) => {
         const icon = row.getValue('icon')
         const imageUrl =
-          icon && urlForImage(icon)?.height(10).width(10).fit('crop').url()
-        return <Image src={imageUrl} width={10} height={10} alt={''} />
+          icon && urlForImage(icon)?.height(20).width(20).fit('crop').url()
+        return <Image src={imageUrl} width={20} height={20} alt={''} />
       },
-      header: '',
+      header: 'Project',
     },
     {
       accessorKey: 'title',
-      header: 'Project',
+      header: '',
     },
 
     {
       accessorKey: 'page',
       cell: ({ row }) => {
         return (
-          <Button
-            variant={'ghost'}
-            onClick={() => {
-              const page = row.getValue('page') // Access the page number
-              book.current.pageFlip().flip(page)
-            }}
-          >
-            {row.getValue('page')}
-          </Button>
+          <div className="w-full">
+            <div
+              className="cursor-pointer border-2 border-primary w-[30px] text-center hover:bg-primary hover:text-brown transition-colors rounded"
+              onClick={() => {
+                const page = row.getValue('page') // Access the page number
+                book.current.pageFlip().flip(page)
+              }}
+            >
+              {row.getValue('page')}
+            </div>
+          </div>
         )
       },
     },
@@ -70,7 +71,7 @@ export default function Book({ data, encodeDataAttribute }: HomePageProps) {
         style={{}}
         className={''}
         size={'stretch'}
-        startPage={0}
+        startPage={1}
         maxWidth={1000}
         maxHeight={1000}
         minWidth={250}
@@ -90,18 +91,27 @@ export default function Book({ data, encodeDataAttribute }: HomePageProps) {
         disableFlipByClick={false}
       >
         {/* front cover */}
-        <div className="bg-brown"></div>
+        <div className="bg-brown">ORION'S PROJECTS</div>
         {/* PAGE 1 */}
-        <div className="flex flex-col h-full w-full items-end justify-end p-4 bg-brown"
+        <div className="flex flex-col h-full w-full items-end justify-around p-4 bg-brown text-primary">
+          <div id="intro" className=" w-full h-1/2">
+            <div className="w-full text-4xl">IF FOUND PLEASE EMAIL</div>
+            <div className="w-full text-2xl">@OrionDiLorenzo@Proton.me</div>
+            <div className="w-full text-2xl">REWARD $$$$$$$</div>
 
-        >
-          <CustomPortableText value={overview.text}></CustomPortableText>
-          <DataTable
-            variants={{ rowVariants: 'tableOfContents' }}
-            columns={columns}
-            data={showcaseProjects}
-            showHeader={true}
-          />
+            <div className="p-4">
+              <CustomPortableText value={overview.text}></CustomPortableText>
+            </div>
+          </div>
+          <div className="h-1/2 w-full">
+            <h3 className="w-full text-center text-3xl">Table of Contents</h3>
+            <DataTable
+              variants={{ rowVariants: 'tableOfContents' }}
+              columns={columns}
+              data={showcaseProjects}
+              showHeader={true}
+            />
+          </div>
         </div>
         {/* PROJECT POSTS */}
         {showcaseProjects.map((project) => {
@@ -137,11 +147,6 @@ export default function Book({ data, encodeDataAttribute }: HomePageProps) {
             )
           )
         })}
-        <div className="bg-paper"></div>
-        {/* back inner cover */}
-        <div className="bg-brown"></div>
-        {/* back cover */}
-        <div className="bg-brown"></div>
       </HTMLFlipBook>
     </div>
   )
