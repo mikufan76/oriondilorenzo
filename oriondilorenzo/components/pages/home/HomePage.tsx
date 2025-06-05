@@ -21,7 +21,7 @@ enum BookState {
 export function HomePage({ data, encodeDataAttribute }: HomePageProps) {
   const [bookState, setBookState] = useState<BookState>(BookState.Hidden)
   let style =
-    'h-screen w-screen flex flex-row justify-center items-center backdrop-blur-sm '
+    'h-screen w-screen flex flex-row justify-center items-center relative overflow-hidden'
 
   switch (bookState) {
     case BookState.Hidden:
@@ -48,8 +48,12 @@ export function HomePage({ data, encodeDataAttribute }: HomePageProps) {
       {/* Header */}
       <Header projectOnClick={handleBookClick} />
       <div className={style}>
+        {bookState === BookState.Open && (
+          <div className="absolute w-screen h-screen backdrop-blur-lg animate-in fade-in duration-[5s]"></div>
+        )}
         <Book data={data} encodeDataAttribute={encodeDataAttribute} />
         <Button
+          className="z-50"
           onClick={() => {
             setBookState(BookState.Closed)
           }}

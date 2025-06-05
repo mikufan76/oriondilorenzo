@@ -19,6 +19,7 @@ module.exports = {
       colors: {
         bg: 'var(--background-color)',
         primary: 'var(--primary-color)',
+        hilight: '#fffad8',
         yellow: '#ffee1f',
         pink: '#ff00dc',
         blue: '#0043d8',
@@ -30,6 +31,7 @@ module.exports = {
         darkBrown: '#48271A',
         shade: 'rgba(13, 8, 84, 0.7)',
         paper: '#FFFFF6',
+        glow: 'rgba(255,249,203, .6)',
       },
       animation: {
         wiggle: 'wiggle 4s ease-in-out infinite',
@@ -44,6 +46,9 @@ module.exports = {
           '0%': { transform: 'translateY(0)' },
           '100%': { transform: 'translateY(500%)' },
         },
+      },
+      boxShadow: {
+        glow: '0px 0px 20px 3px rgba(255,249,203, .3)',
       },
     },
   },

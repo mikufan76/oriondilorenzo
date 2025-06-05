@@ -10,8 +10,8 @@ export function Header({projectOnClick}: { projectOnClick?: () => void }) {
         {/* Left Side */}
         <div className="grow h-5/6  w-full md:px-0 sm:w-[62.5%]sm:h-full max-w-[1000px]">
           <TitlePlate />
-          <div className="logo-wrapper h-1/2 w-full  flex flex-col sm:flex-row justify-center items-center sm:items-normal ">
-            <Logo className="h-full w-min animate-wiggle min-w-[250px] " />
+          <div className="logo-wrapper h-1/2 w-full  flex flex-col sm:flex-row justify-center items-center sm:items-normal md:justify-normal">
+            <Logo className="h-full w-min animate-wiggle min-w-[250px] md:m-[10%]" />
           </div>
         </div>
         <div className='flex flex-col shrink w-full sm:w-1/5 h-[15vw] sm:h-full justify-between items-center p-2 sm:p-6'>
