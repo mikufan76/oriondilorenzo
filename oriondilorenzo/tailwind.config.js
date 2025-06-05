@@ -1,3 +1,5 @@
+const { transform } = require('typescript')
+
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: [
@@ -36,6 +38,7 @@ module.exports = {
       animation: {
         wiggle: 'wiggle 4s ease-in-out infinite',
         'slide-out-book': 'slide-out 1s ease-in forwards',
+        'custom-fade': 'fade-out 1s ease-in forwards',
       },
       keyframes: {
         wiggle: {
@@ -44,7 +47,13 @@ module.exports = {
         },
         'slide-out': {
           '0%': { transform: 'translateY(0)' },
-          '100%': { transform: 'translateY(500%)' },
+          '98%': { transform: 'translateY(100vh)' },
+          '100%': { transform: 'scale(0)' },
+        },
+        'fade-out': {
+          '0%': { opacity: 1, transform: 'scale(1)' },
+          '98%': { opacity: 0, transform: 'scale(1)' },
+          '100%': { opacity: 0, transform: 'scale(0)' },
         },
       },
       boxShadow: {

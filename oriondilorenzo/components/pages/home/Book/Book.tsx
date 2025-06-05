@@ -19,6 +19,7 @@ const nanumPen = Nanum_Pen_Script({
   weight: ['400'],
 })
 
+
 export default function Book({ data, encodeDataAttribute }: HomePageProps) {
   const { overview = [], showcaseProjects = [] } = data ?? {}
   showcaseProjects.forEach((project, index) => (project.page = index + 1))
