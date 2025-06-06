@@ -17,7 +17,7 @@ export default function Navbar({ projectOnClick }) {
     <div className="flex flex-row sm:flex-col w-full [&>*]:h-[90%]  sm:[&>*]:h-1/6 sm:[&>*]:m-4 h-full items-center justify-between">
       <NavbarButton
         icon={faLinkedin}
-        label="GitHub"
+        label="LinkedIn"
         href="https://www.linkedin.com/in/orion-dilorenzo"
       />
       <NavbarButton
