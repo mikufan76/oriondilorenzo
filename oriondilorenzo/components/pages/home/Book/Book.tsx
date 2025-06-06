@@ -1,5 +1,5 @@
 'use client'
-import { Nanum_Pen_Script } from 'next/font/google'
+import { Courier_Prime, Nanum_Pen_Script } from 'next/font/google'
 import Image from 'next/image'
 import { PortableText } from 'next-sanity'
 import { useRef } from 'react'
@@ -8,12 +8,17 @@ import HTMLFlipBook from 'react-pageflip'
 import { CustomPortableText } from '@/components/shared/CustomPortableText'
 import { Button } from '@/components/ui/Button'
 import { DataTable } from '@/components/ui/DataTable'
-import { ScrollArea,ScrollBar } from '@/components/ui/ScrollArea'
+import { ScrollArea, ScrollBar } from '@/components/ui/ScrollArea'
 import { urlForImage } from '@/sanity/lib/utils'
 
 import { HomePageProps } from '../HomePage'
 
 const nanumPen = Nanum_Pen_Script({
+  subsets: ['latin'],
+  weight: ['400'],
+})
+
+const courierPrime = Courier_Prime({
   subsets: ['latin'],
   weight: ['400'],
 })
@@ -90,7 +95,9 @@ export default function Book({ data, encodeDataAttribute }: HomePageProps) {
         disableFlipByClick={false}
       >
         {/* front cover */}
-        <div className="bg-brown">ORION&apos;S PROJECTS (THIS IS A WIP LOLL)</div>
+        <div className="bg-brown">
+          ORION&apos;S PROJECTS (THIS IS A WIP LOLL)
+        </div>
         {/* PAGE 1 */}
         <div className="flex flex-col h-full w-full p-2 bg-brown text-primary">
           <div id="intro" className=" w-full h-1/3">
@@ -146,7 +153,9 @@ export default function Book({ data, encodeDataAttribute }: HomePageProps) {
                     {project.title}
                   </div>
                 </div>
-                <ScrollArea className="w-full h-1/2 text-xl p-4 shadow-inner grow">
+                <ScrollArea
+                  className={`w-full h-1/2 text-xl p-4 shadow-inner grow cascadia-code ${courierPrime.className}`}
+                >
                   <PortableText value={project.overview || []} />
                 </ScrollArea>
               </div>
