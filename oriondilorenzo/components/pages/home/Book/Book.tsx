@@ -12,6 +12,7 @@ import { urlForImage } from '@/sanity/lib/utils'
 import { HomePageProps } from '../HomePage'
 import { ScrollArea } from '@/components/ui/ScrollArea'
 import BookIntro from './ BookIntro'
+import Project from './Project'
 
 const nanumPen = Nanum_Pen_Script({
   subsets: ['latin'],
@@ -54,7 +55,7 @@ export default function Book({ data, encodeDataAttribute }: HomePageProps) {
               onClick={(e) => {
                 e.stopPropagation() // Prevent the row click event
                 const page = row.getValue('page') // Access the page number
-                book.current.pageFlip().flip(page + 1)
+                book.current.pageFlip().flip(page + 2)
               }}
             >
               {row.getValue('page')}
@@ -74,7 +75,7 @@ export default function Book({ data, encodeDataAttribute }: HomePageProps) {
         width={300}
         height={500}
         style={{}}
-        className={'w-full h-full'}
+        className={''}
         size={'stretch'}
         startPage={1}
         maxWidth={1000}
@@ -109,38 +110,19 @@ export default function Book({ data, encodeDataAttribute }: HomePageProps) {
         </div>
         {/* PROJECT POSTS */}
         {showcaseProjects.map((project) => {
-          const { coverImage } = project
-          const coverImgUrl =
-            coverImage &&
-            urlForImage(coverImage)?.height(300).width(500).fit('crop').url()
-
           return (
-            project && (
-              <div
-                key={project.slug}
-                className="flex flex-col h-full w-full bg-paper py-2 px-4 content-between"
-              >
-                <div className="w-full h-1/2">
-                  {coverImgUrl && (
-                    <Image
-                      className="w-full hover:opacity-80"
-                      width={500}
-                      height={300}
-                      src={coverImgUrl}
-                      alt={''}
-                    />
-                  )}
-                  <div className="text-xl lg:text-3xl w-full text-center text-bold flex items-center justify-center">
-                    {project.title}
-                  </div>
-                </div>
-                <ScrollArea
-                  className={`w-full h-1/2 text-sm  p-4 shadow-inner grow cascadia-code ${courierPrime.className}`}
-                >
-                  <PortableText value={project.overview || []} />
-                </ScrollArea>
-              </div>
-            )
+            <div
+              className="w-full h-full bg-paper p-2 border-0"
+              key={project.slug}
+            >
+              <Project
+                fontClassName={courierPrime.className}
+                coverImage={project.coverImage}
+                overview={project.overview}
+                slug={project.slug}
+                title={project.title}
+              />
+            </div>
           )
         })}
       </HTMLFlipBook>
