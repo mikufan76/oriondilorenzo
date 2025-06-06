@@ -7,9 +7,7 @@ const SvgComponent = (props) => (
   >
     <defs>
       <style>
-        {
-          ".cls-1,.cls-2{fill:none;stroke:#fff9cb;stroke-miterlimit:10}"
-        }
+        {'.cls-1,.cls-2{fill:none;stroke:#fff9cb;stroke-miterlimit:10}'}
       </style>
     </defs>
     <g id="Logo_Y-2">

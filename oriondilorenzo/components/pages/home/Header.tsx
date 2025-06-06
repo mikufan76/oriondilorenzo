@@ -10,6 +10,10 @@ export function Header({ projectOnClick }: { projectOnClick?: () => void }) {
         {/* Left Side */}
         <div className="grow h-5/6  w-full md:px-0 sm:w-[62.5%]sm:h-full max-w-[1000px]">
           <TitlePlate />
+          <div className="min-w-[300px] cascadia-code text-wrap text-center sm:text-left w-full text-xl sm:text-[4vw] 2xl:text-[60px] px-2">
+            <h2>Fullstack Developer</h2>
+            <h2 className="lg:translate-y-[100%] ">& Designer</h2>
+          </div>
           <div className="logo-wrapper h-1/2 w-full  flex flex-col sm:flex-row justify-center items-center sm:items-normal md:justify-normal">
             <Logo className="h-full w-min animate-wiggle min-w-[250px] md:m-[10%]" />
           </div>

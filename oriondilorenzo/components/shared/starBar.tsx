@@ -1,15 +1,23 @@
 import Star from './svgs/star'
+import { cn } from '@/sanity/lib/utils'
 
 const SVGComponent = (props) => {
   const width = props.width || 39
   const length = props.length || 80
   const strokeWidth = props.strokeWidth || 1
+
+  const starStyle = 'h-full aspect-square'
   return (
-    <div className={`w-full h-full flex flex-row gap-x-0`}>
-      <Star className="w-[20%] sm:hidden h-full block" />
+    <div
+      className={cn(
+        `w-full h-full flex flex-row`,
+        props.className,
+      )}
+    >
+      <Star className={`sm:hidden block ${starStyle}`} />
       <svg
         xmlns="http://www.w3.org/2000/svg"
-        className="grow h-full w-full scale-[103%] sm:scale-100 sm:translate-x-[2%]"
+        className="shrink h-full w-full scale-[103%] sm:scale-100 "
       >
         <line
           x1="0%"
@@ -20,7 +28,9 @@ const SVGComponent = (props) => {
           stroke="var(--primary-color)"
         />
       </svg>
-      <Star className="w-[20%] translate-x-[-2px] sm:translate-x-[0px]" />
+      <Star
+        className={`${starStyle} sm:translate-x-[-14%]`}
+      />
     </div>
   )
 }
