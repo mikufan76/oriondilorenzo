@@ -93,7 +93,7 @@ export default function Book({ data, encodeDataAttribute }: HomePageProps) {
         {/* front cover */}
         <div className="bg-brown">ORION'S PROJECTS (THIS IS A WIP LOLL)</div>
         {/* PAGE 1 */}
-        <div className="flex flex-col h-full w-full p-4 bg-brown text-primary">
+        <div className="flex flex-col h-full w-full p-2 bg-brown text-primary">
           <div id="intro" className=" w-full h-1/3">
             <div className="w-full text:xl md:text-4xl">
               IF FOUND PLEASE EMAIL
@@ -104,7 +104,7 @@ export default function Book({ data, encodeDataAttribute }: HomePageProps) {
               <CustomPortableText value={overview.text}></CustomPortableText>
             </div>
           </div>
-          <div className="h-1/2 w-full">
+          <div className="h-full  w-full">
             <h3 className="w-full text-center text-xl md:text-3xl ">
               Table of Contents
             </h3>
