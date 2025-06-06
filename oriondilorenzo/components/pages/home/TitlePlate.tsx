@@ -1,4 +1,4 @@
-import StarBar from '@/components/shared/StarBar'
+import StarBar from '@/components/shared/starBar'
 import Name from '@/components/shared/svgs/name'
 
 const TitlePlate = () => {
