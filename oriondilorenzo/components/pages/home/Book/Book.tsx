@@ -33,11 +33,11 @@ export default function Book({ data, encodeDataAttribute }: HomePageProps) {
           icon && urlForImage(icon)?.height(20).width(20).fit('crop').url()
         return <Image src={imageUrl} width={20} height={20} alt={''} />
       },
-      header: 'Project',
+      header: '',
     },
     {
       accessorKey: 'title',
-      header: '',
+      header: 'Project',
     },
 
     {
@@ -91,26 +91,33 @@ export default function Book({ data, encodeDataAttribute }: HomePageProps) {
         disableFlipByClick={false}
       >
         {/* front cover */}
-        <div className="bg-brown">ORION'S PROJECTS</div>
+        <div className="bg-brown">ORION'S PROJECTS (THIS IS A WIP LOLL)</div>
         {/* PAGE 1 */}
-        <div className="flex flex-col h-full w-full items-end justify-around p-4 bg-brown text-primary">
-          <div id="intro" className=" w-full h-1/2">
-            <div className="w-full text-4xl">IF FOUND PLEASE EMAIL</div>
-            <div className="w-full text-2xl">@OrionDiLorenzo@Proton.me</div>
-            <div className="w-full text-2xl">REWARD $$$$$$$</div>
+        <div className="flex flex-col h-full w-full p-4 bg-brown text-primary">
+          <div id="intro" className=" w-full h-1/3">
+            <div className="w-full text:xl md:text-4xl">
+              IF FOUND PLEASE EMAIL
+            </div>
+            <div className="w-full md:text-2xl">@OrionDiLorenzo@Proton.me</div>
 
             <div className="p-4">
               <CustomPortableText value={overview.text}></CustomPortableText>
             </div>
           </div>
           <div className="h-1/2 w-full">
-            <h3 className="w-full text-center text-3xl">Table of Contents</h3>
-            <DataTable
-              variants={{ rowVariants: 'tableOfContents' }}
-              columns={columns}
-              data={showcaseProjects}
-              showHeader={true}
-            />
+            <h3 className="w-full text-center text-xl md:text-3xl ">
+              Table of Contents
+            </h3>
+
+            <ScrollArea className="w-full h-full shadow-inner">
+              <DataTable
+                variants={{ rowVariants: 'tableOfContents' }}
+                columns={columns}
+                data={showcaseProjects}
+                showHeader={true}
+              />
+              <ScrollBar />
+            </ScrollArea>
           </div>
         </div>
         {/* PROJECT POSTS */}
@@ -129,18 +136,18 @@ export default function Book({ data, encodeDataAttribute }: HomePageProps) {
                 <div className="w-full h-1/2">
                   {coverImgUrl && (
                     <Image
-                      className="w-full"
+                      className="w-full hover:opacity-80"
                       width={500}
                       height={300}
                       src={coverImgUrl}
                       alt={''}
                     />
                   )}
-                  <div className="text-3xl w-full h-[9%] text-center text-bold flex items-center justify-center">
-                    <h3 className="w-min h-min">{project.title}</h3>
+                  <div className="text-3xl w-full text-center text-bold flex items-center justify-center">
+                    {project.title}
                   </div>
                 </div>
-                <ScrollArea className="w-full h-1/2 text-xl p-4 shadow-inner">
+                <ScrollArea className="w-full h-1/2 text-xl p-4 shadow-inner grow">
                   <PortableText value={project.overview || []} />
                 </ScrollArea>
               </div>

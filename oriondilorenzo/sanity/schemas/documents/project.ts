@@ -80,5 +80,12 @@ export default defineType({
       },
       validation: (rule) => rule.required(),
     }),
+    defineField({
+      name: 'site',
+      title: 'Project Site',
+      description: 'Link to the project site, if applicable.',
+      type: 'url',
+      validation: (rule) => rule.uri({ allowRelative: true }),
+    }),
   ],
 })
