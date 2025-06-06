@@ -32,7 +32,7 @@ const tableVariants = cva('', {
       tableOfContents: 'odd:bg-darkBrown',
     },
     table: {
-      default: 'text-sm md:text-xl text-primary',
+      default: 'text-sm lg:text-xl text-primary',
     },
   },
   defaultVariants: {
@@ -55,7 +55,7 @@ export function DataTable<TData, TValue>({
 
   return (
     <div className={tableVariants({ table: variants?.table })}>
-      <Table>
+      <Table className='h-full w-full'>
         <TableHeader className={showHeader ? '' : 'hidden'}>
           {table.getHeaderGroups().map((headerGroup) => (
             <TableRow key={headerGroup.id}>
