@@ -91,7 +91,7 @@ export default function Book({ data, encodeDataAttribute }: HomePageProps) {
         clickEventForward={true}
         useMouseEvents={true}
         swipeDistance={10}
-        showPageCorners={true}
+        showPageCorners={false}
         disableFlipByClick={false}
       >
         {/* front cover */}
