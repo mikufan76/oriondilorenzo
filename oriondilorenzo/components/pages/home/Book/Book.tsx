@@ -92,7 +92,7 @@ export default function Book({ data, encodeDataAttribute }: HomePageProps) {
         useMouseEvents={true}
         swipeDistance={10}
         showPageCorners={false}
-        disableFlipByClick={false}
+        disableFlipByClick={true}
       >
         {/* front cover */}
         <div className="bg-brown">
