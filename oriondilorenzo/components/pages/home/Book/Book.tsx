@@ -1,5 +1,5 @@
 'use client'
-import { Courier_Prime, Nanum_Pen_Script } from 'next/font/google'
+import { Courier_Prime, Coming_Soon } from 'next/font/google'
 import Image from 'next/image'
 import { PortableText } from 'next-sanity'
 import { useRef } from 'react'
@@ -14,20 +14,30 @@ import { ScrollArea } from '@/components/ui/ScrollArea'
 import BookIntro from './ BookIntro'
 import Project from './Project'
 
-const nanumPen = Nanum_Pen_Script({
+const bookHeaderFont = Coming_Soon({
   subsets: ['latin'],
   weight: ['400'],
 })
 
-const courierPrime = Courier_Prime({
+const paragraphFont = Courier_Prime({
   subsets: ['latin'],
   weight: ['400'],
 })
 
-export default function Book({ data, encodeDataAttribute }: HomePageProps) {
+export default function Book({ data, encodeDataAttribute, timer }) {
   const { overview = [], showcaseProjects = [] } = data ?? {}
   showcaseProjects.forEach((project, index) => (project.page = index + 1))
   const book = useRef(null) as any
+
+  timer.then((result) => {
+    if (book.current && result) {
+      const pageFlip = book.current.pageFlip()
+      console.log(pageFlip.getCurrentPageIndex())
+      if (pageFlip.getCurrentPageIndex() === 0) {
+        pageFlip.flip(1)
+      }
+    }
+  })
 
   const columns = [
     {
@@ -49,7 +59,7 @@ export default function Book({ data, encodeDataAttribute }: HomePageProps) {
       accessorKey: 'page',
       cell: ({ row }) => {
         return (
-          <div className="w-full">
+          <div className="w-full flex flex-row  justify-center">
             <div
               className="cursor-pointer border-2 border-primary w-[30px] text-center hover:bg-primary hover:text-brown transition-colors rounded"
               onClick={(e) => {
@@ -68,7 +78,7 @@ export default function Book({ data, encodeDataAttribute }: HomePageProps) {
 
   return (
     <div
-      className={`w-full h-full sm:h-5/6  sm:w-2/3 min-h-[400]  min-w-[300] flex items-center justify-center  max-w-[1200px] rounded-lg ${nanumPen.className}`}
+      className={`w-full h-full sm:h-5/6  sm:w-2/3 min-h-[400]  min-w-[300] flex items-center justify-center  max-w-[1200px] rounded-lg ${bookHeaderFont.className}`}
     >
       <HTMLFlipBook
         ref={book}
@@ -77,7 +87,7 @@ export default function Book({ data, encodeDataAttribute }: HomePageProps) {
         style={{}}
         className={''}
         size={'stretch'}
-        startPage={1}
+        startPage={0}
         maxWidth={1000}
         maxHeight={1000}
         minWidth={250}
@@ -112,11 +122,11 @@ export default function Book({ data, encodeDataAttribute }: HomePageProps) {
         {showcaseProjects.map((project) => {
           return (
             <div
-              className="w-full h-full bg-paper p-2 border-0"
+              className="w-full h-full bg-paper p-2 border-0 relative"
               key={project.slug}
             >
               <Project
-                fontClassName={courierPrime.className}
+                fontClassName={paragraphFont.className}
                 coverImage={project.coverImage}
                 overview={project.overview}
                 slug={project.slug}

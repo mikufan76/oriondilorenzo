@@ -32,7 +32,7 @@ const tableVariants = cva('', {
       tableOfContents: 'odd:bg-darkBrown',
     },
     table: {
-      default: 'text-sm lg:text-xl text-primary',
+      default: 'text-sm lg:text-lg text-primary',
     },
   },
   defaultVariants: {

@@ -16,6 +16,7 @@ enum BookState {
   Hidden,
   Closed,
   Open,
+  Opened,
 }
 
 export function HomePage({ data, encodeDataAttribute }: HomePageProps) {
@@ -30,22 +31,36 @@ export function HomePage({ data, encodeDataAttribute }: HomePageProps) {
     case BookState.Closed:
       style += ' animate-slide-out-book'
       break
+    case BookState.Opened:
     case BookState.Open:
       style += ' animate-in slide-in-from-bottom duration-500 ease-out'
       break
   }
 
   const handleBookClick = () => {
-    if (bookState === BookState.Open) {
+    if (bookState === BookState.Open || bookState === BookState.Opened) {
       setBookState(BookState.Closed)
-    } else {
+    } else if (bookState === BookState.Hidden) {
       setBookState(BookState.Open)
+    } else if (bookState === BookState.Closed) {
+      setBookState(BookState.Opened)
     }
   }
 
   const closeBook = () => {
     setBookState(BookState.Closed)
   }
+
+  const timer = new Promise((resolve, reject) => {
+    setTimeout(() => {
+      if (bookState === BookState.Open) {
+        console.log('book is open!');
+        resolve(true)
+      } else {
+        resolve(false)
+      }
+    }, 500)
+  })
 
   return (
     <div className="overflow-hidden h-screen w-screen ">
@@ -55,7 +70,11 @@ export function HomePage({ data, encodeDataAttribute }: HomePageProps) {
         <BgBlur bookState={bookState} onClick={closeBook} />
       )}
       <div className={style}>
-        <Book data={data} encodeDataAttribute={encodeDataAttribute} />
+        <Book
+          data={data}
+          encodeDataAttribute={encodeDataAttribute}
+          timer={timer}
+        />
         <Button
           variant={'outline'}
           className="absolute top-0 right-0 sm:top-1 sm:right-1 bg-bg text-primary sm:text-2xl hover:bg-primary hover:text-bg transition-colors rounded"

@@ -5,7 +5,13 @@ import { ScrollArea } from '@/components/ui/ScrollArea'
 import { PortableText } from 'next-sanity'
 import Image from 'next/image'
 
-export default function Project({ coverImage, overview, slug, fontClassName, title }) {
+export default function Project({
+  coverImage,
+  overview,
+  slug,
+  fontClassName,
+  title,
+}) {
   const coverImgUrl =
     coverImage &&
     urlForImage(coverImage)?.height(300).width(500).fit('crop').url()
@@ -24,7 +30,7 @@ export default function Project({ coverImage, overview, slug, fontClassName, tit
             />
           )}
         </div>
-        <div className="text-xl lg:text-3xl w-full h-min text-center text-bold flex items-center justify-center">
+        <div className="text-xl lg:text-3xl w-full h-max text-center text-bold flex items-center justify-center my-2">
           {title}
         </div>
         <ScrollArea
@@ -32,6 +38,8 @@ export default function Project({ coverImage, overview, slug, fontClassName, tit
         >
           <PortableText value={overview || []} />
         </ScrollArea>
+
+     
       </div>
     )
   )

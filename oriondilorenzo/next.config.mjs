@@ -1,9 +1,8 @@
 /** @type {import('next').NextConfig} */
 const config = {
+  reactStrictMode: false,
   images: {
-    remotePatterns: [
-      { hostname: 'cdn.sanity.io' },
-    ],
+    remotePatterns: [{ hostname: 'cdn.sanity.io' }],
   },
   typescript: {
     // Set this to false if you want production builds to abort if there's type errors
