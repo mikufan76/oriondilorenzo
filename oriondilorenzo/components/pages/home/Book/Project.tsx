@@ -4,6 +4,7 @@ import { ShowcaseProject } from '@/types'
 import { ScrollArea } from '@/components/ui/ScrollArea'
 import { PortableText } from 'next-sanity'
 import Image from 'next/image'
+import PaperTexture from '@/components/shared/svgs/paper'
 
 export default function Project({
   coverImage,
@@ -18,7 +19,7 @@ export default function Project({
 
   return (
     project && (
-      <div className="w-full h-full flex flex-col justify-between bg-[url(/paper.svg)] bg-cover">
+      <div className="w-full h-full flex flex-col justify-between">
         <div className="w-full h-min ">
           {coverImgUrl && (
             <Image
@@ -38,8 +39,6 @@ export default function Project({
         >
           <PortableText value={overview || []} />
         </ScrollArea>
-
-
       </div>
     )
   )

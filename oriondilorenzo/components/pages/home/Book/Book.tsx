@@ -62,7 +62,7 @@ export default function Book({ data, encodeDataAttribute, timer }) {
         return (
           <div className="w-full flex flex-row  justify-center">
             <div
-              className="cursor-pointer border-2 border-primary w-[30px] text-center hover:bg-primary hover:text-brown transition-colors rounded"
+              className="cursor-pointer border-2 border-bg w-[30px] text-center hover:bg-primary hover:text-brown rounded shadow-[0_2px_4px_2px_rgba(0,0,0,0.3)] hover:shadow-[0_2px_4px_2px_rgba(0,0,0,0.5) transition-all scale-[110%] hover:scale-105 hover:translate-y-[1px] flex items-center justify-center duration-300 active:scale-100 active:translate-y-[2px] "
               onClick={(e) => {
                 e.stopPropagation() // Prevent the row click event
                 const page = row.getValue('page') // Access the page number
@@ -79,8 +79,11 @@ export default function Book({ data, encodeDataAttribute, timer }) {
 
   return (
     <div
-      className={`w-full h-full sm:h-5/6  sm:w-2/3 min-h-[400]  min-w-[300] flex items-center justify-center  max-w-[1200px] rounded-lg ${bookHeaderFont.className}`}
+      className={`w-full h-full sm:h-5/6  sm:w-2/3 min-h-[400]  min-w-[300] flex items-center justify-center  max-w-[1200px] rounded-lg ${bookHeaderFont.className} relative`}
     >
+      <div className="opacity-0 w-1 h-1 relative">
+        <PaperTexture className="cover" />
+      </div>
       <HTMLFlipBook
         ref={book}
         width={300}
