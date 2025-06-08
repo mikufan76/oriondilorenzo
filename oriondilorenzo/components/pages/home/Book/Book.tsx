@@ -1,5 +1,5 @@
 'use client'
-import { Coming_Soon,Courier_Prime } from 'next/font/google'
+import { Coming_Soon, Courier_Prime } from 'next/font/google'
 import Image from 'next/image'
 import { PortableText } from 'next-sanity'
 import { useRef } from 'react'
@@ -26,7 +26,7 @@ const paragraphFont = Courier_Prime({
 
 export default function Book({ data, encodeDataAttribute, timer }) {
   const { overview = [], showcaseProjects = [] } = data ?? {}
-  showcaseProjects.forEach((project, index) => (project.page = index + 1))
+  showcaseProjects.forEach((project, index) => (project.page = index + 2))
   const book = useRef(null) as any
 
   timer.then((result) => {
@@ -59,15 +59,25 @@ export default function Book({ data, encodeDataAttribute, timer }) {
       accessorKey: 'page',
       cell: ({ row }) => {
         return (
-          <div className="flex w-full flex-row justify-center">
+          <div className="flex w-full flex-row justify-center items-center">
             <div
-              className="z-50 w-[30px] cursor-pointer rounded border-2 border-primary text-center transition-colors hover:bg-primary hover:text-brown"
+              className="z-50 w-[30px] h-[30px] cursor-pointer rounded border-2 border-primary text-center transition-colors hover:bg-primary hover:text-brown"
               onClick={(e) => {
                 e.stopPropagation() // Prevent the row click event
-                console.log('Page clicked:', row.getValue('page') + 2)
-                const page = row.getValue('page') // Access the page number
-                book.current.pageFlip().flip(page + 1)
-                console.log(book.current.pageFlip().getPageCount())
+                let page = row.getValue('page') // Access the page number
+                let currentPage = book.current.pageFlip().getCurrentPageIndex()
+                const pageFlip = book.current.pageFlip()
+                console.log('Total pages:', pageFlip.getPageCount())
+                console.log('Current page index before flip:', currentPage)
+                if (pageFlip.getOrientation() === 'landscape') {
+                  page = page % 2 === 0 ? page - 1 : page
+                  console.log('updated page', page)
+                }
+
+                if (page > 1) {
+                  console.log('Flipping to page:', page)
+                  book.current.pageFlip().flip(page)
+                }
               }}
             >
               {row.getValue('page')}
@@ -88,6 +98,7 @@ export default function Book({ data, encodeDataAttribute, timer }) {
         height={500}
         style={{}}
         className={''}
+        onFlip={(e) => console.log('flipped', e.data)}
         size={'stretch'}
         startPage={0}
         maxWidth={1000}
@@ -104,9 +115,9 @@ export default function Book({ data, encodeDataAttribute, timer }) {
         mobileScrollSupport={true}
         clickEventForward={true}
         useMouseEvents={true}
-        swipeDistance={10}
+        swipeDistance={30}
         showPageCorners={true}
-        disableFlipByClick={false}
+        disableFlipByClick={true}
       >
         {/* front cover */}
         <div className="bg-brown">
