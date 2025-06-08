@@ -61,11 +61,13 @@ export default function Book({ data, encodeDataAttribute, timer }) {
         return (
           <div className="w-full flex flex-row  justify-center">
             <div
-              className="cursor-pointer border-2 border-primary w-[30px] text-center hover:bg-primary hover:text-brown transition-colors rounded"
+              className="cursor-pointer border-2 border-primary w-[30px] text-center hover:bg-primary hover:text-brown transition-colors rounded z-50"
               onClick={(e) => {
                 e.stopPropagation() // Prevent the row click event
+                console.log('Page clicked:', row.getValue('page')+2)
                 const page = row.getValue('page') // Access the page number
-                book.current.pageFlip().flip(page + 2)
+                book.current.pageFlip().flip(page + 1)
+                console.log(book.current.pageFlip().getPageCount())
               }}
             >
               {row.getValue('page')}
