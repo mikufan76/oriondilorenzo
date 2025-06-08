@@ -5,12 +5,8 @@ const Video = ({ data = {} }) => {
 
   if (!videoLink) return null
   return (
-    
     <div className="divider">
-          <SingleVideo
-            videoLink={videoLink}
-            caption={caption}
-          />
+      <SingleVideo videoLink={videoLink} caption={caption} />
     </div>
   )
 }

@@ -108,6 +108,6 @@ export interface AboutPayload {
 }
 
 export interface linksPayload {
-  title?: string,
-  linksLinks?: LinkItem[],
+  title?: string
+  linksLinks?: LinkItem[]
 }

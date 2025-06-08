@@ -14,10 +14,10 @@ export function HeaderLinks(props: HeaderLinks) {
 
   return (
     <Link
-      className={`text-lg px-3 py-1 border rounded-full md:text-2xl ${
+      className={`rounded-full border px-3 py-1 text-lg md:text-2xl ${
         pathname === '/about'
-          ? 'text-primary bg-secondary border-secondary'
-          : 'border-secondary hover:text-primary hover:bg-secondary'
+          ? 'bg-secondary border-secondary text-primary'
+          : 'border-secondary hover:bg-secondary hover:text-primary'
       }`}
       href={href}
     >

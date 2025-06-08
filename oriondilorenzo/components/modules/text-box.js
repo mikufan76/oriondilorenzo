@@ -5,12 +5,8 @@ const Image = ({ data = {} }) => {
 
   if (!description) return null
   return (
-    
     <div className="divider">
-          <TextBox
-            description={description}
-            classesWrapper="relative"
-          />
+      <TextBox description={description} classesWrapper="relative" />
     </div>
   )
 }

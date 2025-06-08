@@ -1,5 +1,5 @@
 'use client'
-import { Courier_Prime, Coming_Soon } from 'next/font/google'
+import { Coming_Soon,Courier_Prime } from 'next/font/google'
 import Image from 'next/image'
 import { PortableText } from 'next-sanity'
 import { useRef } from 'react'
@@ -7,10 +7,10 @@ import HTMLFlipBook from 'react-pageflip'
 
 import { Button } from '@/components/ui/Button'
 import { DataTable } from '@/components/ui/DataTable'
+import { ScrollArea } from '@/components/ui/ScrollArea'
 import { urlForImage } from '@/sanity/lib/utils'
 
 import { HomePageProps } from '../HomePage'
-import { ScrollArea } from '@/components/ui/ScrollArea'
 import BookIntro from './ BookIntro'
 import Project from './Project'
 
@@ -59,12 +59,12 @@ export default function Book({ data, encodeDataAttribute, timer }) {
       accessorKey: 'page',
       cell: ({ row }) => {
         return (
-          <div className="w-full flex flex-row  justify-center">
+          <div className="flex w-full flex-row justify-center">
             <div
-              className="cursor-pointer border-2 border-primary w-[30px] text-center hover:bg-primary hover:text-brown transition-colors rounded z-50"
+              className="z-50 w-[30px] cursor-pointer rounded border-2 border-primary text-center transition-colors hover:bg-primary hover:text-brown"
               onClick={(e) => {
                 e.stopPropagation() // Prevent the row click event
-                console.log('Page clicked:', row.getValue('page')+2)
+                console.log('Page clicked:', row.getValue('page') + 2)
                 const page = row.getValue('page') // Access the page number
                 book.current.pageFlip().flip(page + 1)
                 console.log(book.current.pageFlip().getPageCount())
@@ -80,7 +80,7 @@ export default function Book({ data, encodeDataAttribute, timer }) {
 
   return (
     <div
-      className={`w-full h-full sm:h-5/6  sm:w-2/3 min-h-[400]  min-w-[300] flex items-center justify-center  max-w-[1200px] rounded-lg ${bookHeaderFont.className}`}
+      className={`flex h-full min-h-[400] w-full min-w-[300] max-w-[1200px] items-center justify-center rounded-lg sm:h-5/6 sm:w-2/3 ${bookHeaderFont.className}`}
     >
       <HTMLFlipBook
         ref={book}
@@ -113,7 +113,7 @@ export default function Book({ data, encodeDataAttribute, timer }) {
           ORION&apos;S PROJECTS (THIS IS A WIP LOLL)
         </div>
         {/* PAGE 1 */}
-        <div className="h-full w-full p-2 bg-brown text-primary">
+        <div className="h-full w-full bg-brown p-2 text-primary">
           <BookIntro
             overview={overview}
             columns={columns}
@@ -124,7 +124,7 @@ export default function Book({ data, encodeDataAttribute, timer }) {
         {showcaseProjects.map((project) => {
           return (
             <div
-              className="w-full h-full bg-paper p-2 border-0 relative"
+              className="relative h-full w-full border-0 bg-paper p-2"
               key={project.slug}
             >
               <Project

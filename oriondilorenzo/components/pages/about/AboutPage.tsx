@@ -15,7 +15,7 @@ export function AboutPage({ data }: AboutPageProps) {
   const { title, overview, aboutImage, aboutLinks } = data ?? {}
 
   return (
-    <div className="h-full mt-4 grid gap-5 grid-cols-1 xl:grid-cols-2">
+    <div className="mt-4 grid h-full grid-cols-1 gap-5 xl:grid-cols-2">
       <div className="w-full">
         {/* Title */}
         <div>{title && title}</div>
@@ -34,7 +34,7 @@ export function AboutPage({ data }: AboutPageProps) {
                 <div key={key} className="flex flex-wrap">
                   <Link
                     target="_blank"
-                    className={`flex flex-wrap text-xl text-secondary underline md:text-2xl`}
+                    className={`text-secondary flex flex-wrap text-xl underline md:text-2xl`}
                     href={aboutLink.url!}
                   >
                     {aboutLink.title}

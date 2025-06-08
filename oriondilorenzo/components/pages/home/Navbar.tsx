@@ -1,14 +1,15 @@
-import { faSquareGithub, faLinkedin } from '@fortawesome/free-brands-svg-icons'
+import { faLinkedin,faSquareGithub } from '@fortawesome/free-brands-svg-icons'
 import {
-  faSquareEnvelope,
-  faSquareArrowUpRight,
   faLayerGroup,
+  faSquareArrowUpRight,
+  faSquareEnvelope,
 } from '@fortawesome/free-solid-svg-icons'
+
 import NavbarButton from './NavbarButton'
 
 export default function Navbar({ projectOnClick }) {
   return (
-    <div className="flex flex-row sm:flex-col w-full [&>*]:h-[90%]  sm:[&>*]:h-1/6 sm:[&>*]:m-4 h-full items-center justify-between cascadia-code">
+    <div className="cascadia-code flex h-full w-full flex-row items-center justify-between sm:flex-col [&>*]:h-[90%] sm:[&>*]:m-4 sm:[&>*]:h-1/6">
       <NavbarButton
         icon={faLinkedin}
         label="LinkedIn"

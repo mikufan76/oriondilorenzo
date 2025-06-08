@@ -22,11 +22,11 @@ export default function Navbar(props: NavbarProps) {
   const logoImageUrl = customLogo && urlForLogo(customLogo)?.url()
 
   return (
-    <div className="flex flex-wrap justify-between items-center gap-x-5 px-4 py-4 md:px-5 md:py-4 lg:px-5 w-full">
+    <div className="flex w-full flex-wrap items-center justify-between gap-x-5 px-4 py-4 md:px-5 md:py-4 lg:px-5">
       {customLogo && customLogo ? (
         <Link
           href={`/`}
-          className={`h-full text-xl hover:text-secondary md:text-2xl`}
+          className={`hover:text-secondary h-full text-xl md:text-2xl`}
         >
           <div className="flex h-6">
             <Image
@@ -42,12 +42,12 @@ export default function Navbar(props: NavbarProps) {
       ) : (
         <Link
           href={`/`}
-          className={`h-full text-2xl hover:text-secondary md:text-2xl`}
+          className={`hover:text-secondary h-full text-2xl md:text-2xl`}
         >
           {title}
         </Link>
       )}
-      <div className="flex flex-wrap gap-3 mt-4 md:mt-0">
+      <div className="mt-4 flex flex-wrap gap-3 md:mt-0">
         {menuPages &&
           menuPages.map((menuItem, key) => {
             const href = resolveHref(menuItem?._type, menuItem?.slug)
@@ -63,7 +63,7 @@ export default function Navbar(props: NavbarProps) {
               <Link
                 key={key}
                 target="_blank"
-                className={`text-lg px-3 py-1 text-secondary border-secondary border rounded hover:text-primary hover:bg-secondary md:text-2xl`}
+                className={`text-secondary border-secondary hover:bg-secondary rounded border px-3 py-1 text-lg hover:text-primary md:text-2xl`}
                 href={menuItem.url!}
               >
                 ↗ {menuItem.title}

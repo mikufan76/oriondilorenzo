@@ -5,13 +5,12 @@ const TwoVideos = ({ data = {} }) => {
 
   if (!videoOneLink) return null
   return (
-    
     <div className="divider">
-          <TwoVideoBox
-            videoOneLink={videoOneLink}
-            videoTwoLink={videoTwoLink}
-            caption={caption}
-          />
+      <TwoVideoBox
+        videoOneLink={videoOneLink}
+        videoTwoLink={videoTwoLink}
+        caption={caption}
+      />
     </div>
   )
 }

@@ -12,11 +12,11 @@ export default function NavbarButton(props: NavbarButton) {
   const IconEle = () => (
     <Icon
       icon={icon}
-      className=" md:h-5/6 sm:h-[50%] h-[40px] aspect-square rounded-lg group-hover:text-hilight "
+      className="aspect-square h-[40px] rounded-lg group-hover:text-hilight sm:h-[50%] md:h-5/6"
     />
   )
   const LabelEle = () => (
-    <label className="md:text-xl group-hover:text-hilight transition-colors ">
+    <label className="transition-colors group-hover:text-hilight md:text-xl">
       {label}
     </label>
   )

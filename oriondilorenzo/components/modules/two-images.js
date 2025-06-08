@@ -5,14 +5,13 @@ const Image = ({ data = {} }) => {
 
   if (!photoOne) return null
   return (
-    
     <div className="divider">
-          <TwoImageBox
-            leftImage={photoOne}
-            rightImage={photoTwo}
-            caption={caption}
-            classesWrapper="relative aspect-[16/9]"
-          />
+      <TwoImageBox
+        leftImage={photoOne}
+        rightImage={photoTwo}
+        caption={caption}
+        classesWrapper="relative aspect-[16/9]"
+      />
     </div>
   )
 }

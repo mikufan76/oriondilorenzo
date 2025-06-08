@@ -19,7 +19,7 @@ export default function VideoBox({ videoLink, caption }: VideoBoxProps) {
   return (
     <div className="mt-5 md:mt-10">
       <div
-        className={`w-full overflow-hidden rounded-[3px] bg-gray-50 aspect-video`}
+        className={`aspect-video w-full overflow-hidden rounded-[3px] bg-gray-50`}
       >
         {isClient ? (
           <ReactPlayer
@@ -36,7 +36,7 @@ export default function VideoBox({ videoLink, caption }: VideoBoxProps) {
         )}
       </div>
       {caption && (
-        <div className="mt-2 md:mt-4 text-lg md:text-2xl">{caption}</div>
+        <div className="mt-2 text-lg md:mt-4 md:text-2xl">{caption}</div>
       )}
     </div>
   )

@@ -1,7 +1,8 @@
+import { Courier_Prime } from 'next/font/google'
+
 import { CustomPortableText } from '@/components/shared/CustomPortableText'
 import { DataTable } from '@/components/ui/DataTable'
 import { ScrollArea, ScrollBar } from '@/components/ui/ScrollArea'
-import { Courier_Prime } from 'next/font/google'
 
 const overviewFont = Courier_Prime({
   subsets: ['latin'],
@@ -12,26 +13,26 @@ export default function BookIntro({ overview, columns, showcaseProjects }) {
   return (
     <div
       id="page-wrapper"
-      className="w-full h-full flex flex-col justify-between"
+      className="flex h-full w-full flex-col justify-between"
     >
-      <div id="intro" className=" w-full h-1/3 flex-none">
-        <div className="w-full h-min lg:text-2xl">
+      <div id="intro" className="h-1/3 w-full flex-none">
+        <div className="h-min w-full lg:text-2xl">
           IF FOUND PLEASE EMAIL
-          <div className="w-full h-min lg:text-xl">
+          <div className="h-min w-full lg:text-xl">
             @OrionDiLorenzo@Proton.me
           </div>
         </div>
         <div
-          className={`lg:p-2 text-xs lg:text-sm  h-min ${overviewFont.className}`}
+          className={`h-min text-xs lg:p-2 lg:text-sm ${overviewFont.className}`}
         >
           <CustomPortableText value={overview.text}></CustomPortableText>
         </div>
       </div>
-      <h3 className="w-full h-min text-center lg:text-2xl">
+      <h3 className="h-min w-full text-center lg:text-2xl">
         Table of Contents
       </h3>
       <ScrollArea
-        className={`w-full h-full shrink min-h-[30%] shadow-inner overflow-hidden`}
+        className={`h-full min-h-[30%] w-full shrink overflow-hidden shadow-inner`}
       >
         <DataTable
           variants={{ rowVariants: 'tableOfContents' }}

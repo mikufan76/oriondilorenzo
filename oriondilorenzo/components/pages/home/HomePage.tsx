@@ -1,11 +1,12 @@
 'use client'
 import type { EncodeDataAttributeCallback } from '@sanity/react-loader'
+import { useState } from 'react'
+
+import Book from '@/components/pages/home/Book/Book'
+import { Button } from '@/components/ui/Button'
+import type { HomePagePayload } from '@/types'
 
 import { Header } from './Header'
-import type { HomePagePayload } from '@/types'
-import Book from '@/components/pages/home/Book/Book'
-import { useState } from 'react'
-import { Button } from '@/components/ui/Button'
 
 export interface HomePageProps {
   data: HomePagePayload | null
@@ -54,7 +55,7 @@ export function HomePage({ data, encodeDataAttribute }: HomePageProps) {
   const timer = new Promise((resolve, reject) => {
     setTimeout(() => {
       if (bookState === BookState.Open) {
-        console.log('book is open!');
+        console.log('book is open!')
         resolve(true)
       } else {
         resolve(false)
@@ -63,7 +64,7 @@ export function HomePage({ data, encodeDataAttribute }: HomePageProps) {
   })
 
   return (
-    <div className="overflow-hidden h-screen w-screen ">
+    <div className="h-screen w-screen overflow-hidden">
       {/* Header */}
       <Header projectOnClick={handleBookClick} />
       {bookState == (BookState.Open || BookState.Closed) && (
@@ -77,7 +78,7 @@ export function HomePage({ data, encodeDataAttribute }: HomePageProps) {
         />
         <Button
           variant={'outline'}
-          className="absolute top-0 right-0 sm:top-1 sm:right-1 bg-bg text-primary sm:text-2xl hover:bg-primary hover:text-bg transition-colors rounded"
+          className="absolute right-0 top-0 rounded bg-bg text-primary transition-colors hover:bg-primary hover:text-bg sm:right-1 sm:top-1 sm:text-2xl"
           onClick={closeBook}
         >
           X
@@ -95,7 +96,7 @@ const BgBlur = ({ bookState, onClick }) => {
   return (
     <div
       onClick={onClick}
-      className={`absolute w-screen h-screen backdrop-blur-lg ${animation}`}
+      className={`absolute h-screen w-screen backdrop-blur-lg ${animation}`}
     ></div>
   )
 }

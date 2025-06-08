@@ -55,7 +55,7 @@ export function DataTable<TData, TValue>({
 
   return (
     <div className={tableVariants({ table: variants?.table })}>
-      <Table className='h-full w-full'>
+      <Table className="h-full w-full">
         <TableHeader className={showHeader ? '' : 'hidden'}>
           {table.getHeaderGroups().map((headerGroup) => (
             <TableRow key={headerGroup.id}>

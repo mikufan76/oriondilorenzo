@@ -37,7 +37,7 @@ export default function ImageBox({
 
   return (
     <div className="mt-5 md:mt-10">
-      <div className="grid gap-5 grid-cols-1 xl:grid-cols-2">
+      <div className="grid grid-cols-1 gap-5 xl:grid-cols-2">
         <div
           className={`w-full overflow-hidden rounded-[3px] ${classesWrapper}`}
         >
@@ -80,7 +80,7 @@ export default function ImageBox({
         </div>
       </div>
       {caption && (
-        <div className="mt-2 md:mt-4 text-lg md:text-2xl">{caption}</div>
+        <div className="mt-2 text-lg md:mt-4 md:text-2xl">{caption}</div>
       )}
     </div>
   )

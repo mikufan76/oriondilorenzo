@@ -1,7 +1,7 @@
 import createImageUrlBuilder from '@sanity/image-url'
 import type { Image } from 'sanity'
-import { clsx, type ClassValue } from "clsx"
-import { twMerge } from "tailwind-merge"
+import { clsx, type ClassValue } from 'clsx'
+import { twMerge } from 'tailwind-merge'
 
 import { dataset, projectId } from '@/sanity/lib/api'
 
@@ -46,7 +46,6 @@ export function resolveHref(
       return undefined
   }
 }
-
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))

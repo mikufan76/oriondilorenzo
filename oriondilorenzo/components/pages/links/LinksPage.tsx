@@ -12,10 +12,10 @@ export function LinksPage({ data }: linksPageProps) {
   // Default to an empty object to allow previews on non-existent documents
   const { title, linksLinks } = data ?? {}
   return (
-    <div className="h-full mt-4 grid gap-5 grid-cols-1 xl:grid-cols-2">
+    <div className="mt-4 grid h-full grid-cols-1 gap-5 xl:grid-cols-2">
       <div className="w-full">
         {/* Title */}
-        <div className='text-3xl mb-2'>{title && title}</div>
+        <div className="mb-2 text-3xl">{title && title}</div>
 
         {/* Links */}
         {linksLinks &&
@@ -24,7 +24,7 @@ export function LinksPage({ data }: linksPageProps) {
               <div key={key} className="flex flex-wrap">
                 <Link
                   target="_blank"
-                  className={`flex flex-wrap text-lg text-secondary underline`}
+                  className={`text-secondary flex flex-wrap text-lg underline`}
                   href={link.url!}
                 >
                   {link.title}

@@ -6,9 +6,7 @@ const TextBlock = dynamic(() => import('./text-box'))
 const SingleVideo = dynamic(() => import('./single-video'))
 const TwoVideos = dynamic(() => import('./two-videos'))
 
-export const Module = ({
-  content,
-}) => {
+export const Module = ({ content }) => {
   const type = content._type
 
   switch (type) {
@@ -17,7 +15,7 @@ export const Module = ({
     case 'twoImages':
       return <TwoImages data={content} />
     case 'textBlock':
-        return <TextBlock data={content} />
+      return <TextBlock data={content} />
     case 'singleVideo':
       return <SingleVideo data={content} />
     case 'twoVideos':

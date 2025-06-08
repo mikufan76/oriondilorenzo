@@ -1,9 +1,10 @@
+import Image from 'next/image'
+import { PortableText } from 'next-sanity'
+
+import { ScrollArea } from '@/components/ui/ScrollArea'
 import { urlForImage } from '@/sanity/lib/utils'
 import project from '@/sanity/schemas/documents/project'
 import { ShowcaseProject } from '@/types'
-import { ScrollArea } from '@/components/ui/ScrollArea'
-import { PortableText } from 'next-sanity'
-import Image from 'next/image'
 
 export default function Project({
   coverImage,
@@ -18,8 +19,8 @@ export default function Project({
 
   return (
     project && (
-      <div className="w-full h-full flex flex-col justify-between">
-        <div className="w-full h-min">
+      <div className="flex h-full w-full flex-col justify-between">
+        <div className="h-min w-full">
           {coverImgUrl && (
             <Image
               className="w-full hover:opacity-80"
@@ -30,16 +31,14 @@ export default function Project({
             />
           )}
         </div>
-        <div className="text-xl lg:text-3xl w-full h-max text-center text-bold flex items-center justify-center my-2">
+        <div className="text-bold my-2 flex h-max w-full items-center justify-center text-center text-xl lg:text-3xl">
           {title}
         </div>
         <ScrollArea
-          className={`w-full h-1/2 text-sm  p-4 shadow-inner grow cascadia-code ${fontClassName}`}
+          className={`cascadia-code h-1/2 w-full grow p-4 text-sm shadow-inner ${fontClassName}`}
         >
           <PortableText value={overview || []} />
         </ScrollArea>
-
-     
       </div>
     )
   )

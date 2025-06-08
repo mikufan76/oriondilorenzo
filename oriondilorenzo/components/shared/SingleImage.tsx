@@ -45,7 +45,7 @@ export default function ImageBox({
         )}
       </div>
       {caption && (
-        <div className="mt-2 md:mt-4 text-lg md:text-2xl">{caption}</div>
+        <div className="mt-2 text-lg md:mt-4 md:text-2xl">{caption}</div>
       )}
     </div>
   )
