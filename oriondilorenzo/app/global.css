@@ -16,14 +16,16 @@
   font-style: normal;
 }
 
-.paper {
+.cover {
   /* https://grainy-gradients.vercel.app/ */
-  z-index: 100;
   position: absolute;
-  bottom: 0;
+  top: 0;
   left: 0;
-  width: 200px;
-  height: 200px;
+  width: 100%;
+  height: 100%;
+  filter: invert(1) grayscale(100%);
+  opacity: .9;
+  mix-blend-mode: overlay;
   background-size: cover;
 
 

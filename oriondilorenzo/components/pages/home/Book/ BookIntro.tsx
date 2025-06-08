@@ -12,7 +12,7 @@ export default function BookIntro({ overview, columns, showcaseProjects }) {
   return (
     <div
       id="page-wrapper"
-      className="w-full h-full flex flex-col justify-between"
+      className="w-full h-full flex flex-col justify-between opacity-80"
     >
       <div id="intro" className=" w-full h-1/3 flex-none">
         <div className="w-full h-min lg:text-2xl">

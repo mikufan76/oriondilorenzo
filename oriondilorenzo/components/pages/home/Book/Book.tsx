@@ -13,6 +13,7 @@ import { HomePageProps } from '../HomePage'
 import { ScrollArea } from '@/components/ui/ScrollArea'
 import BookIntro from './ BookIntro'
 import Project from './Project'
+import PaperTexture from '@/components/shared/svgs/paper'
 
 const bookHeaderFont = Coming_Soon({
   subsets: ['latin'],
@@ -34,7 +35,7 @@ export default function Book({ data, encodeDataAttribute, timer }) {
       const pageFlip = book.current.pageFlip()
       console.log(pageFlip.getCurrentPageIndex())
       if (pageFlip.getCurrentPageIndex() === 0) {
-        pageFlip.flip(1)
+        // pageFlip.flip(1)
       }
     }
   })
@@ -92,26 +93,28 @@ export default function Book({ data, encodeDataAttribute, timer }) {
         maxHeight={1000}
         minWidth={250}
         minHeight={400}
-        drawShadow={true}
+        drawShadow={false}
         flippingTime={800}
         usePortrait={true}
-        startZIndex={0}
+        startZIndex={10}
         autoSize={true}
-        maxShadowOpacity={0.5}
+        maxShadowOpacity={0.0}
         showCover={true}
         mobileScrollSupport={true}
         clickEventForward={true}
         useMouseEvents={true}
         swipeDistance={10}
-        showPageCorners={true}
+        showPageCorners={false}
         disableFlipByClick={false}
       >
         {/* front cover */}
         <div className="bg-brown">
+          <PaperTexture className="cover" />
           ORION&apos;S PROJECTS (THIS IS A WIP LOLL)
         </div>
         {/* PAGE 1 */}
-        <div className="h-full w-full p-2 bg-brown text-primary">
+        <div className="h-full w-full p-2 bg-brown text-bg ">
+          <PaperTexture className="cover" />
           <BookIntro
             overview={overview}
             columns={columns}

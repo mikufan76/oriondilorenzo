@@ -18,8 +18,8 @@ export default function Project({
 
   return (
     project && (
-      <div className="w-full h-full flex flex-col justify-between">
-        <div className="w-full h-min">
+      <div className="w-full h-full flex flex-col justify-between bg-[url(/paper.svg)] bg-cover">
+        <div className="w-full h-min ">
           {coverImgUrl && (
             <Image
               className="w-full hover:opacity-80"
@@ -39,7 +39,7 @@ export default function Project({
           <PortableText value={overview || []} />
         </ScrollArea>
 
-     
+
       </div>
     )
   )
