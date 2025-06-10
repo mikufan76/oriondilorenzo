@@ -87,5 +87,40 @@ export default defineType({
       type: 'url',
       validation: (rule) => rule.uri({ allowRelative: true }),
     }),
+    defineField({
+      name: 'gallery',
+      title: 'Gallery',
+      description: 'Images to be used in the project gallery.',
+      type: 'array',
+      of: [
+        defineArrayMember({
+          title: 'Single Image',
+          name: 'singleImage',
+          type: 'object',
+          icon: ImageIcon,
+          fields: [
+            {
+              title: 'Photo',
+              name: 'photo',
+              type: 'image',
+              options: {
+                hotspot: true,
+              },
+            },
+          ],
+          preview: {
+            select: {
+              photo: 'photo',
+            },
+            prepare({ photo }) {
+              return {
+                title: 'Single image',
+                media: photo,
+              }
+            },
+          },
+        }),
+      ],
+    }),
   ],
 })

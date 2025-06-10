@@ -37,6 +37,8 @@ export interface ShowcaseProject {
   title?: string
   year?: string
   _updatedAt?: string
+  gallery?: Object[]
+  fontClassName?: string
 }
 
 // Page payloads

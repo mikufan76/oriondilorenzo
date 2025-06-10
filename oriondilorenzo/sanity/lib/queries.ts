@@ -4,11 +4,11 @@ export const homePageQuery = groq`
   *[_type == "home"][0]{
     _id,
     _updatedAt,
+    title,
     overview{
       text,
       displayText,
     },
-    customLogo,
     showcaseProjects[]->{
       _type,
       coverImage{
@@ -20,9 +20,20 @@ export const homePageQuery = groq`
       icon,
       "slug": slug.current,
       title,
-      year,
+      gallery[]{
+        _type == 'singleImage' => {
+          _type,
+          _key,
+          photo{
+            _type,
+            _id,
+            asset,
+            "lqip": asset->metadata.lqip,
+          },
+        },
+      },
     },
-    title,
+
   }
 `
 

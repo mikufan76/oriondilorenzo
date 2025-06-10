@@ -2,7 +2,7 @@
 import { Coming_Soon, Courier_Prime } from 'next/font/google'
 import Image from 'next/image'
 import { PortableText } from 'next-sanity'
-import { useRef } from 'react'
+import { use, useRef, useState } from 'react'
 import HTMLFlipBook from 'react-pageflip'
 
 import { Button } from '@/components/ui/Button'
@@ -10,9 +10,10 @@ import { DataTable } from '@/components/ui/DataTable'
 import { ScrollArea } from '@/components/ui/ScrollArea'
 import { urlForImage } from '@/sanity/lib/utils'
 
-import { HomePageProps } from '../HomePage'
 import BookIntro from './ BookIntro'
 import Project from './Project'
+import type { HomePagePayload } from '@/types'
+import { EncodeDataAttributeCallback } from '@sanity/react-loader'
 
 const bookHeaderFont = Coming_Soon({
   subsets: ['latin'],
@@ -24,20 +25,35 @@ const paragraphFont = Courier_Prime({
   weight: ['400'],
 })
 
-export default function Book({ data, encodeDataAttribute, timer }) {
+export interface BookProps {
+  data: HomePagePayload | null
+  encodeDataAttribute?: EncodeDataAttributeCallback
+  timer: Promise<boolean>
+}
+
+export default function Book(props: BookProps) {
+  const { data, encodeDataAttribute, timer } = props
   const { overview = [], showcaseProjects = [] } = data ?? {}
   showcaseProjects.forEach((project, index) => (project.page = index + 2))
   const book = useRef(null) as any
 
+  const [useMouseEvents, setUseMouseEvents] = useState(true)
+
   timer.then((result) => {
     if (book.current && result) {
       const pageFlip = book.current.pageFlip()
-      console.log(pageFlip.getCurrentPageIndex())
       if (pageFlip.getCurrentPageIndex() === 0) {
         pageFlip.flip(1)
       }
     }
   })
+
+  const hideMouse = (event: boolean) => {
+    if (event !== useMouseEvents) {
+      setUseMouseEvents(event)
+      console.log('Mouse event changed:', event)
+    }
+  }
 
   const columns = [
     {
@@ -59,23 +75,19 @@ export default function Book({ data, encodeDataAttribute, timer }) {
       accessorKey: 'page',
       cell: ({ row }) => {
         return (
-          <div className="flex w-full flex-row justify-center items-center">
+          <div className="flex w-full flex-row items-center justify-center">
             <div
-              className="z-50 w-[30px] h-[30px] cursor-pointer rounded border-2 border-primary text-center transition-colors hover:bg-primary hover:text-brown"
+              className="z-50 h-[30px] w-[30px] cursor-pointer rounded border-2 border-primary text-center transition-colors hover:bg-primary hover:text-brown"
               onClick={(e) => {
                 e.stopPropagation() // Prevent the row click event
                 let page = row.getValue('page') // Access the page number
                 let currentPage = book.current.pageFlip().getCurrentPageIndex()
                 const pageFlip = book.current.pageFlip()
-                console.log('Total pages:', pageFlip.getPageCount())
-                console.log('Current page index before flip:', currentPage)
                 if (pageFlip.getOrientation() === 'landscape') {
                   page = page % 2 === 0 ? page - 1 : page
-                  console.log('updated page', page)
                 }
 
                 if (page > 1) {
-                  console.log('Flipping to page:', page)
                   book.current.pageFlip().flip(page)
                 }
               }}
@@ -98,7 +110,6 @@ export default function Book({ data, encodeDataAttribute, timer }) {
         height={500}
         style={{}}
         className={''}
-        onFlip={(e) => console.log('flipped', e.data)}
         size={'stretch'}
         startPage={0}
         maxWidth={1000}
@@ -114,9 +125,9 @@ export default function Book({ data, encodeDataAttribute, timer }) {
         showCover={true}
         mobileScrollSupport={true}
         clickEventForward={true}
-        useMouseEvents={true}
+        useMouseEvents={useMouseEvents}
         swipeDistance={30}
-        showPageCorners={true}
+        showPageCorners={false}
         disableFlipByClick={true}
       >
         {/* front cover */}
@@ -138,13 +149,7 @@ export default function Book({ data, encodeDataAttribute, timer }) {
               className="relative h-full w-full border-0 bg-paper p-2"
               key={project.slug}
             >
-              <Project
-                fontClassName={paragraphFont.className}
-                coverImage={project.coverImage}
-                overview={project.overview}
-                slug={project.slug}
-                title={project.title}
-              />
+              <Project showcaseProject={project} useMouseEvents={hideMouse} />
             </div>
           )
         })}

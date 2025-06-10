@@ -5,21 +5,23 @@ import { ScrollArea } from '@/components/ui/ScrollArea'
 import { urlForImage } from '@/sanity/lib/utils'
 import project from '@/sanity/schemas/documents/project'
 import { ShowcaseProject } from '@/types'
+import PhotoPocket from './photopocket'
 
-export default function Project({
-  coverImage,
-  overview,
-  slug,
-  fontClassName,
-  title,
+export default function Project(props: {
+  showcaseProject: ShowcaseProject
+  useMouseEvents: (event: boolean) => void
 }) {
+  const { coverImage, overview, slug, gallery, fontClassName, title } =
+    props.showcaseProject
+  const useMouseEvents = props.useMouseEvents
+  if (title?.includes('This site!')) {
+  }
   const coverImgUrl =
     coverImage &&
     urlForImage(coverImage)?.height(300).width(500).fit('crop').url()
-
   return (
     project && (
-      <div className="flex h-full w-full flex-col justify-between">
+      <div className="relative flex h-full w-full flex-col justify-between">
         <div className="h-min w-full">
           {coverImgUrl && (
             <Image
@@ -39,6 +41,9 @@ export default function Project({
         >
           <PortableText value={overview || []} />
         </ScrollArea>
+        {gallery && gallery.length > 0 && (
+          <PhotoPocket gallery={gallery} onMouseEvent={useMouseEvents} />
+        )}
       </div>
     )
   )
