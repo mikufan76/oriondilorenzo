@@ -23,7 +23,7 @@ export default function Project({
         <div className="h-min w-full">
           {coverImgUrl && (
             <Image
-              className="w-full hover:opacity-80"
+              className="w-full"
               width={500}
               height={300}
               src={coverImgUrl}

@@ -17,9 +17,9 @@ export default function BookIntro({ overview, columns, showcaseProjects }) {
     >
       <div id="intro" className="h-1/3 w-full flex-none">
         <div className="h-min w-full lg:text-2xl">
-          IF FOUND PLEASE EMAIL
+          SITE UNDER CONSTRUCTION!
           <div className="h-min w-full lg:text-xl">
-            @OrionDiLorenzo@Proton.me
+            Questions? @OrionDiLorenzo@Proton.me
           </div>
         </div>
         <div
