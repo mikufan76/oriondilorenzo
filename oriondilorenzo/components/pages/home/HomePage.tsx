@@ -7,6 +7,7 @@ import { Button } from '@/components/ui/Button'
 import type { HomePagePayload } from '@/types'
 
 import { Header } from './Header'
+import PhotoPocket from './Book/photopocket'
 
 export interface HomePageProps {
   data: HomePagePayload | null
@@ -65,6 +66,7 @@ export function HomePage({ data, encodeDataAttribute }: HomePageProps) {
 
   return (
     <div className="h-screen w-screen overflow-hidden">
+      <PhotoPocket className="absolute z-50" />
       {/* Header */}
       <Header projectOnClick={handleBookClick} />
       {bookState && <BgBlur bookState={bookState} onClick={closeBook} />}
