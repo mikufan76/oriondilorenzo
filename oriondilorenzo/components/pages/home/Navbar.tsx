@@ -28,7 +28,7 @@ export default function Navbar({ projectOnClick }) {
       <NavbarButton
         icon={faSquareArrowUpRight}
         label="Resume"
-        href="https://drive.google.com/file/d/1UYg4wzn0-01qWauXlJBj43hBRcVB5aqQ/view?usp=sharing"
+        href="https://docs.google.com/document/d/1ubCg4QlVmeBGIDw2s4o32bMdkLQyAsF1/edit"
       />
 
       <NavbarButton
