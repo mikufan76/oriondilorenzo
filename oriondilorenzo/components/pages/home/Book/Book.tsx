@@ -54,7 +54,6 @@ export default function Book(props: BookProps) {
   const hideMouse = (event: boolean) => {
     if (event !== useMouseEvents) {
       setUseMouseEvents(event);
-      console.log('Mouse event changed:', event);
     }
   };
 
@@ -133,7 +132,7 @@ export default function Book(props: BookProps) {
         disableFlipByClick={true}
       >
         {/* front cover */}
-        <div className="h-full w-full rounded-xl bg-brown page">
+        <div className="page h-full w-full rounded-xl bg-brown">
           {coverImgUrl && (
             <Image
               className="m-auto h-full w-full overflow-hidden p-1"
@@ -145,7 +144,7 @@ export default function Book(props: BookProps) {
           )}
         </div>
         {/* PAGE 1 */}
-        <div className="h-full w-full bg-brown p-2 page">
+        <div className="page h-full w-full bg-brown p-2">
           <BookIntro
             overview={overview}
             columns={columns}
@@ -156,7 +155,7 @@ export default function Book(props: BookProps) {
         {showcaseProjects.map((project) => {
           return (
             <div
-              className="relative h-full w-full border-0 bg-[url('/paper.png')] bg-cover bg-center bg-no-repeat p-2 page"
+              className="page relative h-full w-full border-0 bg-[url('/paper.png')] bg-cover bg-center bg-no-repeat p-2"
               key={project.slug}
             >
               <Project showcaseProject={project} useMouseEvents={hideMouse} />
