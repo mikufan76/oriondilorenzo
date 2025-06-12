@@ -9,6 +9,7 @@ import { Courier_Prime } from 'next/font/google';
 import { Londrina_Solid } from 'next/font/google';
 
 import PhotoPocket from './photopocket';
+import { Button } from '@/components/ui/Button';
 
 const bodyFont = Courier_Prime({
   subsets: ['latin'],
@@ -32,7 +33,7 @@ export default function Project(props: {
     urlForImage(coverImage)?.height(300).width(500).fit('crop').url();
   return (
     project && (
-      <div className="relative flex h-full w-full flex-col items-center justify-between p-2 gap-y-[2%]">
+      <div className="relative flex h-full w-full flex-col items-center justify-between gap-y-[2%] p-2">
         <CoverImage coverImage={coverImage} />
         <div className="flex h-2/3 w-full flex-1 flex-row pt-2">
           <TextArea title={title || ''} overview={overview || ''} />
@@ -74,7 +75,9 @@ const TextArea = (props: { title: string; overview: any }) => {
   return (
     <div className="text-1 flex w-full flex-col text-pretty p-2">
       <PostTitle title={title} />
-      <ScrollArea className={`h-full w-full text-xs ${bodyFont.className} shadow-inner p-2 rounded`}>
+      <ScrollArea
+        className={`h-full w-full text-xs ${bodyFont.className} rounded p-2 shadow-inner`}
+      >
         <PortableText value={overview || []} />
         <ScrollBar className="bg-gray-300" />
       </ScrollArea>
@@ -88,11 +91,7 @@ const InteractArea = ({ gallery, links, useMouseEvents }) => {
     gallery.length > 0 && (
       <div className="h-full w-[200px] overflow-hidden md:w-[400px]">
         <LinkArea links={links} />
-        <PhotoPocket
-          gallery={gallery}
-          onMouseEvent={useMouseEvents}
-          className="h-1/2 w-full"
-        />
+        <PhotoPocket gallery={gallery} onMouseEvent={useMouseEvents} />
       </div>
     )
   );
@@ -102,16 +101,21 @@ const LinkArea = ({ links }): JSX.Element => {
   return (
     links &&
     links.length > 0 && (
-      <div className="flex w-full flex-col items-start justify-start p-2">
+      <div
+        id="link wrapper"
+        className="flex h-1/2 w-full flex-col items-start justify-start p-2 gap-y-1"
+      >
         {links.map((link, index) => (
-          <a
-            key={index}
-            href={link.url}
-            target="_blank"
-            className="text-blue-500 hover:underline"
-          >
-            {link.title || link.url}
-          </a>
+          <div className="h-1/5 w-full relative" key={index}>
+            <div className="sticky-note-shadow absolute  w-full h-full translate-y-[3px]"></div>
+              <a
+                href={link.url}
+                target="_blank"
+                className="bg-white absolute h-full w-full hover:underline rotate-[-1deg]"
+              >
+                {link.title || link.url}
+              </a>
+          </div>
         ))}
       </div>
     )

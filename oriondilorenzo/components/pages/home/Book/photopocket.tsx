@@ -18,7 +18,7 @@ export default function PhotoPocket(props: PhotoPocketProps) {
       <button
         onPointerEnter={() => onMouseEvent(false)}
         onPointerLeave={() => onMouseEvent(true)}
-        className={cn(className, 'bg-yellow relative')}
+        className={cn(className, 'relative w-full h-1/2')}
       >
         {gallery.length > 1 &&
           gallery.map((image, index: number) => {
@@ -32,7 +32,7 @@ export default function PhotoPocket(props: PhotoPocketProps) {
                 alt={'Gallery image'}
                 width={500}
                 height={300}
-                className='aspect-video w-1/2 absolute'
+                className='aspect-16/9 absolute'
               />
             )
           })}

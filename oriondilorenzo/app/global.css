@@ -29,7 +29,18 @@
 
 .page {
   border-radius: 5px;
-  box-shadow: 0px 0px 10px 5px rgba(0,0,0,0.3) inset;
-  -webkit-box-shadow: 0px 0px 10px 5px rgba(0,0,0,0.3) inset;
-  -moz-box-shadow: 0px 0px 10px 5px rgba(0,0,0,0.3) inset;
+  box-shadow: 0px 0px 10px 5px rgba(0, 0, 0, 0.3) inset;
+  -webkit-box-shadow: 0px 0px 10px 5px rgba(0, 0, 0, 0.3) inset;
+  -moz-box-shadow: 0px 0px 10px 5px rgba(0, 0, 0, 0.3) inset;
+}
+
+.sticky-note-shadow {
+  background-color: rgba(255, 255, 255, 0);
+  background-image: linear-gradient(
+    270deg,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(0, 0, 0, 0.4) 75%,
+    rgba(0, 0, 0, 0.7) 85%,
+    rgba(0, 0, 0, 0.7) 100%
+  );
 }
