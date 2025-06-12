@@ -20,10 +20,9 @@ export default function PhotoPocket(props: PhotoPocketProps) {
         onPointerLeave={() => onMouseEvent(true)}
         className={cn(
           className,
-          'relative h-3/4 w-full rounded-t-xl bg-paper shadow-[0_1px_2px_0px_rgba(0,0,0,0.25)] overflow-y-hidden',
+          'relative h-3/4 w-full overflow-y-hidden rounded-t-xl bg-paper shadow-[0_1px_2px_0px_rgba(0,0,0,0.25)]',
         )}
       >
-        <div></div>
         {gallery.length > 1 &&
           gallery.map((image, index: number) => {
             const coverImgUrl =
@@ -40,7 +39,7 @@ export default function PhotoPocket(props: PhotoPocketProps) {
                 alt={'Gallery image'}
                 width={500}
                 height={300}
-                style={{ transform: `rotate(${index *3  }deg)` }}
+                style={{ transform: `rotate(${index * 3}deg)` }}
                 className="absolute bottom-0 mx-2 h-[90%] w-[90%] border-4 border-white shadow-md shadow-black/90"
               />
             );
