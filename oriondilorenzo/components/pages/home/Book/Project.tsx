@@ -56,7 +56,7 @@ const CoverImage = ({ coverImage }) => {
   return (
     coverImgUrl && (
       <Image
-        className="h-1/3 w-5/6 overflow-hidden border-2 border-white"
+        className="h-1/3 w-5/6  border-2 border-white"
         width={500}
         height={300}
         src={coverImgUrl}
@@ -89,7 +89,7 @@ const InteractArea = ({ gallery, links, useMouseEvents }) => {
   return (
     gallery &&
     gallery.length > 0 && (
-      <div className="h-full w-[200px] overflow-hidden md:w-[400px]">
+      <div className="h-full w-[200px] md:w-[400px]">
         <LinkArea links={links} />
         <PhotoPocket gallery={gallery} onMouseEvent={useMouseEvents} />
       </div>
@@ -103,11 +103,11 @@ const LinkArea = ({ links }): JSX.Element => {
     links.length > 0 && (
       <div
         id="link wrapper"
-        className="flex h-1/2 w-full flex-col items-start justify-start gap-y-1 p-2"
+        className="flex h-1/4 w-full flex-col items-start justify-start gap-y-1 p-2"
       >
         {links.map((link, index) => {
           return (
-            <div className="relative h-1/5 w-full" key={index}>
+            <div className="relative h-1/3 w-full" key={index}>
               <div className="sticky-note-shadow absolute h-full w-full translate-y-[3px]"></div>
               <a
                 href={link.url}

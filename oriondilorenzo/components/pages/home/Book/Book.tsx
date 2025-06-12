@@ -80,7 +80,7 @@ export default function Book(props: BookProps) {
         return (
           <div className="flex w-full flex-row items-center justify-center">
             <div
-              className="z-50 h-[30px] w-[30px] cursor-pointer rounded border-2 border-primary text-center transition-colors hover:bg-primary hover:text-brown"
+              className="z-50 h-[30px] w-[30px] cursor-pointer rounded border-2 border-bg text-center transition-colors hover:bg-primary hover:text-brown"
               onClick={(e) => {
                 e.stopPropagation(); // Prevent the row click event
                 let page = row.getValue('page'); // Access the page number

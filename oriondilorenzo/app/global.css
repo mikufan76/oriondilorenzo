@@ -44,3 +44,13 @@
     rgba(0, 0, 0, 0.7) 100%
   );
 }
+
+.photo-pocket {
+  background: #fffff9;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 1) 0%,
+    rgba(255, 255, 246, 1) 80%,
+    rgb(234, 233, 224) 100%
+  );
+}

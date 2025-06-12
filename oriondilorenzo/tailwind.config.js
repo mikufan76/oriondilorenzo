@@ -18,6 +18,10 @@ module.exports = {
         logosm: '.9%',
         logo: '1.3%',
       },
+      boxShadow: {
+        glow: '0px 0px 20px 3px rgba(255,249,203, .3)',
+        bookBorder: '0px 0px 10px 5px rgba(0,0,0,.3) inset;',
+      },
       colors: {
         bg: 'var(--background-color)',
         primary: 'var(--primary-color)',
@@ -60,10 +64,6 @@ module.exports = {
           '98%': { opacity: 0, transform: 'scale(1)' },
           '100%': { opacity: 0, transform: 'scale(0)' },
         },
-      },
-      boxShadow: {
-        glow: '0px 0px 20px 3px rgba(255,249,203, .3)',
-        bookBorder: '0px 0px 10px 5px rgba(0,0,0,.3) inset;',
       },
     },
   },
