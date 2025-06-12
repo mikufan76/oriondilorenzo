@@ -73,7 +73,7 @@ const PostTitle = ({ title }: { title: string }) => {
 const TextArea = (props: { title: string; overview: any }) => {
   const { title, overview } = props;
   return (
-    <div className="text-1 flex w-full flex-col text-pretty p-2">
+    <div className="text-1 flex w-[70%] flex-col text-pretty p-2">
       <PostTitle title={title} />
       <ScrollArea
         className={`h-full w-full text-xs ${bodyFont.className} rounded p-2 shadow-inner`}
@@ -89,7 +89,7 @@ const InteractArea = ({ gallery, links, useMouseEvents }) => {
   return (
     gallery &&
     gallery.length > 0 && (
-      <div className="h-full w-[200px] md:w-[400px]">
+      <div className="h-full w-[200px] md:w-[400px] overflow-show">
         <LinkArea links={links} />
         <PhotoPocket gallery={gallery} onMouseEvent={useMouseEvents} />
       </div>
