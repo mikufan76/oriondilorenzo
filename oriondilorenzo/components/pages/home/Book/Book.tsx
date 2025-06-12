@@ -133,7 +133,7 @@ export default function Book(props: BookProps) {
         disableFlipByClick={true}
       >
         {/* front cover */}
-        <div className="h-full w-full rounded-xl bg-brown shadow-bookBorder">
+        <div className="h-full w-full rounded-xl bg-brown page">
           {coverImgUrl && (
             <Image
               className="m-auto h-full w-full overflow-hidden p-1"
@@ -145,7 +145,7 @@ export default function Book(props: BookProps) {
           )}
         </div>
         {/* PAGE 1 */}
-        <div className="h-full w-full bg-brown p-2 shadow-bookBorder">
+        <div className="h-full w-full bg-brown p-2 page">
           <BookIntro
             overview={overview}
             columns={columns}
@@ -156,7 +156,7 @@ export default function Book(props: BookProps) {
         {showcaseProjects.map((project) => {
           return (
             <div
-              className="relative h-full w-full border-0 bg-[url('/paper.png')] bg-cover bg-center bg-no-repeat p-2 shadow-bookBorder"
+              className="relative h-full w-full border-0 bg-[url('/paper.png')] bg-cover bg-center bg-no-repeat p-2 page"
               key={project.slug}
             >
               <Project showcaseProject={project} useMouseEvents={hideMouse} />
