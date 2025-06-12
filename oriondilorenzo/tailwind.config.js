@@ -1,4 +1,4 @@
-const { transform } = require('typescript')
+const { transform } = require('typescript');
 
 /** @type {import('tailwindcss').Config} */
 module.exports = {
@@ -30,10 +30,15 @@ module.exports = {
         purple: '#a100ff',
         cyan: '#9ff8ff',
         brown: '#A78064',
-        table: 'rgba(0, 0, 0, 0.2)',
+        table: 'rgba(0, 0, 0, 0.1)',
         shade: 'rgba(13, 8, 84, 0.7)',
         paper: '#FFFFF6',
         glow: 'rgba(255,249,203, .6)',
+        sticky: {
+          100: '#fff9b1',
+          200: '#d5f692',
+          300: '#b384bb',
+        },
       },
       animation: {
         wiggle: 'wiggle 4s ease-in-out infinite',
@@ -58,7 +63,7 @@ module.exports = {
       },
       boxShadow: {
         glow: '0px 0px 20px 3px rgba(255,249,203, .3)',
-        bookBorder: '0px 0px 10px 5px rgba(0,0,0,.3) inset;'
+        bookBorder: '0px 0px 10px 5px rgba(0,0,0,.3) inset;',
       },
     },
   },
@@ -67,4 +72,4 @@ module.exports = {
     ['prettier-plugin-tailwindcss'],
     require('tailwindcss-animate'),
   ],
-}
+};

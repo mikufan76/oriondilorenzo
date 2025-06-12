@@ -103,20 +103,22 @@ const LinkArea = ({ links }): JSX.Element => {
     links.length > 0 && (
       <div
         id="link wrapper"
-        className="flex h-1/2 w-full flex-col items-start justify-start p-2 gap-y-1"
+        className="flex h-1/2 w-full flex-col items-start justify-start gap-y-1 p-2"
       >
-        {links.map((link, index) => (
-          <div className="h-1/5 w-full relative" key={index}>
-            <div className="sticky-note-shadow absolute  w-full h-full translate-y-[3px]"></div>
+        {links.map((link, index) => {
+          return (
+            <div className="relative h-1/5 w-full" key={index}>
+              <div className="sticky-note-shadow absolute h-full w-full translate-y-[3px]"></div>
               <a
                 href={link.url}
                 target="_blank"
-                className="bg-white absolute h-full w-full hover:underline rotate-[-1deg]"
+                className={`bg-sticky-100 absolute h-full w-full rotate-[-1deg] text-center align-middle hover:underline`}
               >
                 {link.title || link.url}
               </a>
-          </div>
-        ))}
+            </div>
+          );
+        })}
       </div>
     )
   );
