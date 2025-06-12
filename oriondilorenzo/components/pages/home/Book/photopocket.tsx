@@ -1,9 +1,9 @@
 'use client'
 import ImageBox from '@/components/shared/ImageBox'
-import { cn } from '@/sanity/lib/utils'
+import { cn, urlForImage } from '@/sanity/lib/utils'
 import { loadProject } from '@/sanity/loader/loadQuery'
 import { Images } from 'lucide-react'
-import { Image } from 'sanity'
+import Image from 'next/image'
 
 export type PhotoPocketProps = {
   gallery: any[]
@@ -16,15 +16,26 @@ export default function PhotoPocket(props: PhotoPocketProps) {
   return (
     <>
       <button
-        className={cn(
-          className,
-        )}
+        onPointerEnter={() => onMouseEvent(false)}
+        onPointerLeave={() => onMouseEvent(true)}
+        className={cn(className, 'bg-yellow relative')}
       >
-        <ImageBox image={gallery[0].photo} />
-        <div
-          onPointerEnter={() => onMouseEvent(false)}
-          onPointerLeave={() => onMouseEvent(true)}
-        ></div>
+        {gallery.length > 1 &&
+          gallery.map((image, index: number) => {
+            const coverImgUrl =
+              image?.photo &&
+              urlForImage(image.photo)?.height(700).width(500).fit('crop').url()
+            return (
+              <Image
+                key={index}
+                src={coverImgUrl || ''}
+                alt={'Gallery image'}
+                width={500}
+                height={300}
+                className='aspect-video w-1/2 absolute'
+              />
+            )
+          })}
       </button>
     </>
   )

@@ -15,7 +15,7 @@
       "prettier-plugin-packagejson",
       "prettier-plugin-tailwindcss"
     ],
-    "semi": false,
+    "semi": true,
     "singleQuote": true
   },
   "dependencies": {

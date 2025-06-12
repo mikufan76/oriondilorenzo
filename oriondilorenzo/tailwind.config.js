@@ -29,8 +29,8 @@ module.exports = {
         green: '#7bff3e',
         purple: '#a100ff',
         cyan: '#9ff8ff',
-        brown: '#6C4B3E',
-        darkBrown: '#48271A',
+        brown: '#A78064',
+        table: 'rgba(0, 0, 0, 0.2)',
         shade: 'rgba(13, 8, 84, 0.7)',
         paper: '#FFFFF6',
         glow: 'rgba(255,249,203, .6)',
@@ -58,6 +58,7 @@ module.exports = {
       },
       boxShadow: {
         glow: '0px 0px 20px 3px rgba(255,249,203, .3)',
+        bookBorder: '0px -6px 0px 6px rgba(167,128,100,1) inset;'
       },
     },
   },

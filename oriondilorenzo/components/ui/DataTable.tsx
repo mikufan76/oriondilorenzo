@@ -29,10 +29,10 @@ const tableVariants = cva('', {
   variants: {
     rowVariants: {
       default: '',
-      tableOfContents: 'odd:bg-darkBrown',
+      tableOfContents: 'odd:bg-table',
     },
     table: {
-      default: 'text-sm lg:text-lg text-primary',
+      default: 'text-sm lg:text-lg',
     },
   },
   defaultVariants: {

@@ -1,72 +1,121 @@
-import Image from 'next/image'
-import { PortableText } from 'next-sanity'
+import Image from 'next/image';
+import { PortableText } from 'next-sanity';
 
-import { ScrollArea } from '@/components/ui/ScrollArea'
-import { urlForImage } from '@/sanity/lib/utils'
-import project from '@/sanity/schemas/documents/project'
-import { ShowcaseProject } from '@/types'
+import { ScrollArea, ScrollBar } from '@/components/ui/ScrollArea';
+import { urlForImage } from '@/sanity/lib/utils';
+import project from '@/sanity/schemas/documents/project';
+import { ShowcaseProject } from '@/types';
+import { Courier_Prime } from 'next/font/google';
+import { Londrina_Solid } from 'next/font/google';
 
-import PhotoPocket from './photopocket'
+import PhotoPocket from './photopocket';
+
+const bodyFont = Courier_Prime({
+  subsets: ['latin'],
+  weight: ['400', '700'],
+});
+
+const titleFont = Londrina_Solid({
+  subsets: ['latin'],
+  weight: ['400', '900'],
+});
 
 export default function Project(props: {
-  showcaseProject: ShowcaseProject
-  useMouseEvents: (event: boolean) => void
+  showcaseProject: ShowcaseProject;
+  useMouseEvents: (event: boolean) => void;
 }) {
-  const { coverImage, overview, slug, gallery, fontClassName, title } =
-    props.showcaseProject
-  const useMouseEvents = props.useMouseEvents
-  if (title?.includes('This site!')) {
-  }
+  const { coverImage, overview, slug, gallery, projectLinks, title } =
+    props.showcaseProject;
+  const useMouseEvents = props.useMouseEvents;
   const coverImgUrl =
     coverImage &&
-    urlForImage(coverImage)?.height(300).width(500).fit('crop').url()
+    urlForImage(coverImage)?.height(300).width(500).fit('crop').url();
   return (
     project && (
-      <div className="relative flex h-full w-full flex-col justify-between">
-        <div className="h-1/3 w-full bg-white shadow-md">
-          {coverImgUrl && (
-            <Image
-              className="m-auto h-full overflow-hidden p-1"
-              width={500}
-              height={300}
-              src={coverImgUrl}
-              alt={''}
-            />
-          )}
-        </div>
-        <div className="flex h-2/3 w-full flex-row justify-between bg-purple">
-          <TextArea
-            title={title || ''}
-            overview={overview || ''}
-            fontClassName={fontClassName || ''}
+      <div className="relative flex h-full w-full flex-col items-center justify-between p-2">
+        <CoverImage coverImage={coverImage} />
+        <div className="flex h-2/3 w-full flex-1 flex-row pt-2">
+          <TextArea title={title || ''} overview={overview || ''} />
+          <InteractArea
+            gallery={gallery}
+            useMouseEvents={useMouseEvents}
+            links={projectLinks}
           />
-          {gallery && gallery.length > 0 && (
-            <div className="w-full  bg-red">
-              <PhotoPocket gallery={gallery} onMouseEvent={useMouseEvents} />
-            </div>
-          )}
         </div>
       </div>
     )
-  )
+  );
 }
 
-const TextArea = (props: {
-  title: string
-  overview: any
-  fontClassName: string
-}) => {
-  const { title, overview, fontClassName } = props
+const CoverImage = ({ coverImage }) => {
+  const coverImgUrl =
+    coverImage &&
+    urlForImage(coverImage)?.height(300).width(500).fit('crop').url();
+
   return (
-    <div className="flex-1 w-full flex-col bg-pink">
-      <div className="text-bold my-2 flex h-max w-full shrink items-center justify-center text-center text-xl lg:text-3xl min-w-1/2">
-        {title}
-      </div>
-      <div
-        className={`cascadia-code h-1/2 w-full shrink p-4 text-sm shadow-inner ${fontClassName}`}
-      >
-        <PortableText value={overview || []} />
-      </div>
+    <div className="h-1/3 w-5/6 flex-1 items-center justify-center bg-white p-2 shadow-md">
+      {coverImgUrl && (
+        <Image
+          className="m-auto h-full overflow-hidden"
+          width={500}
+          height={300}
+          src={coverImgUrl}
+          alt={''}
+        />
+      )}
     </div>
-  )
-}
+  );
+};
+
+const PostTitle = ({ title }: { title: string }) => {
+  return <div className={`${titleFont.className} mb-2 text-xl`}>{title}</div>;
+};
+
+const TextArea = (props: { title: string; overview: any }) => {
+  const { title, overview } = props;
+  return (
+    <div className="text-1 flex w-full flex-col text-pretty px-2">
+      <PostTitle title={title} />
+      <ScrollArea className={`h-full w-full text-xs ${bodyFont.className} `}>
+        <PortableText value={overview || []} />
+        <ScrollBar className="bg-gray-300" />
+      </ScrollArea>
+    </div>
+  );
+};
+
+const InteractArea = ({ gallery, links, useMouseEvents }) => {
+  return (
+    gallery &&
+    gallery.length > 0 && (
+      <div className="h-full w-[200px] overflow-hidden md:w-[400px]">
+        <LinkArea links={links} />
+        <PhotoPocket
+          gallery={gallery}
+          onMouseEvent={useMouseEvents}
+          className="h-1/2 w-full"
+        />
+      </div>
+    )
+  );
+};
+
+const LinkArea = ({ links }): JSX.Element => {
+  return (
+    links &&
+    links.length > 0 && (
+      <div className="flex w-full flex-col items-start justify-start p-2">
+        {links.map((link, index) => (
+          <a
+            key={index}
+            href={link.url}
+            target="_blank"
+            className="text-blue-500 hover:underline"
+          >
+            {link.title || link.url}
+          </a>
+        ))}
+      </div>
+    )
+  );
+};

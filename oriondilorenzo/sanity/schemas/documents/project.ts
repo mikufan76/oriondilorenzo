@@ -1,5 +1,11 @@
-import { ImageIcon, PlayIcon, StarIcon, TextIcon } from '@sanity/icons'
-import { defineArrayMember, defineField, defineType } from 'sanity'
+import {
+  ImageIcon,
+  LinkIcon,
+  PlayIcon,
+  StarIcon,
+  TextIcon,
+} from '@sanity/icons';
+import { defineArrayMember, defineField, defineType } from 'sanity';
 
 export default defineType({
   name: 'project',
@@ -81,11 +87,50 @@ export default defineType({
       validation: (rule) => rule.required(),
     }),
     defineField({
-      name: 'site',
-      title: 'Project Site',
-      description: 'Link to the project site, if applicable.',
-      type: 'url',
-      validation: (rule) => rule.uri({ allowRelative: true }),
+      name: 'projectLinks',
+      title: 'External links',
+      description:
+        '(Optional) Here you can add a list of external links related to the project, such as GitHub, live demo, etc. It will be displayed below your project cover image.',
+      type: 'array',
+      of: [
+        {
+          title: 'Link',
+          name: 'projectLink',
+          type: 'object',
+          icon: LinkIcon,
+          fields: [
+            {
+              title: 'Title',
+              name: 'title',
+              type: 'string',
+              description: 'Display Text',
+            },
+            {
+              title: 'URL',
+              name: 'url',
+              type: 'url',
+              description: 'enter an external URL',
+              validation: (Rule) =>
+                Rule.uri({
+                  scheme: ['http', 'https', 'mailto', 'tel'],
+                }),
+            },
+          ],
+          preview: {
+            select: {
+              title: 'title',
+              url: 'url',
+            },
+            prepare({ title, url }) {
+              return {
+                title: title,
+                subtitle: url,
+                media: LinkIcon,
+              };
+            },
+          },
+        },
+      ],
     }),
     defineField({
       name: 'gallery',
@@ -116,11 +161,11 @@ export default defineType({
               return {
                 title: 'Single image',
                 media: photo,
-              }
+              };
             },
           },
         }),
       ],
     }),
   ],
-})
+});

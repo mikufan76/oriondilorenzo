@@ -1,4 +1,4 @@
-import { groq } from 'next-sanity'
+import { groq } from 'next-sanity';
 
 export const homePageQuery = groq`
   *[_type == "home"][0]{
@@ -25,6 +25,11 @@ export const homePageQuery = groq`
       icon,
       "slug": slug.current,
       title,
+      projectLinks[]{
+        _type,
+        title,
+        url,
+    },
       gallery[]{
         _type == 'singleImage' => {
           _type,
@@ -40,7 +45,7 @@ export const homePageQuery = groq`
     },
 
   }
-`
+`;
 
 export const moreProjectsQuery = groq`
   *[_type == "home"][0]{
@@ -58,7 +63,7 @@ export const moreProjectsQuery = groq`
       _updatedAt,
     },
   }
-`
+`;
 
 export const aboutPageQuery = groq`
   *[_type == "about"][0]{
@@ -77,7 +82,7 @@ export const aboutPageQuery = groq`
       url,
     },
   }
-`
+`;
 
 export const linksPageQuery = groq`
   *[_type == "links"][0]{
@@ -89,11 +94,11 @@ export const linksPageQuery = groq`
       url,
     },
   }
-`
+`;
 
 export const homePageTitleQuery = groq`
   *[_type == "home"][0].title
-`
+`;
 
 export const projectBySlugQuery = groq`
   *[_type == "project" && slug.current == $slug][0] {
@@ -151,11 +156,11 @@ export const projectBySlugQuery = groq`
       },
     },
   }
-`
+`;
 
 export const projectPaths = groq`
   *[_type == "project" && slug.current != null].slug.current
-`
+`;
 
 export const settingsQuery = groq`
   *[_type == "settings"][0]{
@@ -186,4 +191,4 @@ export const settingsQuery = groq`
     },
     displayLastUpdated,
   }
-`
+`;
