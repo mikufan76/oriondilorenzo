@@ -32,7 +32,7 @@ export default function Project(props: {
     urlForImage(coverImage)?.height(300).width(500).fit('crop').url();
   return (
     project && (
-      <div className="relative flex h-full w-full flex-col items-center justify-between p-2">
+      <div className="relative flex h-full w-full flex-col items-center justify-between p-2 gap-y-[2%]">
         <CoverImage coverImage={coverImage} />
         <div className="flex h-2/3 w-full flex-1 flex-row pt-2">
           <TextArea title={title || ''} overview={overview || ''} />
@@ -53,17 +53,15 @@ const CoverImage = ({ coverImage }) => {
     urlForImage(coverImage)?.height(300).width(500).fit('crop').url();
 
   return (
-    <div className="h-1/3 w-5/6 flex-1 items-center justify-center bg-white p-2 shadow-md">
-      {coverImgUrl && (
-        <Image
-          className="m-auto h-full overflow-hidden"
-          width={500}
-          height={300}
-          src={coverImgUrl}
-          alt={''}
-        />
-      )}
-    </div>
+    coverImgUrl && (
+      <Image
+        className="h-1/3 w-5/6 overflow-hidden border-2 border-white"
+        width={500}
+        height={300}
+        src={coverImgUrl}
+        alt={''}
+      />
+    )
   );
 };
 
@@ -74,9 +72,9 @@ const PostTitle = ({ title }: { title: string }) => {
 const TextArea = (props: { title: string; overview: any }) => {
   const { title, overview } = props;
   return (
-    <div className="text-1 flex w-full flex-col text-pretty px-2">
+    <div className="text-1 flex w-full flex-col text-pretty p-2">
       <PostTitle title={title} />
-      <ScrollArea className={`h-full w-full text-xs ${bodyFont.className} `}>
+      <ScrollArea className={`h-full w-full text-xs ${bodyFont.className} shadow-inner p-2 rounded`}>
         <PortableText value={overview || []} />
         <ScrollBar className="bg-gray-300" />
       </ScrollArea>

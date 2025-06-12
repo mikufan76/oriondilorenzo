@@ -58,7 +58,7 @@ module.exports = {
       },
       boxShadow: {
         glow: '0px 0px 20px 3px rgba(255,249,203, .3)',
-        bookBorder: '0px -6px 0px 6px rgba(167,128,100,1) inset;'
+        bookBorder: '0px 0px 10px 5px rgba(0,0,0,.3) inset;'
       },
     },
   },

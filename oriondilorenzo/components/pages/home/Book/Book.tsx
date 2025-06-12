@@ -133,7 +133,7 @@ export default function Book(props: BookProps) {
         disableFlipByClick={true}
       >
         {/* front cover */}
-        <div className="h-full w-full rounded-xl bg-brown">
+        <div className="h-full w-full rounded-xl bg-brown shadow-bookBorder">
           {coverImgUrl && (
             <Image
               className="m-auto h-full w-full overflow-hidden p-1"
@@ -145,7 +145,7 @@ export default function Book(props: BookProps) {
           )}
         </div>
         {/* PAGE 1 */}
-        <div className="h-full w-full bg-brown p-2">
+        <div className="h-full w-full bg-brown p-2 shadow-bookBorder">
           <BookIntro
             overview={overview}
             columns={columns}
