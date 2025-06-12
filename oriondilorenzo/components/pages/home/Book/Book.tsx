@@ -33,9 +33,13 @@ export interface BookProps {
 
 export default function Book(props: BookProps) {
   const { data, encodeDataAttribute, timer } = props
-  const { overview = [], showcaseProjects = [] } = data ?? {}
+  const { overview = [], showcaseProjects = [], cover } = data ?? {}
+  console.log(cover)
   showcaseProjects.forEach((project, index) => (project.page = index + 2))
   const book = useRef(null) as any
+  const coverImgUrl =
+    cover &&
+    urlForImage(cover)?.height(700).width(500).fit('crop').url()
 
   const [useMouseEvents, setUseMouseEvents] = useState(true)
 
@@ -131,11 +135,19 @@ export default function Book(props: BookProps) {
         disableFlipByClick={true}
       >
         {/* front cover */}
-        <div className="bg-brown">
-          ORION&apos;S PROJECTS (THIS IS A WIP LOLL)
+        <div className="bg-[#A78064]  w-full h-full rounded-xl">
+          {coverImgUrl && (
+            <Image
+              className="m-auto h-full w-full overflow-hidden p-1"
+              width={500}
+              height={300}
+              src={coverImgUrl}
+              alt={''}
+            />
+          )}
         </div>
         {/* PAGE 1 */}
-        <div className="h-full w-full bg-brown p-2 text-primary">
+        <div className=" w-full h-full bg-brown p-2 text-primary ">
           <BookIntro
             overview={overview}
             columns={columns}

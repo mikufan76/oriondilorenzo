@@ -50,6 +50,7 @@ export interface HomePagePayload {
   title?: string
   customLogo?: Image
   _updatedAt?: string
+  cover?: Image
 }
 
 export interface ProjectPayload {

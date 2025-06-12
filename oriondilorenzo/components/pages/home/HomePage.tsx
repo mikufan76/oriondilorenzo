@@ -21,6 +21,7 @@ enum BookState {
 }
 
 export function HomePage({ data, encodeDataAttribute }: HomePageProps) {
+  console.log('HomePage data:', data)
   const [bookState, setBookState] = useState<BookState>(BookState.Hidden)
   let style =
     'h-screen w-screen flex flex-row justify-center items-center relative overflow-hidden p-0'
@@ -49,7 +50,7 @@ export function HomePage({ data, encodeDataAttribute }: HomePageProps) {
   }
 
   const closeBook = () => {
-  
+
     setBookState(BookState.Closed)
   }
 

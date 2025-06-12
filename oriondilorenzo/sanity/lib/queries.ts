@@ -9,6 +9,11 @@ export const homePageQuery = groq`
       text,
       displayText,
     },
+    cover{
+      _type,
+      asset,
+      "lqip": asset->metadata.lqip,
+    },
     showcaseProjects[]->{
       _type,
       coverImage{

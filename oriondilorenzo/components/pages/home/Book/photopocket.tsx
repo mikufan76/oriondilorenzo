@@ -18,12 +18,10 @@ export default function PhotoPocket(props: PhotoPocketProps) {
       <button
         className={cn(
           className,
-          'absolute bottom-0 right-0 z-50 aspect-square w-3/5 bg-red',
         )}
       >
         <ImageBox image={gallery[0].photo} />
         <div
-          className="absolute bottom-0 z-50 h-1/2 w-full border-2 border-red"
           onPointerEnter={() => onMouseEvent(false)}
           onPointerLeave={() => onMouseEvent(true)}
         ></div>

@@ -25,6 +25,17 @@ export default defineType({
       validation: (rule) => rule.required(),
     }),
     defineField({
+      name: 'cover',
+      title: 'Cover',
+      description:
+        'This image will be used as the cover image for the book. If you choose to add it to Home page, this is the image displayed in the list within the homepage.',
+      type: 'image',
+      options: {
+        hotspot: true,
+      },
+      validation: (rule) => rule.required(),
+    }),
+    defineField({
       name: 'overview',
       description:
         'This text is your description. Used for the introduction paragraph at a Home page and also for the <meta> description tag for SEO.',
