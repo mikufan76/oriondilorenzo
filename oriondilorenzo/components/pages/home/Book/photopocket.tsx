@@ -1,9 +1,11 @@
 'use client';
+import ModalContext from '@/app/contexts/ModalContext';
 import ImageBox from '@/components/shared/ImageBox';
 import { cn, urlForImage } from '@/sanity/lib/utils';
 import { loadProject } from '@/sanity/loader/loadQuery';
 import { Images } from 'lucide-react';
 import Image from 'next/image';
+import { useContext } from 'react';
 
 export type PhotoPocketProps = {
   gallery: any[];
@@ -13,10 +15,17 @@ export type PhotoPocketProps = {
 
 export default function PhotoPocket(props: PhotoPocketProps) {
   const { gallery, className, onMouseEvent } = props;
+  const modalContext = useContext(ModalContext);
+
   return (
     <button
       onPointerEnter={() => onMouseEvent(false)}
       onPointerLeave={() => onMouseEvent(true)}
+      onClick={(e) => {
+        e.stopPropagation();
+        e.preventDefault();
+        modalContext(true)
+      }}
       className={cn(
         className,
         'group relative h-3/4 w-full overflow-y-clip rounded-t-xl bg-paper shadow-[0_1px_2px_0px_rgba(0,0,0,0.25)]',
@@ -45,7 +54,7 @@ export default function PhotoPocket(props: PhotoPocketProps) {
             );
           })}
       </div>
-      <div className="photo-pocket absolute bottom-0 h-3/4 w-full overflow-visible shadow-[0_-2px_10px_2px_rgba(0,0,0,0.25)] transition-transform group-hover:duration-300 group-hover:translate-y-[10px] group-hover:scale-x-110 group-hover:scale-y-95"></div>
+      <div className="photo-pocket absolute bottom-0 h-3/4 w-full overflow-visible shadow-[0_-2px_10px_2px_rgba(0,0,0,0.25)] transition-transform group-hover:translate-y-[10px] group-hover:scale-x-110 group-hover:scale-y-95 group-hover:duration-300"></div>
     </button>
   );
 }
