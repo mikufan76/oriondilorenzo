@@ -38,6 +38,7 @@ export const homePageQuery = groq`
             _type,
             _id,
             asset,
+            "aspectRatio": asset->metadata.dimensions.aspectRatio,
             "lqip": asset->metadata.lqip,
           },
         },

@@ -34,7 +34,6 @@ export interface BookProps {
 export default function Book(props: BookProps) {
   const { data, encodeDataAttribute, timer } = props;
   const { overview = [], showcaseProjects = [], cover } = data ?? {};
-  console.log(cover);
   showcaseProjects.forEach((project, index) => (project.page = index + 2));
   const book = useRef(null) as any;
   const coverImgUrl =

@@ -21,7 +21,7 @@ export default function NavbarButton(props: NavbarButton) {
     </label>
   )
   const wrapperClass =
-    'flex flex-col justify-center items-center sm:h-full h-[40px]  transition-all rounded group hover:scale-110  hover:border-hilight border-2 border-transparent hover:shadow-glow'
+    'flex flex-col justify-center items-center sm:h-full h-[40px]  transition-all rounded group hover:scale-110  hover:border-hilight border-2 border-transparent hover:shadow-glow cursor-pointer'
   if (href) {
     return (
       <a href={href} className={wrapperClass}>

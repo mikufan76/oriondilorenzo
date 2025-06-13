@@ -4,10 +4,11 @@ import * as React from 'react';
 import useEmblaCarousel, {
   type UseEmblaCarouselType,
 } from 'embla-carousel-react';
-import { ArrowLeft, ArrowRight } from 'lucide-react';
+import { faArrowLeft, faArrowRight } from '@fortawesome/free-solid-svg-icons';
 
 import { cn } from '@/sanity/lib/utils';
 import { Button } from '@/components/ui/Button';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 type CarouselApi = UseEmblaCarouselType[1];
 type UseCarouselParameters = Parameters<typeof useEmblaCarousel>;
@@ -144,7 +145,7 @@ function CarouselContent({ className, ...props }: React.ComponentProps<'div'>) {
       <div
         className={cn(
           'flex',
-          orientation === 'horizontal' ? '-ml-4' : '-mt-4 flex-col',
+          orientation === 'horizontal' ? '' : '-mt-4 flex-col',
           className,
         )}
         {...props}
@@ -163,7 +164,7 @@ function CarouselItem({ className, ...props }: React.ComponentProps<'div'>) {
       data-slot="carousel-item"
       className={cn(
         'min-w-0 shrink-0 grow-0 basis-full',
-        orientation === 'horizontal' ? 'pl-4' : 'pt-4',
+        orientation === 'horizontal' ? 'px-2' : 'pt-4',
         className,
       )}
       {...props}
@@ -185,7 +186,7 @@ function CarouselPrevious({
       variant={variant}
       size={size}
       className={cn(
-        'absolute size-8 rounded-full',
+        'absolute size-8 rounded-full bg-bg text-primary',
         orientation === 'horizontal'
           ? '-left-12 top-1/2 -translate-y-1/2'
           : '-top-12 left-1/2 -translate-x-1/2 rotate-90',
@@ -195,7 +196,7 @@ function CarouselPrevious({
       onClick={scrollPrev}
       {...props}
     >
-      <ArrowLeft />
+      <FontAwesomeIcon icon={faArrowLeft} className="h-2 w-2" />
       <span className="sr-only">Previous slide</span>
     </Button>
   );
@@ -215,7 +216,7 @@ function CarouselNext({
       variant={variant}
       size={size}
       className={cn(
-        'absolute size-8 rounded-full',
+        'absolute size-8 rounded-full bg-bg text-primary',
         orientation === 'horizontal'
           ? '-right-12 top-1/2 -translate-y-1/2'
           : '-bottom-12 left-1/2 -translate-x-1/2 rotate-90',
@@ -225,7 +226,7 @@ function CarouselNext({
       onClick={scrollNext}
       {...props}
     >
-      <ArrowRight />
+      <FontAwesomeIcon icon={faArrowRight} className="h-2 w-2" />
       <span className="sr-only">Next slide</span>
     </Button>
   );
