@@ -12,6 +12,14 @@ import {
   DialogTitle,
   DialogTrigger,
 } from '@/components/ui/Dialog';
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from '@/components/ui/Carousel';
+
 import type { HomePagePayload, PhotoModalPayload } from '@/types';
 
 import { Header } from './Header';
@@ -104,13 +112,15 @@ export function HomePage({ data, encodeDataAttribute }: HomePageProps) {
       <Dialog open={modalState.open}>
         <DialogTrigger>Open</DialogTrigger>
         <DialogContent>
-          <DialogHeader>
-            <DialogTitle>Are you absolutely sure?</DialogTitle>
-            <DialogDescription>
-              This action cannot be undone. This will permanently delete your
-              account and remove your data from our servers.
-            </DialogDescription>
-          </DialogHeader>
+          <Carousel>
+            <CarouselContent className='text-primary'>
+              <CarouselItem>...</CarouselItem>
+              <CarouselItem>...</CarouselItem>
+              <CarouselItem>...</CarouselItem>
+            </CarouselContent>
+            <CarouselPrevious />
+            <CarouselNext />
+          </Carousel>
         </DialogContent>
       </Dialog>
     </div>
