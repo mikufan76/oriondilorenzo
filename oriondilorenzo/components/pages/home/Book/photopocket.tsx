@@ -3,6 +3,7 @@ import ModalContext from '@/app/contexts/ModalContext';
 import ImageBox from '@/components/shared/ImageBox';
 import { cn, urlForImage } from '@/sanity/lib/utils';
 import { loadProject } from '@/sanity/loader/loadQuery';
+import { PhotoModalState } from '@/types';
 import { Images } from 'lucide-react';
 import Image from 'next/image';
 import { useContext } from 'react';
@@ -15,7 +16,7 @@ export type PhotoPocketProps = {
 
 export default function PhotoPocket(props: PhotoPocketProps) {
   const { gallery, className, onMouseEvent } = props;
-  const modalContext = useContext(ModalContext);
+  const modalContext = useContext<PhotoModalState>(ModalContext);
 
   return (
     <button
@@ -24,7 +25,7 @@ export default function PhotoPocket(props: PhotoPocketProps) {
       onClick={(e) => {
         e.stopPropagation();
         e.preventDefault();
-        modalContext(true)
+        modalContext({ open: true, gallery });
       }}
       className={cn(
         className,

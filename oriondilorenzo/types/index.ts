@@ -116,3 +116,10 @@ export interface linksPayload {
   title?: string;
   linksLinks?: LinkItem[];
 }
+
+export type PhotoModalState = (payload: PhotoModalPayload) => void;
+
+export interface PhotoModalPayload {
+  open: boolean;
+  gallery?: Image[];
+}

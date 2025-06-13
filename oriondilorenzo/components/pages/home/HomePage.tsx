@@ -12,7 +12,7 @@ import {
   DialogTitle,
   DialogTrigger,
 } from '@/components/ui/Dialog';
-import type { HomePagePayload } from '@/types';
+import type { HomePagePayload, PhotoModalPayload } from '@/types';
 
 import { Header } from './Header';
 import ModalContext from '@/app/contexts/ModalContext';
@@ -31,9 +31,12 @@ enum BookState {
 
 export function HomePage({ data, encodeDataAttribute }: HomePageProps) {
   const [bookState, setBookState] = useState<BookState>(BookState.Hidden);
-  const [modalState, setModalState] = useState<boolean>(false);
+  const [modalState, setModalState] = useState<PhotoModalPayload>({
+    open: false,
+    gallery: [],
+  });
 
-  const setModal = (state: boolean) => {
+  const setModal = (state: PhotoModalPayload) => {
     setModalState(state);
   };
 
@@ -98,7 +101,7 @@ export function HomePage({ data, encodeDataAttribute }: HomePageProps) {
           X
         </Button>
       </div>
-      <Dialog open={modalState}>
+      <Dialog open={modalState.open}>
         <DialogTrigger>Open</DialogTrigger>
         <DialogContent>
           <DialogHeader>
