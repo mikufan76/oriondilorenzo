@@ -1,16 +1,43 @@
-'use client'
-import type { EncodeDataAttributeCallback } from '@sanity/react-loader'
-import { useState } from 'react'
+'use client';
+import type { EncodeDataAttributeCallback } from '@sanity/react-loader';
+import Image from 'next/image';
+import { createContext, useState } from 'react';
+import type { Image as Img } from 'sanity';
 
-import Book from '@/components/pages/home/Book/Book'
-import { Button } from '@/components/ui/Button'
-import type { HomePagePayload } from '@/types'
+import ModalContext from '@/app/contexts/ModalContext';
+import Book from '@/components/pages/home/Book/Book';
+import { Button } from '@/components/ui/Button';
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from '@/components/ui/Card';
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from '@/components/ui/Carousel';
+import CloseButton from '@/components/ui/CloseButton';
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from '@/components/ui/Dialog';
+import { urlForImage } from '@/sanity/lib/utils';
+import type { HomePagePayload, PhotoModalPayload } from '@/types';
 
-import { Header } from './Header'
+import { Header } from './Header';
 
 export interface HomePageProps {
-  data: HomePagePayload | null
-  encodeDataAttribute?: EncodeDataAttributeCallback
+  data: HomePagePayload | null;
+  encodeDataAttribute?: EncodeDataAttributeCallback;
 }
 
 enum BookState {
@@ -21,120 +48,149 @@ enum BookState {
 }
 
 export function HomePage({ data, encodeDataAttribute }: HomePageProps) {
-  const [bookState, setBookState] = useState<BookState>(BookState.Hidden)
+  const [bookState, setBookState] = useState<BookState>(BookState.Hidden);
+  const [modalState, setModalState] = useState<PhotoModalPayload>({
+    open: false,
+    gallery: [],
+  });
+
+  const closeModal = () => {
+    setModalState({ open: false, gallery: [] });
+  };
+
+  const openModal = (gallery: Img[]) => {
+    setModalState({ open: true, gallery });
+  };
+
   let style =
-    'h-screen w-screen flex flex-row justify-center items-center relative overflow-hidden p-0'
+    'h-screen w-screen flex flex-row justify-center items-center relative overflow-hidden p-0';
 
   switch (bookState) {
     case BookState.Hidden:
-      style += ' translate-y-[-12312312vw]'
-      break
+      style += ' translate-y-[-12312312vw]';
+      break;
     case BookState.Closed:
-      style += ' animate-slide-out-book'
-      break
+      style += ' animate-slide-out-book';
+      break;
     case BookState.Opened:
     case BookState.Open:
-      style += ' animate-in slide-in-from-bottom duration-500 ease-out'
-      break
+      style += ' animate-in slide-in-from-bottom duration-500 ease-out';
+      break;
   }
 
   const handleBookClick = () => {
     if (bookState === BookState.Open || bookState === BookState.Opened) {
-      setBookState(BookState.Closed)
+      setBookState(BookState.Closed);
     } else if (bookState === BookState.Hidden) {
-      setBookState(BookState.Open)
+      setBookState(BookState.Open);
     } else if (bookState === BookState.Closed) {
-      setBookState(BookState.Opened)
+      setBookState(BookState.Opened);
     }
-  }
+  };
 
   const closeBook = () => {
-    setBookState(BookState.Closed)
-  }
+    setBookState(BookState.Closed);
+  };
 
-  const timer = new Promise((resolve, reject) => {
+  const timer = new Promise<boolean>((resolve, reject) => {
     setTimeout(() => {
       if (bookState === BookState.Open) {
-        console.log('book is open!')
-        resolve(true)
+        resolve(true);
       } else {
-        resolve(false)
+        resolve(false);
       }
-    }, 500)
-  })
+    }, 500);
+  });
 
   return (
     <div className="h-screen w-screen overflow-hidden">
       {/* Header */}
       <Header projectOnClick={handleBookClick} />
-      {bookState == (BookState.Open || BookState.Closed) && (
-        <BgBlur bookState={bookState} onClick={closeBook} />
-      )}
+      {bookState && <BgBlur bookState={bookState} onClick={closeBook} />}
       <div className={style}>
-        <Book
-          data={data}
-          encodeDataAttribute={encodeDataAttribute}
-          timer={timer}
-        />
-        <Button
-          variant={'outline'}
-          className="absolute right-0 top-0 rounded bg-bg text-primary transition-colors hover:bg-primary hover:text-bg sm:right-1 sm:top-1 sm:text-2xl"
-          onClick={closeBook}
-        >
-          X
-        </Button>
+        <ModalContext.Provider value={openModal}>
+          <Book
+            data={data}
+            encodeDataAttribute={encodeDataAttribute}
+            timer={timer}
+          />
+        </ModalContext.Provider>
+        <CloseButton onClick={closeBook} />
       </div>
+      <Dialog open={modalState.open}>
+        <DialogContent
+          onClick={closeModal}
+          className="flex w-[80vw] items-center justify-center border-2 lg:max-w-xl"
+        >
+          <DialogTitle className="sr-only">Project Photo Gallery</DialogTitle>
+          <DialogDescription className="sr-only">
+            Images from or relating to the project
+          </DialogDescription>
+          <GalleryCarousel gallery={modalState?.gallery || []} />
+        </DialogContent>
+      </Dialog>
     </div>
-  )
+  );
 }
+
+const GalleryCarousel = (props: { gallery: any[] }) => {
+  const { gallery } = props;
+  return (
+    <Carousel className="w-full" opts={{ loop: true }}>
+      <CarouselContent>
+        {gallery?.map((image, index) => (
+          <CarouselItem key={index}>
+            <GalleryItem image={image} />
+          </CarouselItem>
+        ))}
+      </CarouselContent>
+      <CarouselPrevious />
+      <CarouselNext />
+    </Carousel>
+  );
+};
+
+const GalleryItem = ({ image }) => {
+  const aspectRatio = image.photo.aspectRatio as number;
+  let width;
+  let height;
+  if (aspectRatio > 1) {
+    width = Math.round(500 * aspectRatio);
+    height = 500;
+  } else {
+    width = 500;
+    height = Math.round(500 * aspectRatio);
+  }
+
+  const galleryImgUrl =
+    image?.photo &&
+    urlForImage(image.photo)?.height(height).width(width).fit('clip').url();
+  return (
+    <div className="p-1">
+      <Card className="border-0">
+        <CardContent className="flex aspect-square items-center justify-center p-6">
+          <img
+            src={galleryImgUrl}
+            alt={'Gallery image '}
+            className="h-full w-full object-contain"
+          />
+        </CardContent>
+      </Card>
+    </div>
+  );
+};
 
 const BgBlur = ({ bookState, onClick }) => {
   const animation =
-    bookState === BookState.Open
+    bookState !== BookState.Closed
       ? 'animate-in fade-in duration-500 ease-out'
-      : 'animate-custom-fade '
+      : 'animate-custom-fade ';
   return (
     <div
       onClick={onClick}
       className={`absolute h-screen w-screen backdrop-blur-lg ${animation}`}
     ></div>
-  )
-}
+  );
+};
 
-// export function HomePage({ data, encodeDataAttribute }: HomePageProps) {
-//   // Default to an empty object to allow previews on non-existent documents
-//   const { overview = [], showcaseProjects = [] } = data ?? {}
-
-//   return (
-//     <div className="space-y-6">
-//       {/* Header */}
-//       {overview && <Header description={overview} />}
-//       {/* Showcase projects */}
-//       {showcaseProjects && showcaseProjects.length > 0 && (
-//         <div className="grid gap-5 grid-cols-1 xl:grid-cols-2">
-//           {showcaseProjects.map((project, key) => {
-//             const href = resolveHref(project?._type, project?.slug)
-//             if (!href) {
-//               return null
-//             }
-//             return (
-//               <Link
-//                 key={key}
-//                 href={href}
-//                 data-sanity={encodeDataAttribute?.([
-//                   'showcaseProjects',
-//                   key,
-//                   'slug',
-//                 ])}
-//               >
-//                 <ProjectListItem project={project} />
-//               </Link>
-//             )
-//           })}
-//         </div>
-//       )}
-//     </div>
-//   )
-// }
-
-export default HomePage
+export default HomePage;

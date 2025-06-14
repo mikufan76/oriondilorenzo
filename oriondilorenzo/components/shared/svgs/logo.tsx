@@ -22,5 +22,5 @@ const SvgComponent = (props) => (
       <path d="m56.52 39.14-.31 6.97M55.73 48.15l-1.4 1.88" className="cls-2" />
     </g>
   </svg>
-)
-export default SvgComponent
+);
+export default SvgComponent;

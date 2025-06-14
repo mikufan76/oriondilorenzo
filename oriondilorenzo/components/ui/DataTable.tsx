@@ -1,12 +1,12 @@
-'use client'
+'use client';
 
 import {
   ColumnDef,
   flexRender,
   getCoreRowModel,
   useReactTable,
-} from '@tanstack/react-table'
-import { cva, type VariantProps } from 'class-variance-authority'
+} from '@tanstack/react-table';
+import { cva, type VariantProps } from 'class-variance-authority';
 
 import {
   Table,
@@ -15,31 +15,31 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from '@/components/ui/Table'
-import { cn } from '@/sanity/lib/utils'
+} from '@/components/ui/Table';
+import { cn } from '@/sanity/lib/utils';
 
 interface DataTableProps<TData, TValue> {
-  columns: ColumnDef<TData, TValue>[]
-  data: TData[]
-  showHeader: boolean
-  variants: VariantProps<typeof tableVariants>
+  columns: ColumnDef<TData, TValue>[];
+  data: TData[];
+  showHeader: boolean;
+  variants: VariantProps<typeof tableVariants>;
 }
 
 const tableVariants = cva('', {
   variants: {
     rowVariants: {
       default: '',
-      tableOfContents: 'odd:bg-darkBrown',
+      tableOfContents: 'odd:bg-table',
     },
     table: {
-      default: 'text-sm lg:text-lg text-primary',
+      default: 'text-sm lg:text-lg',
     },
   },
   defaultVariants: {
     rowVariants: 'default',
     table: 'default',
   },
-})
+});
 
 export function DataTable<TData, TValue>({
   columns,
@@ -51,7 +51,7 @@ export function DataTable<TData, TValue>({
     data,
     columns,
     getCoreRowModel: getCoreRowModel(),
-  })
+  });
 
   return (
     <div className={tableVariants({ table: variants?.table })}>
@@ -69,7 +69,7 @@ export function DataTable<TData, TValue>({
                           header.getContext(),
                         )}
                   </TableHead>
-                )
+                );
               })}
             </TableRow>
           ))}
@@ -101,5 +101,5 @@ export function DataTable<TData, TValue>({
         </TableBody>
       </Table>
     </div>
-  )
+  );
 }

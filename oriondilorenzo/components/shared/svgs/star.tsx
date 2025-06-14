@@ -12,5 +12,5 @@ const SvgComponent = (props) => (
       }}
     />
   </svg>
-)
-export default SvgComponent
+);
+export default SvgComponent;

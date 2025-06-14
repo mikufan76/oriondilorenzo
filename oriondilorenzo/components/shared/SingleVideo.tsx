@@ -1,20 +1,20 @@
-'use client'
+'use client';
 
-import { useEffect, useState } from 'react'
-import React from 'react'
-import ReactPlayer from 'react-player'
+import { useEffect, useState } from 'react';
+import React from 'react';
+import ReactPlayer from 'react-player';
 
 interface VideoBoxProps {
-  videoLink?: any
-  caption?: string
+  videoLink?: any;
+  caption?: string;
 }
 
 export default function VideoBox({ videoLink, caption }: VideoBoxProps) {
-  const videoUrl = videoLink
-  const [isClient, setIsClient] = useState(false)
+  const videoUrl = videoLink;
+  const [isClient, setIsClient] = useState(false);
   useEffect(() => {
-    setIsClient(true)
-  }, [])
+    setIsClient(true);
+  }, []);
 
   return (
     <div className="mt-5 md:mt-10">
@@ -39,5 +39,5 @@ export default function VideoBox({ videoLink, caption }: VideoBoxProps) {
         <div className="mt-2 text-lg md:mt-4 md:text-2xl">{caption}</div>
       )}
     </div>
-  )
+  );
 }

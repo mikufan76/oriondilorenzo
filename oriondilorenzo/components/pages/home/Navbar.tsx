@@ -1,11 +1,11 @@
-import { faLinkedin,faSquareGithub } from '@fortawesome/free-brands-svg-icons'
+import { faLinkedin, faSquareGithub } from '@fortawesome/free-brands-svg-icons';
 import {
   faLayerGroup,
   faSquareArrowUpRight,
   faSquareEnvelope,
-} from '@fortawesome/free-solid-svg-icons'
+} from '@fortawesome/free-solid-svg-icons';
 
-import NavbarButton from './NavbarButton'
+import NavbarButton from './NavbarButton';
 
 export default function Navbar({ projectOnClick }) {
   return (
@@ -37,5 +37,5 @@ export default function Navbar({ projectOnClick }) {
         label="Projects"
       />
     </div>
-  )
+  );
 }

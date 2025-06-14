@@ -1,19 +1,19 @@
-import dynamic from 'next/dynamic'
-import { draftMode } from 'next/headers'
+import dynamic from 'next/dynamic';
+import { draftMode } from 'next/headers';
 
 import {
   getHomePageTitle,
   loadHomePage,
   loadSettings,
-} from '@/sanity/loader/loadQuery'
+} from '@/sanity/loader/loadQuery';
 
-import NavbarLayout from './NavbarLayout'
-const NavbarPreview = dynamic(() => import('./NavbarPreview'))
+import NavbarLayout from './NavbarLayout';
+const NavbarPreview = dynamic(() => import('./NavbarPreview'));
 
 export async function Navbar() {
-  const initial = await loadSettings()
-  const title = await getHomePageTitle()
-  const customLogo = await loadHomePage()
+  const initial = await loadSettings();
+  const title = await getHomePageTitle();
+  const customLogo = await loadHomePage();
 
   if (draftMode().isEnabled) {
     return (
@@ -22,7 +22,7 @@ export async function Navbar() {
         title={title.data}
         logo={customLogo.data?.customLogo}
       />
-    )
+    );
   }
 
   return (
@@ -31,5 +31,5 @@ export async function Navbar() {
       title={title.data}
       logo={customLogo.data?.customLogo}
     />
-  )
+  );
 }

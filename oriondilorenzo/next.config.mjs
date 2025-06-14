@@ -20,6 +20,6 @@ const config = {
   experimental: {
     taint: true,
   },
-}
+};
 
-export default config
+export default config;

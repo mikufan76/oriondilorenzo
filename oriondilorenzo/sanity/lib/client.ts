@@ -1,4 +1,4 @@
-import { createClient } from 'next-sanity'
+import { createClient } from 'next-sanity';
 
 import {
   apiVersion,
@@ -6,7 +6,7 @@ import {
   projectId,
   revalidateSecret,
   studioUrl,
-} from '@/sanity/lib/api'
+} from '@/sanity/lib/api';
 
 export const client = createClient({
   projectId,
@@ -20,10 +20,10 @@ export const client = createClient({
     logger: console,
     filter: (props) => {
       if (props.sourcePath.at(-1) === 'title') {
-        return true
+        return true;
       }
 
-      return props.filterDefault(props)
+      return props.filterDefault(props);
     },
   },
-})
+});

@@ -1,5 +1,5 @@
-import { CogIcon, LinkIcon } from '@sanity/icons'
-import { defineArrayMember, defineField, defineType } from 'sanity'
+import { CogIcon, LinkIcon } from '@sanity/icons';
+import { defineArrayMember, defineField, defineType } from 'sanity';
 
 export default defineType({
   name: 'settings',
@@ -60,7 +60,7 @@ export default defineType({
                 title: title,
                 subtitle: url,
                 media: LinkIcon,
-              }
+              };
             },
           },
         },
@@ -97,7 +97,7 @@ export default defineType({
     prepare() {
       return {
         title: 'Settings',
-      }
+      };
     },
   },
-})
+});

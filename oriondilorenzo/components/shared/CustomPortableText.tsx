@@ -2,22 +2,22 @@ import {
   PortableText,
   type PortableTextBlock,
   type PortableTextComponents,
-} from 'next-sanity'
-import type { Image } from 'sanity'
+} from 'next-sanity';
+import type { Image } from 'sanity';
 
-import ImageBox from '@/components/shared/ImageBox'
+import ImageBox from '@/components/shared/ImageBox';
 
 export function CustomPortableText({
   paragraphClasses,
   value,
 }: {
-  paragraphClasses?: string
-  value: PortableTextBlock[]
+  paragraphClasses?: string;
+  value: PortableTextBlock[];
 }) {
   const components: PortableTextComponents = {
     block: {
       normal: ({ children }) => {
-        return <p className={paragraphClasses}>{children}</p>
+        return <p className={paragraphClasses}>{children}</p>;
       },
     },
     marks: {
@@ -30,14 +30,14 @@ export function CustomPortableText({
           >
             {children}
           </a>
-        )
+        );
       },
     },
     types: {
       image: ({
         value,
       }: {
-        value: Image & { alt?: string; caption?: string }
+        value: Image & { alt?: string; caption?: string };
       }) => {
         return (
           <div className="my-6 space-y-2">
@@ -52,10 +52,10 @@ export function CustomPortableText({
               </div>
             )}
           </div>
-        )
+        );
       },
     },
-  }
+  };
 
-  return <PortableText components={components} value={value} />
+  return <PortableText components={components} value={value} />;
 }

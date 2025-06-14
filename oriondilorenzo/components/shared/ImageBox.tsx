@@ -1,19 +1,19 @@
-'use client'
-import Image from 'next/image'
-import { useInView } from 'react-intersection-observer'
+'use client';
+import Image from 'next/image';
+import { useInView } from 'react-intersection-observer';
 
-import { urlForImage } from '@/sanity/lib/utils'
+import { urlForImage } from '@/sanity/lib/utils';
 
 interface ImageBoxProps {
-  image?: { asset?: any; lqip?: any }
-  alt?: string
-  width?: number
-  height?: number
-  size?: string
-  classesWrapper?: string
-  caption?: string
-  previewImageUrl?: any
-  'data-sanity'?: string
+  image?: { asset?: any; lqip?: any };
+  alt?: string;
+  width?: number;
+  height?: number;
+  size?: string;
+  classesWrapper?: string;
+  caption?: string;
+  previewImageUrl?: any;
+  'data-sanity'?: string;
 }
 
 export default function ImageBox({
@@ -27,12 +27,12 @@ export default function ImageBox({
   ...props
 }: ImageBoxProps) {
   const imageUrl =
-    image && urlForImage(image)?.height(height).width(width).fit('crop').url()
+    image && urlForImage(image)?.height(height).width(width).fit('crop').url();
 
   const { ref, inView } = useInView({
     triggerOnce: true,
     threshold: 0.5,
-  })
+  });
 
   return (
     <div
@@ -70,5 +70,5 @@ export default function ImageBox({
         />
       </div>
     </div>
-  )
+  );
 }

@@ -1,9 +1,9 @@
-'use client'
+'use client';
 // .template Wraps layout or page
-import { motion } from 'framer-motion'
+import { motion } from 'framer-motion';
 
 // On load fade in animation setup
-const duration = 0.4
+const duration = 0.4;
 const variants = {
   initial: {
     opacity: 0,
@@ -21,7 +21,7 @@ const variants = {
     opacity: 0,
     transition: { duration: duration, ease: 'linear', when: 'beforeChildren' },
   },
-}
+};
 
 // Wrapping with framer motion
 export default function Template({ children }: { children: React.ReactNode }) {
@@ -34,5 +34,5 @@ export default function Template({ children }: { children: React.ReactNode }) {
     >
       {children}
     </motion.div>
-  )
+  );
 }

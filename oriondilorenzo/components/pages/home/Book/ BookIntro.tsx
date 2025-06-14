@@ -1,25 +1,30 @@
-import { Courier_Prime } from 'next/font/google'
+import { Courier_Prime } from 'next/font/google';
 
-import { CustomPortableText } from '@/components/shared/CustomPortableText'
-import { DataTable } from '@/components/ui/DataTable'
-import { ScrollArea, ScrollBar } from '@/components/ui/ScrollArea'
+import { CustomPortableText } from '@/components/shared/CustomPortableText';
+import { DataTable } from '@/components/ui/DataTable';
+import { ScrollArea, ScrollBar } from '@/components/ui/ScrollArea';
+
+import StickyLink from './StickyLink';
 
 const overviewFont = Courier_Prime({
   subsets: ['latin'],
   weight: ['400'],
-})
+});
 
 export default function BookIntro({ overview, columns, showcaseProjects }) {
   return (
     <div
       id="page-wrapper"
-      className="flex h-full w-full flex-col justify-between"
+      className="flex h-full w-full flex-col justify-between rounded-lg bg-[url('/paper.png')] bg-cover bg-center bg-no-repeat p-2 text-bg"
     >
       <div id="intro" className="h-1/3 w-full flex-none">
         <div className="h-min w-full lg:text-2xl">
           SITE UNDER CONSTRUCTION!
-          <div className="h-min w-full lg:text-xl">
-            Questions? @OrionDiLorenzo@Proton.me
+          <div className="flex h-[2em] w-5/6 flex-row lg:text-lg">
+            <StickyLink
+              url="mailto:oriondilorenzo@proton.me"
+              title="Questions? Email oriondilorenzo@proton.me"
+            />
           </div>
         </div>
         <div
@@ -43,5 +48,5 @@ export default function BookIntro({ overview, columns, showcaseProjects }) {
         <ScrollBar />
       </ScrollArea>
     </div>
-  )
+  );
 }
