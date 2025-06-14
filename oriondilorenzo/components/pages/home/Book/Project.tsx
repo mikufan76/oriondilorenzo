@@ -1,15 +1,15 @@
+import { Courier_Prime } from 'next/font/google';
+import { Londrina_Solid } from 'next/font/google';
 import Image from 'next/image';
 import { PortableText } from 'next-sanity';
 
+import { Button } from '@/components/ui/Button';
 import { ScrollArea, ScrollBar } from '@/components/ui/ScrollArea';
 import { urlForImage } from '@/sanity/lib/utils';
 import project from '@/sanity/schemas/documents/project';
 import { ShowcaseProject } from '@/types';
-import { Courier_Prime } from 'next/font/google';
-import { Londrina_Solid } from 'next/font/google';
 
 import PhotoPocket from './photopocket';
-import { Button } from '@/components/ui/Button';
 import StickyLink from './StickyLink';
 
 const bodyFont = Courier_Prime({

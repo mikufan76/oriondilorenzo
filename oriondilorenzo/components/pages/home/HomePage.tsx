@@ -1,9 +1,27 @@
 'use client';
 import type { EncodeDataAttributeCallback } from '@sanity/react-loader';
+import Image from 'next/image';
 import { createContext, useState } from 'react';
+import type { Image as Img } from 'sanity';
 
+import ModalContext from '@/app/contexts/ModalContext';
 import Book from '@/components/pages/home/Book/Book';
 import { Button } from '@/components/ui/Button';
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from '@/components/ui/Card';
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from '@/components/ui/Carousel';
+import CloseButton from '@/components/ui/CloseButton';
 import {
   Dialog,
   DialogContent,
@@ -12,29 +30,10 @@ import {
   DialogTitle,
   DialogTrigger,
 } from '@/components/ui/Dialog';
-import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
-} from '@/components/ui/Carousel';
-
+import { urlForImage } from '@/sanity/lib/utils';
 import type { HomePagePayload, PhotoModalPayload } from '@/types';
 
 import { Header } from './Header';
-import ModalContext from '@/app/contexts/ModalContext';
-import CloseButton from '@/components/ui/CloseButton';
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from '@/components/ui/Card';
-import { urlForImage } from '@/sanity/lib/utils';
-import type { Image as Img } from 'sanity';
-import Image from 'next/image';
 
 export interface HomePageProps {
   data: HomePagePayload | null;

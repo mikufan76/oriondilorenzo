@@ -1,10 +1,11 @@
 'use client';
 
-import * as React from 'react';
 import * as DialogPrimitive from '@radix-ui/react-dialog';
 import { XIcon } from 'lucide-react';
+import * as React from 'react';
 
 import { cn } from '@/sanity/lib/utils';
+
 import CloseButton from './CloseButton';
 
 function Dialog({

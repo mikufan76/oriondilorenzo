@@ -1,5 +1,5 @@
-import { BookIcon, LinkIcon } from '@sanity/icons'
-import { defineArrayMember, defineField, defineType } from 'sanity'
+import { BookIcon, LinkIcon } from '@sanity/icons';
+import { defineArrayMember, defineField, defineType } from 'sanity';
 
 export default defineType({
   name: 'about',
@@ -108,7 +108,7 @@ export default defineType({
                 title: title,
                 subtitle: url,
                 media: LinkIcon,
-              }
+              };
             },
           },
         },
@@ -119,7 +119,7 @@ export default defineType({
     prepare() {
       return {
         title: 'About page',
-      }
+      };
     },
   },
-})
+});

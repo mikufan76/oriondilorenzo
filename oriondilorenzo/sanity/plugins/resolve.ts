@@ -3,16 +3,16 @@
  * see https://www.sanity.io/docs/presentation-resolver-api for more information.
  */
 
-import { defineDocuments, defineLocations } from 'sanity/presentation'
+import { defineDocuments, defineLocations } from 'sanity/presentation';
 
-import { resolveHref } from '@/sanity/lib/utils'
+import { resolveHref } from '@/sanity/lib/utils';
 
 export const mainDocuments = defineDocuments([
   {
     route: '/projects/:slug',
     filter: `_type == "project" && slug.current == $slug`,
   },
-])
+]);
 
 export const locations = {
   settings: defineLocations({
@@ -44,4 +44,4 @@ export const locations = {
       ],
     }),
   }),
-}
+};

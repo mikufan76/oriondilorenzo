@@ -1,4 +1,5 @@
 'use client';
+import { EncodeDataAttributeCallback } from '@sanity/react-loader';
 import { Coming_Soon, Courier_Prime } from 'next/font/google';
 import Image from 'next/image';
 import { PortableText } from 'next-sanity';
@@ -9,11 +10,10 @@ import { Button } from '@/components/ui/Button';
 import { DataTable } from '@/components/ui/DataTable';
 import { ScrollArea } from '@/components/ui/ScrollArea';
 import { urlForImage } from '@/sanity/lib/utils';
+import type { HomePagePayload } from '@/types';
 
 import BookIntro from './ BookIntro';
 import Project from './Project';
-import type { HomePagePayload } from '@/types';
-import { EncodeDataAttributeCallback } from '@sanity/react-loader';
 
 const bookHeaderFont = Coming_Soon({
   subsets: ['latin'],

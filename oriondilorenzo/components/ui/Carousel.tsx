@@ -1,14 +1,14 @@
 'use client';
 
-import * as React from 'react';
+import { faArrowLeft, faArrowRight } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import useEmblaCarousel, {
   type UseEmblaCarouselType,
 } from 'embla-carousel-react';
-import { faArrowLeft, faArrowRight } from '@fortawesome/free-solid-svg-icons';
+import * as React from 'react';
 
-import { cn } from '@/sanity/lib/utils';
 import { Button } from '@/components/ui/Button';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { cn } from '@/sanity/lib/utils';
 
 type CarouselApi = UseEmblaCarouselType[1];
 type UseCarouselParameters = Parameters<typeof useEmblaCarousel>;
@@ -233,10 +233,10 @@ function CarouselNext({
 }
 
 export {
-  type CarouselApi,
   Carousel,
+  type CarouselApi,
   CarouselContent,
   CarouselItem,
-  CarouselPrevious,
   CarouselNext,
+  CarouselPrevious,
 };

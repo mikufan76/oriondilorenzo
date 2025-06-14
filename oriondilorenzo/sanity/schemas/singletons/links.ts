@@ -1,5 +1,5 @@
-import { LinkIcon } from '@sanity/icons'
-import { defineField, defineType } from 'sanity'
+import { LinkIcon } from '@sanity/icons';
+import { defineField, defineType } from 'sanity';
 
 export default defineType({
   name: 'links',
@@ -54,11 +54,11 @@ export default defineType({
                 title: title,
                 subtitle: url,
                 media: LinkIcon,
-              }
+              };
             },
           },
         },
       ],
     }),
   ],
-})
+});
