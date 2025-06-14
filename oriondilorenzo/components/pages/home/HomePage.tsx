@@ -113,7 +113,6 @@ export function HomePage({ data, encodeDataAttribute }: HomePageProps) {
         <CloseButton onClick={closeBook} />
       </div>
       <Dialog open={modalState.open}>
-        <DialogTrigger>Open</DialogTrigger>
         <DialogContent
           onClick={closeModal}
           className="flex w-[80vw] items-center justify-center border-2 lg:max-w-xl"
