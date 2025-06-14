@@ -118,6 +118,10 @@ export function HomePage({ data, encodeDataAttribute }: HomePageProps) {
           onClick={closeModal}
           className="flex w-[80vw] items-center justify-center border-2 lg:max-w-xl"
         >
+          <DialogTitle className="sr-only">Project Photo Gallery</DialogTitle>
+          <DialogDescription className="sr-only">
+            Images from or relating to the project
+          </DialogDescription>
           <GalleryCarousel gallery={modalState?.gallery || []} />
         </DialogContent>
       </Dialog>
@@ -128,10 +132,12 @@ export function HomePage({ data, encodeDataAttribute }: HomePageProps) {
 const GalleryCarousel = (props: { gallery: any[] }) => {
   const { gallery } = props;
   return (
-    <Carousel className="w-full">
+    <Carousel className="w-full" opts={{ loop: true }}>
       <CarouselContent>
         {gallery?.map((image, index) => (
-          <GalleryItem image={image} index={index} />
+          <CarouselItem key={index}>
+            <GalleryItem image={image} />
+          </CarouselItem>
         ))}
       </CarouselContent>
       <CarouselPrevious />
@@ -140,7 +146,7 @@ const GalleryCarousel = (props: { gallery: any[] }) => {
   );
 };
 
-const GalleryItem = ({ image, index }) => {
+const GalleryItem = ({ image }) => {
   const aspectRatio = image.photo.aspectRatio as number;
   let width;
   let height;
@@ -155,36 +161,20 @@ const GalleryItem = ({ image, index }) => {
   const galleryImgUrl =
     image?.photo &&
     urlForImage(image.photo)?.height(height).width(width).fit('clip').url();
-
-  console.log(`${width}x${height} - ${galleryImgUrl}`);
   return (
-    <CarouselItem key={index}>
-      <div className="p-1">
-        <Card className="border-0">
-          <CardContent className="flex aspect-square items-center justify-center p-6">
-            <img
-              src={galleryImgUrl}
-              alt={`Random Image ${index + 1}`}
-              className="h-full w-full object-contain"
-            />
-          </CardContent>
-        </Card>
-      </div>
-    </CarouselItem>
+    <div className="p-1">
+      <Card className="border-0">
+        <CardContent className="flex aspect-square items-center justify-center p-6">
+          <img
+            src={galleryImgUrl}
+            alt={'Gallery image '}
+            className="h-full w-full object-contain"
+          />
+        </CardContent>
+      </Card>
+    </div>
   );
 };
-
-{
-  /* <Carousel opts={{ loop: true, align: 'center' }}>
-            <CarouselContent className="text-primary">
-              <CarouselItem>...</CarouselItem>
-              <CarouselItem>...</CarouselItem>
-              <CarouselItem>...</CarouselItem>
-            </CarouselContent>
-            <CarouselPrevious />
-            <CarouselNext />
-          </Carousel> */
-}
 
 const BgBlur = ({ bookState, onClick }) => {
   const animation =
