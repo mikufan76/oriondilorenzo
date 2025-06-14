@@ -10,6 +10,7 @@ import { Londrina_Solid } from 'next/font/google';
 
 import PhotoPocket from './photopocket';
 import { Button } from '@/components/ui/Button';
+import StickyLink from './StickyLink';
 
 const bodyFont = Courier_Prime({
   subsets: ['latin'],
@@ -56,7 +57,7 @@ const CoverImage = ({ coverImage }) => {
   return (
     coverImgUrl && (
       <Image
-        className="h-1/3 w-5/6  border-2 border-white"
+        className="h-1/3 w-5/6 border-2 border-white"
         width={500}
         height={300}
         src={coverImgUrl}
@@ -89,7 +90,7 @@ const InteractArea = ({ gallery, links, useMouseEvents }) => {
   return (
     gallery &&
     gallery.length > 0 && (
-      <div className="h-full w-[200px] md:w-[400px] overflow-show">
+      <div className="overflow-show h-full w-[200px] md:w-[400px]">
         <LinkArea links={links} />
         <PhotoPocket gallery={gallery} onMouseEvent={useMouseEvents} />
       </div>
@@ -107,15 +108,8 @@ const LinkArea = ({ links }): JSX.Element => {
       >
         {links.map((link, index) => {
           return (
-            <div className="relative h-1/3 w-full" key={index}>
-              <div className="sticky-note-shadow absolute h-full w-full translate-y-[3px]"></div>
-              <a
-                href={link.url}
-                target="_blank"
-                className={`bg-sticky-100 absolute h-full w-full rotate-[-1deg] text-center align-middle hover:underline`}
-              >
-                {link.title || link.url}
-              </a>
+            <div className="h-1/3 w-full" key={index}>
+              <StickyLink title={link?.title || link.url} url={link.url} />
             </div>
           );
         })}

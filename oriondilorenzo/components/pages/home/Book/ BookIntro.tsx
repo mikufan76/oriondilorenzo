@@ -3,6 +3,7 @@ import { Courier_Prime } from 'next/font/google';
 import { CustomPortableText } from '@/components/shared/CustomPortableText';
 import { DataTable } from '@/components/ui/DataTable';
 import { ScrollArea, ScrollBar } from '@/components/ui/ScrollArea';
+import StickyLink from './StickyLink';
 
 const overviewFont = Courier_Prime({
   subsets: ['latin'],
@@ -13,13 +14,16 @@ export default function BookIntro({ overview, columns, showcaseProjects }) {
   return (
     <div
       id="page-wrapper"
-      className="flex h-full w-full flex-col justify-between bg-[url('/paper.png')] bg-cover bg-center bg-no-repeat text-bg rounded-lg p-2"
+      className="flex h-full w-full flex-col justify-between rounded-lg bg-[url('/paper.png')] bg-cover bg-center bg-no-repeat p-2 text-bg"
     >
       <div id="intro" className="h-1/3 w-full flex-none">
         <div className="h-min w-full lg:text-2xl">
           SITE UNDER CONSTRUCTION!
-          <div className="h-min w-full lg:text-xl">
-            Questions? @OrionDiLorenzo@Proton.me
+          <div className="w-5/6 h-[2em] lg:text-lg flex flex-row">
+            <StickyLink
+              url="mailto:oriondilorenzo@proton.me"
+              title="Questions? Email oriondilorenzo@proton.me"
+            />
           </div>
         </div>
         <div

@@ -25,7 +25,13 @@ import type { HomePagePayload, PhotoModalPayload } from '@/types';
 import { Header } from './Header';
 import ModalContext from '@/app/contexts/ModalContext';
 import CloseButton from '@/components/ui/CloseButton';
-import { Card, CardContent } from '@/components/ui/Card';
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from '@/components/ui/Card';
 import { urlForImage } from '@/sanity/lib/utils';
 import type { Image as Img } from 'sanity';
 import Image from 'next/image';
