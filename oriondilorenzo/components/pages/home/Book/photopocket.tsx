@@ -18,6 +18,7 @@ export default function PhotoPocket(props: PhotoPocketProps) {
   const { gallery, className, onMouseEvent } = props;
   const modalContext = useContext<PhotoModalState>(ModalContext);
 
+
   return (
     <button
       onPointerEnter={() => onMouseEvent(false)}
@@ -25,7 +26,7 @@ export default function PhotoPocket(props: PhotoPocketProps) {
       onClick={(e) => {
         e.stopPropagation();
         e.preventDefault();
-        modalContext({ open: true, gallery });
+        modalContext(gallery);
       }}
       className={cn(
         className,

@@ -54,3 +54,7 @@
     rgb(234, 233, 224) 100%
   );
 }
+
+body {
+  background-color: var(--background-color);
+}

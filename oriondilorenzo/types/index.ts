@@ -117,7 +117,7 @@ export interface linksPayload {
   linksLinks?: LinkItem[];
 }
 
-export type PhotoModalState = (payload: PhotoModalPayload) => void;
+export type PhotoModalState = (payload: any[]) => void;
 
 export interface PhotoModalPayload {
   open: boolean;

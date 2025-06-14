@@ -25,6 +25,10 @@ import type { HomePagePayload, PhotoModalPayload } from '@/types';
 import { Header } from './Header';
 import ModalContext from '@/app/contexts/ModalContext';
 import CloseButton from '@/components/ui/CloseButton';
+import { Card, CardContent } from '@/components/ui/Card';
+import { urlForImage } from '@/sanity/lib/utils';
+import type { Image as Img } from 'sanity';
+import Image from 'next/image';
 
 export interface HomePageProps {
   data: HomePagePayload | null;
@@ -49,7 +53,7 @@ export function HomePage({ data, encodeDataAttribute }: HomePageProps) {
     setModalState({ open: false, gallery: [] });
   };
 
-  const openModal = (gallery: any[]) => {
+  const openModal = (gallery: Img[]) => {
     setModalState({ open: true, gallery });
   };
 
@@ -110,19 +114,65 @@ export function HomePage({ data, encodeDataAttribute }: HomePageProps) {
       </div>
       <Dialog open={modalState.open}>
         <DialogTrigger>Open</DialogTrigger>
-        <DialogContent onClick={closeModal}>
-          <DialogHeader>
-            <DialogTitle>Are you absolutely sure?</DialogTitle>
-            <DialogDescription>
-              This action cannot be undone. This will permanently delete your
-              account and remove your data from our servers.
-            </DialogDescription>
-          </DialogHeader>
+        <DialogContent
+          onClick={closeModal}
+          className="flex w-[80vw] items-center justify-center border-2 lg:max-w-xl"
+        >
+          <GalleryCarousel gallery={modalState?.gallery || []} />
         </DialogContent>
       </Dialog>
     </div>
   );
 }
+
+const GalleryCarousel = (props: { gallery: any[] }) => {
+  const { gallery } = props;
+  return (
+    <Carousel className="w-full">
+      <CarouselContent>
+        {gallery?.map((image, index) => (
+          <GalleryItem image={image} index={index} />
+        ))}
+      </CarouselContent>
+      <CarouselPrevious />
+      <CarouselNext />
+    </Carousel>
+  );
+};
+
+const GalleryItem = ({ image, index }) => {
+  const aspectRatio = image.photo.aspectRatio as number;
+  let width;
+  let height;
+  if (aspectRatio > 1) {
+    width = Math.round(500 * aspectRatio);
+    height = 500;
+  } else {
+    width = 500;
+    height = Math.round(500 * aspectRatio);
+  }
+
+  const galleryImgUrl =
+    image?.photo &&
+    urlForImage(image.photo)?.height(height).width(width).fit('clip').url();
+
+  console.log(`${width}x${height} - ${galleryImgUrl}`);
+  return (
+    <CarouselItem key={index}>
+      <div className="p-1">
+        <Card className="border-0">
+          <CardContent className="flex aspect-square items-center justify-center p-6">
+            <img
+              src={galleryImgUrl}
+              alt={`Random Image ${index + 1}`}
+              className="h-full w-full object-contain"
+            />
+          </CardContent>
+        </Card>
+      </div>
+    </CarouselItem>
+  );
+};
 
 {
   /* <Carousel opts={{ loop: true, align: 'center' }}>
