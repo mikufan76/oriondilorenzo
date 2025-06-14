@@ -29,10 +29,10 @@ export default function PhotoPocket(props: PhotoPocketProps) {
       }}
       className={cn(
         className,
-        'group relative overflow-x-clip h-3/4 w-full overflow-y-clip rounded-t-xl bg-paper shadow-[0_1px_2px_0px_rgba(0,0,0,0.25)]',
+        'group relative h-3/4 w-full overflow-x-clip overflow-y-clip rounded-t-xl bg-paper shadow-[0_1px_2px_0px_rgba(0,0,0,0.25)]',
       )}
     >
-      <div className="h-full w-full overflow-y-visible  transition-transform duration-300 ease-in-out group-hover:translate-y-[-20px] group-hover:scale-105">
+      <div className="h-full w-full overflow-y-visible transition-transform duration-300 ease-in-out group-hover:translate-y-[-20px] group-hover:scale-105">
         {gallery.length > 1 &&
           gallery.map((image, index: number) => {
             const coverImgUrl =

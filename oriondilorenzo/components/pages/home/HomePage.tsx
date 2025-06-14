@@ -24,6 +24,7 @@ import type { HomePagePayload, PhotoModalPayload } from '@/types';
 
 import { Header } from './Header';
 import ModalContext from '@/app/contexts/ModalContext';
+import CloseButton from '@/components/ui/CloseButton';
 
 export interface HomePageProps {
   data: HomePagePayload | null;
@@ -44,8 +45,12 @@ export function HomePage({ data, encodeDataAttribute }: HomePageProps) {
     gallery: [],
   });
 
-  const setModal = (state: PhotoModalPayload) => {
-    setModalState(state);
+  const closeModal = () => {
+    setModalState({ open: false, gallery: [] });
+  };
+
+  const openModal = (gallery: any[]) => {
+    setModalState({ open: true, gallery });
   };
 
   let style =
@@ -94,25 +99,33 @@ export function HomePage({ data, encodeDataAttribute }: HomePageProps) {
       <Header projectOnClick={handleBookClick} />
       {bookState && <BgBlur bookState={bookState} onClick={closeBook} />}
       <div className={style}>
-        <ModalContext.Provider value={setModal}>
+        <ModalContext.Provider value={openModal}>
           <Book
             data={data}
             encodeDataAttribute={encodeDataAttribute}
             timer={timer}
           />
         </ModalContext.Provider>
-        <Button
-          variant={'outline'}
-          className="absolute right-0 top-0 rounded bg-bg text-primary transition-colors hover:bg-primary hover:text-bg sm:right-1 sm:top-1 sm:text-2xl"
-          onClick={closeBook}
-        >
-          X
-        </Button>
+        <CloseButton onClick={closeBook} />
       </div>
       <Dialog open={modalState.open}>
         <DialogTrigger>Open</DialogTrigger>
-        <DialogContent>
-          <Carousel opts={{ loop: true, align: 'center' }}>
+        <DialogContent onClick={closeModal}>
+          <DialogHeader>
+            <DialogTitle>Are you absolutely sure?</DialogTitle>
+            <DialogDescription>
+              This action cannot be undone. This will permanently delete your
+              account and remove your data from our servers.
+            </DialogDescription>
+          </DialogHeader>
+        </DialogContent>
+      </Dialog>
+    </div>
+  );
+}
+
+{
+  /* <Carousel opts={{ loop: true, align: 'center' }}>
             <CarouselContent className="text-primary">
               <CarouselItem>...</CarouselItem>
               <CarouselItem>...</CarouselItem>
@@ -120,11 +133,7 @@ export function HomePage({ data, encodeDataAttribute }: HomePageProps) {
             </CarouselContent>
             <CarouselPrevious />
             <CarouselNext />
-          </Carousel>
-        </DialogContent>
-      </Dialog>
-    </div>
-  );
+          </Carousel> */
 }
 
 const BgBlur = ({ bookState, onClick }) => {
