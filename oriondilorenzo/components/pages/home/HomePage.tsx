@@ -112,8 +112,8 @@ export function HomePage({ data, encodeDataAttribute }: HomePageProps) {
       <Dialog open={modalState.open}>
         <DialogTrigger>Open</DialogTrigger>
         <DialogContent>
-          <Carousel>
-            <CarouselContent className='text-primary'>
+          <Carousel opts={{ loop: true, align: 'center' }}>
+            <CarouselContent className="text-primary">
               <CarouselItem>...</CarouselItem>
               <CarouselItem>...</CarouselItem>
               <CarouselItem>...</CarouselItem>
