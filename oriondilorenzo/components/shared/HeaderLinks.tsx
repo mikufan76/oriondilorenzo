@@ -1,16 +1,16 @@
-'use client'
+'use client';
 
-import Link from 'next/link'
-import { usePathname } from 'next/navigation'
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 
 interface HeaderLinks {
-  title?: string
-  href?: any
+  title?: string;
+  href?: any;
 }
 
 export function HeaderLinks(props: HeaderLinks) {
-  const { title, href } = props
-  const pathname = usePathname()
+  const { title, href } = props;
+  const pathname = usePathname();
 
   return (
     <Link
@@ -23,5 +23,5 @@ export function HeaderLinks(props: HeaderLinks) {
     >
       {title}
     </Link>
-  )
+  );
 }

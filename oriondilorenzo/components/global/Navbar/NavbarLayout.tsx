@@ -1,25 +1,25 @@
-import Image from 'next/image'
-import Link from 'next/link'
+import Image from 'next/image';
+import Link from 'next/link';
 
-import { HeaderLinks } from '@/components/shared/HeaderLinks'
-import { resolveHref, urlForLogo } from '@/sanity/lib/utils'
-import type { LinkItem, PageItem, SettingsPayload } from '@/types'
+import { HeaderLinks } from '@/components/shared/HeaderLinks';
+import { resolveHref, urlForLogo } from '@/sanity/lib/utils';
+import type { LinkItem, PageItem, SettingsPayload } from '@/types';
 
 interface NavbarProps {
-  data: SettingsPayload
-  title: string | null
-  logo: any | null
+  data: SettingsPayload;
+  title: string | null;
+  logo: any | null;
 }
 export default function Navbar(props: NavbarProps) {
-  const { data } = props
-  const title = props.title ?? ''
+  const { data } = props;
+  const title = props.title ?? '';
 
-  const menuItems = data?.menuItems ?? {}
-  const menuPages = menuItems?.page || ([] as PageItem[])
-  const menuLinks = menuItems?.link || ([] as LinkItem[])
+  const menuItems = data?.menuItems ?? {};
+  const menuPages = menuItems?.page || ([] as PageItem[]);
+  const menuLinks = menuItems?.link || ([] as LinkItem[]);
 
-  const customLogo = props?.logo
-  const logoImageUrl = customLogo && urlForLogo(customLogo)?.url()
+  const customLogo = props?.logo;
+  const logoImageUrl = customLogo && urlForLogo(customLogo)?.url();
 
   return (
     <div className="flex w-full flex-wrap items-center justify-between gap-x-5 px-4 py-4 md:px-5 md:py-4 lg:px-5">
@@ -50,11 +50,11 @@ export default function Navbar(props: NavbarProps) {
       <div className="mt-4 flex flex-wrap gap-3 md:mt-0">
         {menuPages &&
           menuPages.map((menuItem, key) => {
-            const href = resolveHref(menuItem?._type, menuItem?.slug)
+            const href = resolveHref(menuItem?._type, menuItem?.slug);
             if (!href) {
-              return null
+              return null;
             }
-            return <HeaderLinks key={key} href={href} title={menuItem.title} />
+            return <HeaderLinks key={key} href={href} title={menuItem.title} />;
           })}
 
         {menuLinks &&
@@ -68,9 +68,9 @@ export default function Navbar(props: NavbarProps) {
               >
                 ↗ {menuItem.title}
               </Link>
-            )
+            );
           })}
       </div>
     </div>
-  )
+  );
 }

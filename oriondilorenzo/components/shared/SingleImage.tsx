@@ -1,16 +1,16 @@
-import Image from 'next/image'
+import Image from 'next/image';
 
-import { urlForImage } from '@/sanity/lib/utils'
+import { urlForImage } from '@/sanity/lib/utils';
 
 interface ImageBoxProps {
-  image?: { asset?: any; lqip?: any }
-  alt?: string
-  width?: number
-  height?: number
-  size?: string
-  classesWrapper?: string
-  caption?: string
-  previewImageUrl?: any
+  image?: { asset?: any; lqip?: any };
+  alt?: string;
+  width?: number;
+  height?: number;
+  size?: string;
+  classesWrapper?: string;
+  caption?: string;
+  previewImageUrl?: any;
 }
 
 export default function ImageBox({
@@ -23,7 +23,7 @@ export default function ImageBox({
   caption,
   previewImageUrl = image?.lqip,
 }: ImageBoxProps) {
-  const imageUrl = image && urlForImage(image)?.url()
+  const imageUrl = image && urlForImage(image)?.url();
 
   return (
     <div className="mt-5 md:mt-10">
@@ -48,5 +48,5 @@ export default function ImageBox({
         <div className="mt-2 text-lg md:mt-4 md:text-2xl">{caption}</div>
       )}
     </div>
-  )
+  );
 }

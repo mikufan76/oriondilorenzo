@@ -1,16 +1,16 @@
-import type { EncodeDataAttributeCallback } from '@sanity/react-loader'
-import Link from 'next/link'
+import type { EncodeDataAttributeCallback } from '@sanity/react-loader';
+import Link from 'next/link';
 
-import type { linksPayload } from '@/types'
+import type { linksPayload } from '@/types';
 
 export interface linksPageProps {
-  data: linksPayload | null
-  encodeDataAttribute?: EncodeDataAttributeCallback
+  data: linksPayload | null;
+  encodeDataAttribute?: EncodeDataAttributeCallback;
 }
 
 export function LinksPage({ data }: linksPageProps) {
   // Default to an empty object to allow previews on non-existent documents
-  const { title, linksLinks } = data ?? {}
+  const { title, linksLinks } = data ?? {};
   return (
     <div className="mt-4 grid h-full grid-cols-1 gap-5 xl:grid-cols-2">
       <div className="w-full">
@@ -30,11 +30,11 @@ export function LinksPage({ data }: linksPageProps) {
                   {link.title}
                 </Link>
               </div>
-            )
+            );
           })}
       </div>
     </div>
-  )
+  );
 }
 
-export default LinksPage
+export default LinksPage;

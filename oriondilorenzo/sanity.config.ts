@@ -1,28 +1,28 @@
-'use client'
+'use client';
 /**
  * This config is used to set up Sanity Studio that's mounted on the `app/studio/[[...index]]/page.tsx` route
  */
 
-import { colorInput } from '@sanity/color-input'
-import { visionTool } from '@sanity/vision'
-import { defineConfig, NavbarProps, useWorkspace } from 'sanity'
-import { presentationTool } from 'sanity/presentation'
-import { structureTool } from 'sanity/structure'
-import { media } from 'sanity-plugin-media'
+import { colorInput } from '@sanity/color-input';
+import { visionTool } from '@sanity/vision';
+import { defineConfig, NavbarProps, useWorkspace } from 'sanity';
+import { presentationTool } from 'sanity/presentation';
+import { structureTool } from 'sanity/structure';
+import { media } from 'sanity-plugin-media';
 
-import { apiVersion, dataset, projectId, studioUrl } from '@/sanity/lib/api'
-import { Logo } from '@/sanity/plugins/Logo'
-import * as resolve from '@/sanity/plugins/resolve'
-import { pageStructure, singletonPlugin } from '@/sanity/plugins/settings'
-import project from '@/sanity/schemas/documents/project'
-import about from '@/sanity/schemas/singletons/about'
-import home from '@/sanity/schemas/singletons/home'
-import links from '@/sanity/schemas/singletons/links'
-import settings from '@/sanity/schemas/singletons/settings'
+import { apiVersion, dataset, projectId, studioUrl } from '@/sanity/lib/api';
+import { Logo } from '@/sanity/plugins/Logo';
+import * as resolve from '@/sanity/plugins/resolve';
+import { pageStructure, singletonPlugin } from '@/sanity/plugins/settings';
+import project from '@/sanity/schemas/documents/project';
+import about from '@/sanity/schemas/singletons/about';
+import home from '@/sanity/schemas/singletons/home';
+import links from '@/sanity/schemas/singletons/links';
+import settings from '@/sanity/schemas/singletons/settings';
 
 const title =
   process.env.NEXT_PUBLIC_SANITY_PROJECT_TITLE ||
-  'Collected | Portolio website editor with Sanity.io'
+  'Collected | Portolio website editor with Sanity.io';
 
 export default defineConfig({
   basePath: studioUrl,
@@ -62,4 +62,4 @@ export default defineConfig({
     colorInput(),
     media(),
   ],
-})
+});

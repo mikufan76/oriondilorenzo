@@ -1,5 +1,5 @@
-import StarBar from '@/components/shared/starBar'
-import Name from '@/components/shared/svgs/name'
+import StarBar from '@/components/shared/starBar';
+import Name from '@/components/shared/svgs/name';
 
 const TitlePlate = () => {
   return (
@@ -11,7 +11,7 @@ const TitlePlate = () => {
       <Name className="h-full w-5/6 min-w-[220px] pl-2" />
       <StarBar className="absolute bottom-[-60%]" />
     </div>
-  )
-}
+  );
+};
 
-export default TitlePlate
+export default TitlePlate;

@@ -1,9 +1,9 @@
-import TwoVideoBox from '@/components/shared/TwoVideoBox'
+import TwoVideoBox from '@/components/shared/TwoVideoBox';
 
 const TwoVideos = ({ data = {} }) => {
-  const { videoOneLink, videoTwoLink, caption } = data
+  const { videoOneLink, videoTwoLink, caption } = data;
 
-  if (!videoOneLink) return null
+  if (!videoOneLink) return null;
   return (
     <div className="divider">
       <TwoVideoBox
@@ -12,7 +12,7 @@ const TwoVideos = ({ data = {} }) => {
         caption={caption}
       />
     </div>
-  )
-}
+  );
+};
 
-export default TwoVideos
+export default TwoVideos;

@@ -1,18 +1,18 @@
-import Image from 'next/image'
+import Image from 'next/image';
 
-import { urlForImage } from '@/sanity/lib/utils'
+import { urlForImage } from '@/sanity/lib/utils';
 
 interface ImageBoxProps {
-  leftImage?: { asset?: any; lqip?: any }
-  rightImage?: { asset?: any; lqip?: any }
-  alt?: string
-  width?: number
-  height?: number
-  sizes?: string
-  classesWrapper?: string
-  caption?: string
-  previewLeftImageUrl?: any
-  previewRightImageUrl?: any
+  leftImage?: { asset?: any; lqip?: any };
+  rightImage?: { asset?: any; lqip?: any };
+  alt?: string;
+  width?: number;
+  height?: number;
+  sizes?: string;
+  classesWrapper?: string;
+  caption?: string;
+  previewLeftImageUrl?: any;
+  previewRightImageUrl?: any;
 }
 
 export default function ImageBox({
@@ -29,11 +29,11 @@ export default function ImageBox({
 }: ImageBoxProps) {
   const leftImageUrl =
     leftImage &&
-    urlForImage(leftImage)?.height(height).width(width).fit('crop').url()
+    urlForImage(leftImage)?.height(height).width(width).fit('crop').url();
 
   const rightImageUrl =
     rightImage &&
-    urlForImage(rightImage)?.height(height).width(width).fit('crop').url()
+    urlForImage(rightImage)?.height(height).width(width).fit('crop').url();
 
   return (
     <div className="mt-5 md:mt-10">
@@ -83,5 +83,5 @@ export default function ImageBox({
         <div className="mt-2 text-lg md:mt-4 md:text-2xl">{caption}</div>
       )}
     </div>
-  )
+  );
 }

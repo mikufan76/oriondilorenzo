@@ -9,9 +9,9 @@ export default function CloseButton(props: CloseButtonProps) {
   return (
     <button
       onClick={props?.onClick}
-      className="absolute right-4 top-4 flex aspect-square h-min w-min p-1 items-center justify-center rounded bg-bg text-primary border-primary border-2  transition-colors hover:bg-primary hover:text-bg text-bold"
+      className="text-bold absolute right-4 top-4 flex aspect-square h-min w-min items-center justify-center rounded border-2 border-primary bg-bg p-1 text-primary transition-colors hover:bg-primary hover:text-bg"
     >
-      <FontAwesomeIcon icon={faX} className="h-4 w-4 aspect-square" />
+      <FontAwesomeIcon icon={faX} className="aspect-square h-4 w-4" />
       <span className="sr-only">Close</span>
     </button>
   );

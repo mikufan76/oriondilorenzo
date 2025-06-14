@@ -1,9 +1,9 @@
-import TwoImageBox from '@/components/shared/TwoImageBox'
+import TwoImageBox from '@/components/shared/TwoImageBox';
 
 const Image = ({ data = {} }) => {
-  const { photoOne, photoTwo, caption } = data
+  const { photoOne, photoTwo, caption } = data;
 
-  if (!photoOne) return null
+  if (!photoOne) return null;
   return (
     <div className="divider">
       <TwoImageBox
@@ -13,7 +13,7 @@ const Image = ({ data = {} }) => {
         classesWrapper="relative aspect-[16/9]"
       />
     </div>
-  )
-}
+  );
+};
 
-export default Image
+export default Image;

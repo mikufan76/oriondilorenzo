@@ -20,5 +20,5 @@ const PaperTexture = (props) => (
       fill="none"
     />
   </svg>
-)
-export default PaperTexture
+);
+export default PaperTexture;

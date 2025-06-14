@@ -1,18 +1,18 @@
-import Image from 'next/image'
+import Image from 'next/image';
 
-import ImageBox from '@/components/shared/ImageBox'
-import { urlForImage } from '@/sanity/lib/utils'
-import type { ShowcaseProject } from '@/types'
+import ImageBox from '@/components/shared/ImageBox';
+import { urlForImage } from '@/sanity/lib/utils';
+import type { ShowcaseProject } from '@/types';
 
 interface ProjectProps {
-  project: ShowcaseProject
+  project: ShowcaseProject;
 }
 
 export function ProjectListItem(props: ProjectProps) {
-  const { project } = props
-  const { icon } = project
+  const { project } = props;
+  const { icon } = project;
   const imageUrl =
-    icon && urlForImage(icon)?.height(10).width(10).fit('crop').url()
+    icon && urlForImage(icon)?.height(10).width(10).fit('crop').url();
 
   return (
     <div className={`flex flex-row`}>
@@ -21,7 +21,7 @@ export function ProjectListItem(props: ProjectProps) {
         <TextBox project={project} />
       </div>
     </div>
-  )
+  );
 }
 
 function TextBox({ project }: { project: ShowcaseProject }) {
@@ -31,5 +31,5 @@ function TextBox({ project }: { project: ShowcaseProject }) {
       <div className="">{project.title}</div>
       {/* Year */}
     </div>
-  )
+  );
 }

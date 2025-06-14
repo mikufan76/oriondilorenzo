@@ -1,12 +1,12 @@
-import { CustomPortableText } from '@/components/shared/CustomPortableText'
+import { CustomPortableText } from '@/components/shared/CustomPortableText';
 
 interface TextBoxProps {
-  description?: any[]
+  description?: any[];
 }
 export default function Header(props: TextBoxProps) {
-  const { description } = props
+  const { description } = props;
   if (!description) {
-    return null
+    return null;
   }
   return (
     <div className="my-10 px-8 md:my-28 md:px-28">
@@ -17,5 +17,5 @@ export default function Header(props: TextBoxProps) {
         </div>
       )}
     </div>
-  )
+  );
 }

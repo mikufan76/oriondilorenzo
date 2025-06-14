@@ -1,7 +1,7 @@
-import Logo from '@/components/shared/svgs/logo'
+import Logo from '@/components/shared/svgs/logo';
 
-import Navbar from './Navbar'
-import TitlePlate from './TitlePlate'
+import Navbar from './Navbar';
+import TitlePlate from './TitlePlate';
 
 export function Header({ projectOnClick }: { projectOnClick?: () => void }) {
   return (
@@ -26,5 +26,5 @@ export function Header({ projectOnClick }: { projectOnClick?: () => void }) {
         </div>
       </div>
     </div>
-  )
+  );
 }

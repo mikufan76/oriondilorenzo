@@ -1,13 +1,13 @@
-import { cn } from '@/sanity/lib/utils'
+import { cn } from '@/sanity/lib/utils';
 
-import Star from './svgs/star'
+import Star from './svgs/star';
 
 const SVGComponent = (props) => {
-  const width = props.width || 39
-  const length = props.length || 80
-  const strokeWidth = props.strokeWidth || 1
+  const width = props.width || 39;
+  const length = props.length || 80;
+  const strokeWidth = props.strokeWidth || 1;
 
-  const starStyle = 'h-full aspect-square'
+  const starStyle = 'h-full aspect-square';
   return (
     <div className={cn(`flex h-full w-full flex-row`, props.className)}>
       <Star className={`block sm:hidden ${starStyle}`} />
@@ -26,6 +26,6 @@ const SVGComponent = (props) => {
       </svg>
       <Star className={`${starStyle} sm:translate-x-[-14%]`} />
     </div>
-  )
-}
-export default SVGComponent
+  );
+};
+export default SVGComponent;

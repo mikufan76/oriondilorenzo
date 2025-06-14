@@ -3,6 +3,7 @@ import { Courier_Prime } from 'next/font/google';
 import { CustomPortableText } from '@/components/shared/CustomPortableText';
 import { DataTable } from '@/components/ui/DataTable';
 import { ScrollArea, ScrollBar } from '@/components/ui/ScrollArea';
+
 import StickyLink from './StickyLink';
 
 const overviewFont = Courier_Prime({
@@ -19,7 +20,7 @@ export default function BookIntro({ overview, columns, showcaseProjects }) {
       <div id="intro" className="h-1/3 w-full flex-none">
         <div className="h-min w-full lg:text-2xl">
           SITE UNDER CONSTRUCTION!
-          <div className="w-5/6 h-[2em] lg:text-lg flex flex-row">
+          <div className="flex h-[2em] w-5/6 flex-row lg:text-lg">
             <StickyLink
               url="mailto:oriondilorenzo@proton.me"
               title="Questions? Email oriondilorenzo@proton.me"
