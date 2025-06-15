@@ -172,8 +172,9 @@ const GalleryItem = ({ image }) => {
           <Image
             src={galleryImgUrl}
             alt={'Gallery image '}
-            fill = {true}
-            className="h-full w-full object-ain"
+            width = {500}
+            height = {500}
+            className="w-full"
           />
         </CardContent>
       </Card>
