@@ -105,7 +105,7 @@ export function HomePage({ data, encodeDataAttribute }: HomePageProps) {
   return (
     <div className="h-screen w-screen overflow-hidden">
       {/* Header */}
-      <Header projectOnClick={handleBookClick} />
+      <Header projectOnClick={handleBookClick} resumeUrl={data.resumeUrl} />
       {bookState && <BgBlur bookState={bookState} onClick={closeBook} />}
       <div className={style}>
         <ModalContext.Provider value={openModal}>

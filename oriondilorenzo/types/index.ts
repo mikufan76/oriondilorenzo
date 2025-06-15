@@ -52,6 +52,7 @@ export interface HomePagePayload {
   customLogo?: Image;
   _updatedAt?: string;
   cover?: Image;
+  resumeUrl: string;
 }
 
 export interface ProjectPayload {

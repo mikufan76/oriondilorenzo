@@ -9,6 +9,7 @@ export const homePageQuery = groq`
       text,
       displayText,
     },
+    resumeUrl,
     cover{
       _type,
       asset,

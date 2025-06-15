@@ -16,7 +16,13 @@ export default defineType({
       type: 'string',
       validation: (rule) => rule.required(),
     }),
-
+    defineField({
+      name: 'resumeUrl',
+      description:
+        'This field is the URL to your resume. It will be used for the Resume link in the top navigation.',
+      title: 'Resume URL',
+      type: 'url',
+    }),
     defineField({
       name: 'subtitle',
       description: 'This field is the sub title of your personal website.',

@@ -3,7 +3,13 @@ import Logo from '@/components/shared/svgs/logo';
 import Navbar from './Navbar';
 import TitlePlate from './TitlePlate';
 
-export function Header({ projectOnClick }: { projectOnClick?: () => void }) {
+export function Header({
+  projectOnClick,
+  resumeUrl,
+}: {
+  projectOnClick?: () => void;
+  resumeUrl: string;
+}) {
   return (
     <div className="absolute flex h-full w-full items-center justify-center overflow-hidden bg-[url(/header-bg.png)] bg-cover p-[3%]">
       {/* Foreground */}
@@ -22,7 +28,7 @@ export function Header({ projectOnClick }: { projectOnClick?: () => void }) {
           </div>
         </div>
         <div className="min- flex h-[15vw] w-full flex-col items-center justify-between p-2 sm:h-full sm:w-1/5 sm:p-6">
-          <Navbar projectOnClick={projectOnClick} />
+          <Navbar projectOnClick={projectOnClick} resumeUrl={resumeUrl} />
         </div>
       </div>
     </div>

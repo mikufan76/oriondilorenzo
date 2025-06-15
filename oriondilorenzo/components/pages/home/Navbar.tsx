@@ -7,7 +7,7 @@ import {
 
 import NavbarButton from './NavbarButton';
 
-export default function Navbar({ projectOnClick }) {
+export default function Navbar({ projectOnClick, resumeUrl }) {
   return (
     <div className="cascadia-code flex h-full w-full flex-row items-center justify-between sm:flex-col [&>*]:h-[90%] sm:[&>*]:m-4 sm:[&>*]:h-1/6">
       <NavbarButton
@@ -28,9 +28,9 @@ export default function Navbar({ projectOnClick }) {
       <NavbarButton
         icon={faSquareArrowUpRight}
         label="Resume"
-        href="https://docs.google.com/document/d/e/2PACX-1vTfwclLlG6uN4Ol829HjwFKYMU6_iud1lV22VX2d0KcThFf7sdaEAv6rtoEnXtxlg/pub"
+        href={resumeUrl}
       />
-  
+
       <NavbarButton
         icon={faLayerGroup}
         onClick={projectOnClick}
