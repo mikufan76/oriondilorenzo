@@ -46,13 +46,17 @@
 }
 
 .photo-pocket {
-  background: #fffff9;
+  background: #6eacc4;
   background: linear-gradient(
-    180deg,
-    rgba(255, 255, 255, 1) 0%,
-    rgba(255, 255, 246, 1) 80%,
-    rgb(234, 233, 224) 100%
+    360deg,
+    rgba(110, 172, 196, 1) 0%,
+    rgba(168, 208, 224, 1) 9%,
+    rgba(195, 223, 235, 1) 100%
   );
+}
+
+.photo-pocket-back {
+  background-color: rgb(154, 196, 212);
 }
 
 body {
