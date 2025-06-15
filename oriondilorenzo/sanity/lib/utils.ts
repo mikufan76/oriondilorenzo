@@ -54,3 +54,15 @@ export function cn(...inputs: ClassValue[]) {
 export function noop() {
   return undefined;
 }
+
+/**
+ Returns a random integer between min (inclusive) and max (inclusive)
+ */
+export function randomIntFromInterval(min, max) {
+  // min and max included
+  return Math.floor(Math.random() * (max - min + 1) + min);
+}
+
+export function randomArrayItem(arr: any[]) {
+  return arr[Math.floor(Math.random() * arr.length)];
+}

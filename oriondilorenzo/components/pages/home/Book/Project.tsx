@@ -9,8 +9,8 @@ import { urlForImage } from '@/sanity/lib/utils';
 import project from '@/sanity/schemas/documents/project';
 import { ShowcaseProject } from '@/types';
 
+import StickyLink from '../../../shared/StickyLink';
 import PhotoPocket from './photopocket';
-import StickyLink from './StickyLink';
 
 const bodyFont = Courier_Prime({
   subsets: ['latin'],
@@ -25,6 +25,7 @@ const titleFont = Londrina_Solid({
 export default function Project(props: {
   showcaseProject: ShowcaseProject;
   useMouseEvents: (event: boolean) => void;
+  pageNumber: number;
 }) {
   const { coverImage, overview, slug, gallery, projectLinks, title } =
     props.showcaseProject;
@@ -42,6 +43,7 @@ export default function Project(props: {
             gallery={gallery}
             useMouseEvents={useMouseEvents}
             links={projectLinks}
+            pageNumber={props.pageNumber}
           />
         </div>
       </div>
@@ -86,18 +88,18 @@ const TextArea = (props: { title: string; overview: any }) => {
   );
 };
 
-const InteractArea = ({ gallery, links, useMouseEvents }) => {
+const InteractArea = ({ gallery, links, useMouseEvents, pageNumber }) => {
   return (
     (links?.length > 0 || gallery?.length > 0) && (
       <div className="overflow-show h-full w-[200px] md:w-[400px]">
-        <LinkArea links={links} />
+        <LinkArea links={links} pageNumber={pageNumber} />
         <PhotoPocket gallery={gallery} onMouseEvent={useMouseEvents} />
       </div>
     )
   );
 };
 
-const LinkArea = ({ links }): JSX.Element => {
+const LinkArea = ({ links, pageNumber }): JSX.Element => {
   return (
     links &&
     links.length > 0 && (
@@ -108,7 +110,11 @@ const LinkArea = ({ links }): JSX.Element => {
         {links.map((link, index) => {
           return (
             <div className="h-1/3 w-full" key={index}>
-              <StickyLink title={link?.title || link.url} url={link.url} />
+              <StickyLink
+                title={link?.title || link.url}
+                url={link.url}
+                index={index + pageNumber}
+              />
             </div>
           );
         })}

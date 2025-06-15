@@ -42,7 +42,6 @@ module.exports = {
           100: '#fff9b1',
           200: '#d5f692',
           300: '#b384bb',
-          400: '#FFFCC4',
         },
       },
       animation: {

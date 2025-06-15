@@ -56,6 +56,9 @@ export default defineType({
         // Paragraphs
         defineArrayMember({
           lists: [],
+          options: {
+            spellCheck: true,
+          },
           marks: {
             annotations: [],
             decorators: [

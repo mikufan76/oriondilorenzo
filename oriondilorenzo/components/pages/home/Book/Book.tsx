@@ -151,13 +151,13 @@ export default function Book(props: BookProps) {
           />
         </div>
         {/* PROJECT POSTS */}
-        {showcaseProjects.map((project) => {
+        {showcaseProjects.map((project, index) => {
           return (
             <div
               className="page relative h-full w-full border-0 bg-[url('/paper.png')] bg-cover bg-center bg-no-repeat p-2"
               key={project.slug}
             >
-              <Project showcaseProject={project} useMouseEvents={hideMouse} />
+              <Project showcaseProject={project} useMouseEvents={hideMouse} pageNumber={index}/>
             </div>
           );
         })}

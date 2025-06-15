@@ -4,7 +4,7 @@ import { CustomPortableText } from '@/components/shared/CustomPortableText';
 import { DataTable } from '@/components/ui/DataTable';
 import { ScrollArea, ScrollBar } from '@/components/ui/ScrollArea';
 
-import StickyLink from './StickyLink';
+import StickyLink from '../../../shared/StickyLink';
 
 const overviewFont = Courier_Prime({
   subsets: ['latin'],
