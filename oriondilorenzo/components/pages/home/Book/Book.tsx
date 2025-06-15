@@ -116,7 +116,7 @@ export default function Book(props: BookProps) {
         maxHeight={1000}
         minWidth={250}
         minHeight={350}
-        drawShadow={true}
+        drawShadow={false}
         flippingTime={800}
         usePortrait={true}
         startZIndex={0}
@@ -161,6 +161,17 @@ export default function Book(props: BookProps) {
             </div>
           );
         })}
+
+        {/* back cover */}
+        <div className="page h-full w-full rounded-xl bg-brown">
+            <Image
+              className="m-auto h-full w-full overflow-hidden p-1"
+              width={500}
+              height={300}
+              src={'/backcover.png'}
+              alt={''}
+            />
+        </div>
       </HTMLFlipBook>
     </div>
   );

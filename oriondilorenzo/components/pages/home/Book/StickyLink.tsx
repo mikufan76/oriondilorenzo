@@ -11,7 +11,7 @@ export default function StickyLink({
       <a
         href={url}
         target="_blank"
-        className={`absolute h-full w-full skew-y-[-1deg] bg-gradient-to-r from-sticky-100 to-sticky-400 pt-1 text-center text-bg transition-all group-hover:skew-y-[-2deg] group-hover:underline`}
+        className={`absolute h-full w-full skew-y-[-1deg] bg-gradient-to-r from-sticky-100 to-sticky-400 pt-1 text-center text-xs sm:text-sm text-bg transition-all group-hover:skew-y-[-2deg] group-hover:underline lg:text-lg`}
       >
         {title}
       </a>

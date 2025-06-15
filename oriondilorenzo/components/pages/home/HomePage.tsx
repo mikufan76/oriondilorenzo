@@ -169,10 +169,11 @@ const GalleryItem = ({ image }) => {
     <div className="p-1">
       <Card className="border-0">
         <CardContent className="flex aspect-square items-center justify-center p-6">
-          <img
+          <Image
             src={galleryImgUrl}
             alt={'Gallery image '}
-            className="h-full w-full object-contain"
+            fill = {true}
+            className="h-full w-full object-ain"
           />
         </CardContent>
       </Card>

@@ -88,8 +88,7 @@ const TextArea = (props: { title: string; overview: any }) => {
 
 const InteractArea = ({ gallery, links, useMouseEvents }) => {
   return (
-    gallery &&
-    gallery.length > 0 && (
+    (links?.length > 0 || gallery?.length > 0) && (
       <div className="overflow-show h-full w-[200px] md:w-[400px]">
         <LinkArea links={links} />
         <PhotoPocket gallery={gallery} onMouseEvent={useMouseEvents} />
@@ -104,7 +103,7 @@ const LinkArea = ({ links }): JSX.Element => {
     links.length > 0 && (
       <div
         id="link wrapper"
-        className="flex h-1/4 w-full flex-col items-start justify-start gap-y-1 p-2"
+        className="flex h-1/4 w-full flex-col items-start justify-between gap-y-1 p-2"
       >
         {links.map((link, index) => {
           return (
