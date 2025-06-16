@@ -23,7 +23,7 @@ export default function Navbar({ projectOnClick, resumeUrl }) {
       <NavbarButton
         icon={faSquareEnvelope}
         label="Email"
-        href="mailto:oriondilorenzo@proton.me"
+        href="mailto:contact@oriondilorenzo.com"
       />
       <NavbarButton
         icon={faSquareArrowUpRight}

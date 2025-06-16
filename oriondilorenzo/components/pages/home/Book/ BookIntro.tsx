@@ -22,8 +22,8 @@ export default function BookIntro({ overview, columns, showcaseProjects }) {
           SITE UNDER CONSTRUCTION!
           <div className="flex h-[2em] w-5/6 flex-row lg:text-lg">
             <StickyLink
-              url="mailto:oriondilorenzo@proton.me"
-              title="Questions? Email oriondilorenzo@proton.me"
+              url="mailto:contact@oriondilorenzo.com"
+              title="Questions? Email contact@oriondilorenzo.com"
             />
           </div>
         </div>
