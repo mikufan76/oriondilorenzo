@@ -157,20 +157,31 @@ export default function Book(props: BookProps) {
               className="page relative h-full w-full border-0 bg-[url('/paper.png')] bg-cover bg-center bg-no-repeat p-2"
               key={project.slug}
             >
-              <Project showcaseProject={project} useMouseEvents={hideMouse} pageNumber={index}/>
+              <Project
+                showcaseProject={project}
+                useMouseEvents={hideMouse}
+                pageNumber={index}
+              />
             </div>
           );
         })}
 
         {/* back cover */}
-        <div className="page h-full w-full rounded-xl bg-brown">
-            <Image
-              className="m-auto h-full w-full overflow-hidden p-1"
-              width={500}
-              height={300}
-              src={'/backcover.png'}
-              alt={''}
-            />
+        <div className="page relative h-full w-full rounded-xl bg-brown">
+          <Image
+            className="absolute m-auto h-full w-full overflow-hidden p-1"
+            width={500}
+            height={300}
+            src={'/backcover.png'}
+            alt={''}
+          />
+          <Image
+            className="absolute top-0 right-0  m-auto h-full w-[95%] overflow-hidden p-2"
+            width={500}
+            height={300}
+            src={'/pettime.png'}
+            alt={'Photo of my dog, gecko, and rubber ducky isopods'}
+          />
         </div>
       </HTMLFlipBook>
     </div>
