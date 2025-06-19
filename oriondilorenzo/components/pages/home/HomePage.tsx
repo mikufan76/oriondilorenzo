@@ -63,7 +63,7 @@ export function HomePage({ data, encodeDataAttribute }: HomePageProps) {
   };
 
   let style =
-    'h-screen w-screen flex flex-row justify-center items-center relative overflow-hidden p-0';
+    'h-full w-full flex flex-row justify-center items-center relative overflow-hidden p-0';
 
   switch (bookState) {
     case BookState.Hidden:
@@ -103,10 +103,15 @@ export function HomePage({ data, encodeDataAttribute }: HomePageProps) {
   });
 
   return (
-    <div className="h-screen w-screen overflow-hidden">
+    <div className="h-full w-full overflow-hidden relative">
       {/* Header */}
-      <Header projectOnClick={handleBookClick} resumeUrl={data.resumeUrl} />
-      {bookState && <BgBlur bookState={bookState} onClick={closeBook} />}
+      <Header
+        projectOnClick={handleBookClick}
+        resumeUrl={data?.resumeUrl || ''}
+      />
+      {bookState !== BookState.Hidden && (
+        <BgBlur bookState={bookState} onClick={closeBook} />
+      )}
       <div className={style}>
         <ModalContext.Provider value={openModal}>
           <Book
@@ -172,8 +177,8 @@ const GalleryItem = ({ image }) => {
           <Image
             src={galleryImgUrl}
             alt={'Gallery image '}
-            width = {500}
-            height = {500}
+            width={500}
+            height={500}
             className="w-full"
           />
         </CardContent>
@@ -190,7 +195,7 @@ const BgBlur = ({ bookState, onClick }) => {
   return (
     <div
       onClick={onClick}
-      className={`absolute h-screen w-screen backdrop-blur-lg ${animation}`}
+      className={`absolute h-screen w-screen backdrop-blur-lg ${animation} `}
     ></div>
   );
 };

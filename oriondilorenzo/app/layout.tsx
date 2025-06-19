@@ -7,7 +7,11 @@ export default async function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <body>
+        <div className="flex h-screen w-screen items-center justify-center overflow-clip bg-[url(/header-bg.png)] bg-cover p-[2%]">
+          {children}
+        </div>
+      </body>
     </html>
   );
 }
