@@ -34,6 +34,7 @@ import { urlForImage } from '@/sanity/lib/utils';
 import type { HomePagePayload, PhotoModalPayload } from '@/types';
 
 import { Header } from './Header';
+import BgBlur from '@/components/ui/BgBlur';
 
 export interface HomePageProps {
   data: HomePagePayload | null;
@@ -103,14 +104,14 @@ export function HomePage({ data, encodeDataAttribute }: HomePageProps) {
   });
 
   return (
-    <div className="h-full w-full overflow-hidden relative">
+    <div className="relative h-full w-full overflow-hidden">
       {/* Header */}
       <Header
         projectOnClick={handleBookClick}
         resumeUrl={data?.resumeUrl || ''}
       />
       {bookState !== BookState.Hidden && (
-        <BgBlur bookState={bookState} onClick={closeBook} />
+        <BgBlur opened={bookState !== BookState.Closed} onClick={closeBook} />
       )}
       <div className={style}>
         <ModalContext.Provider value={openModal}>
@@ -184,19 +185,6 @@ const GalleryItem = ({ image }) => {
         </CardContent>
       </Card>
     </div>
-  );
-};
-
-const BgBlur = ({ bookState, onClick }) => {
-  const animation =
-    bookState !== BookState.Closed
-      ? 'animate-in fade-in duration-500 ease-out'
-      : 'animate-custom-fade ';
-  return (
-    <div
-      onClick={onClick}
-      className={`absolute h-screen w-screen backdrop-blur-lg ${animation} `}
-    ></div>
   );
 };
 
