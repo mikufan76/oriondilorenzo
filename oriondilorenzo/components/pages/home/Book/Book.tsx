@@ -179,7 +179,7 @@ export default function Book(props: BookProps) {
             className="absolute top-0 right-0  m-auto h-full w-[95%] overflow-hidden p-2 opacity-[85%]"
             width={500}
             height={300}
-            src={'/pettime.png'}
+            src={'/smallpettime.png'}
             alt={'Photo of my dog, gecko, and rubber ducky isopods'}
           />
         </div>
