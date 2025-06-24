@@ -37,7 +37,16 @@ export default function Project(props: {
     project && (
       <div className="relative flex h-full w-full flex-col items-center justify-between gap-y-[2%] p-2">
         <CoverImage coverImage={coverImage} />
-        <div className="flex h-2/3 w-full flex-1 flex-row pt-2">
+        <div
+          style={{
+            height: '66.6%',
+            width: '100%',
+            paddingTop: '2%',
+            paddingBottom: 5,
+            display: 'flex',
+            flexDirection: props.pageNumber % 2 === 0 ? 'row' : 'row-reverse',
+          }}
+        >
           <TextArea title={title || ''} overview={overview || ''} />
           <InteractArea
             gallery={gallery}
@@ -91,7 +100,7 @@ const TextArea = (props: { title: string; overview: any }) => {
 const InteractArea = ({ gallery, links, useMouseEvents, pageNumber }) => {
   return (
     (links?.length > 0 || gallery?.length > 0) && (
-      <div className="overflow-show h-full w-[200px] md:w-[400px]">
+      <div className="overflow-show h-full w-[200px] md:w-[300px]">
         <LinkArea links={links} pageNumber={pageNumber} />
         <PhotoPocket gallery={gallery} onMouseEvent={useMouseEvents} />
       </div>

@@ -15,7 +15,7 @@ export default function BookIntro({ overview, columns, showcaseProjects }) {
   return (
     <div
       id="page-wrapper"
-      className="flex h-full w-full flex-col justify-between rounded-lg bg-[url('/paper.png')] bg-cover bg-center bg-no-repeat p-2 text-bg"
+      className="flex h-full w-full flex-col justify-between rounded-lg bg-[url('/smallpaper.png')] bg-cover bg-center bg-no-repeat p-2 text-bg"
     >
       <div id="intro" className="h-1/3 w-full flex-none">
         <div className="h-min w-full lg:text-2xl">

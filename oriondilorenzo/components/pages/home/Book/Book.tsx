@@ -176,7 +176,7 @@ export default function Book(props: BookProps) {
             alt={''}
           />
           <Image
-            className="absolute top-0 right-0  m-auto h-full w-[95%] overflow-hidden p-2 opacity-[85%]"
+            className="absolute right-0 top-0 m-auto h-full w-[95%] overflow-hidden p-2 opacity-[85%]"
             width={500}
             height={300}
             src={'/smallpettime.png'}
