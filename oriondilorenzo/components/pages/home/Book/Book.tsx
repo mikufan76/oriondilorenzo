@@ -154,7 +154,7 @@ export default function Book(props: BookProps) {
         {showcaseProjects.map((project, index) => {
           return (
             <div
-              className="page relative h-full w-full border-0 bg-[url('/paper.png')] bg-cover bg-center bg-no-repeat p-2"
+              className="page relative h-full w-full border-0 bg-[url('/smallpaper.png')] bg-cover bg-center bg-no-repeat p-2"
               key={project.slug}
             >
               <Project
