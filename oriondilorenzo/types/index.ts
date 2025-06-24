@@ -86,6 +86,7 @@ export interface SettingsPayload {
     page?: PageItem[];
     link?: LinkItem[];
   };
+  resumeUrl: string;
   ogImage?: Image;
   favIcon?: Image;
   title?: string;
