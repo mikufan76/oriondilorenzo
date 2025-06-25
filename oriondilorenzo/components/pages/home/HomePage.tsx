@@ -6,6 +6,7 @@ import type { Image as Img } from 'sanity';
 
 import ModalContext from '@/app/contexts/ModalContext';
 import Book from '@/components/pages/home/Book/Book';
+import BgBlur from '@/components/ui/BgBlur';
 import { Button } from '@/components/ui/Button';
 import {
   Card,
@@ -34,7 +35,6 @@ import { urlForImage } from '@/sanity/lib/utils';
 import type { HomePagePayload, PhotoModalPayload } from '@/types';
 
 import { Header } from './Header';
-import BgBlur from '@/components/ui/BgBlur';
 
 export interface HomePageProps {
   data: HomePagePayload | null;
