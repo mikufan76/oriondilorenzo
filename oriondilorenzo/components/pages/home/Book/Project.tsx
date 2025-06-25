@@ -79,7 +79,7 @@ const CoverImage = ({ coverImage }) => {
 };
 
 const PostTitle = ({ title }: { title: string }) => {
-  return <div className={`${titleFont.className} mb-2 text-xl`}>{title}</div>;
+  return <div className={`${titleFont.className} mb-2  md:text-xl`}>{title}</div>;
 };
 
 const TextArea = (props: { title: string; overview: any }) => {
@@ -88,7 +88,7 @@ const TextArea = (props: { title: string; overview: any }) => {
     <div className="text-1 flex w-[70%] flex-col text-pretty p-2">
       <PostTitle title={title} />
       <ScrollArea
-        className={`h-full w-full text-sm ${bodyFont.className} rounded p-2 shadow-inner`}
+        className={`h-full w-full text-xs md:text-sm ${bodyFont.className} rounded p-2 shadow-inner`}
       >
         <PortableText value={overview || []} />
         <ScrollBar className="bg-gray-300" />
