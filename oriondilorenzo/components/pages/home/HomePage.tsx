@@ -64,7 +64,7 @@ export function HomePage({ data, encodeDataAttribute }: HomePageProps) {
   };
 
   let style =
-    'h-full w-full flex flex-row justify-center items-center relative overflow-hidden p-0';
+    'h-full w-full flex flex-row justify-center items-center relative p-0';
 
   switch (bookState) {
     case BookState.Hidden:
@@ -104,7 +104,7 @@ export function HomePage({ data, encodeDataAttribute }: HomePageProps) {
   });
 
   return (
-    <div className="relative h-full w-full overflow-hidden">
+    <div className="relative h-full w-full overflow-visible">
       {/* Header */}
       <Header
         projectOnClick={handleBookClick}

@@ -76,7 +76,7 @@ export default function Book(props: BookProps) {
       accessorKey: 'page',
       cell: ({ row }) => {
         return (
-          <div className="flex w-full flex-row items-center justify-center">
+          <div className="flex w-full flex-row items-center justify-center overflow-clip">
             <div
               className="z-50 h-[30px] w-[30px] cursor-pointer rounded border-2 border-bg text-center transition-colors hover:bg-primary hover:text-brown"
               onClick={(e) => {
@@ -100,20 +100,23 @@ export default function Book(props: BookProps) {
     },
   ];
 
+  const width = 500;
+  const height = 700;
+
   return (
     <div
-      className={`flex h-full min-h-[400] w-full min-w-[300] max-w-[1200px] items-center justify-center rounded-lg sm:h-5/6 sm:w-2/3 ${bookHeaderFont.className}`}
+      className={`flex h-full min-h-[400] w-full min-w-[300] max-w-[1200px] items-center justify-center rounded-lg sm:h-[90%] sm:w-[95%] ${bookHeaderFont.className}`}
     >
       <HTMLFlipBook
         ref={book}
-        width={500}
-        height={700}
+        width={width}
+        height={height}
         style={{}}
         className={''}
         size={'stretch'}
         startPage={0}
-        maxWidth={1000}
-        maxHeight={1000}
+        maxWidth={width * 5}
+        maxHeight={height * 5}
         minWidth={250}
         minHeight={350}
         drawShadow={false}

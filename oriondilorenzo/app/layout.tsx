@@ -8,8 +8,8 @@ export default async function RootLayout({
   return (
     <html lang="en">
       <body>
-        <div className="flex h-screen w-screen items-center justify-center overflow-clip bg-[url(/header-bg.png)] bg-cover p-[2%]">
-          <div className="h-full w-full bg-bg">{children}</div>
+        <div className="z-1 overflow-clip flex h-screen w-screen items-center justify-center bg-[url(/header-bg.png)] bg-cover p-[2%]">
+          <div className="h-full w-full bg-bg z-10 overflow-visible">{children}</div>
         </div>
       </body>
     </html>

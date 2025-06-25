@@ -5,7 +5,7 @@ export default function BgBlur({ opened, onClick }) {
   return (
     <div
       onClick={onClick}
-      className={`absolute h-screen w-screen backdrop-blur-lg ${animation} `}
+      className={`absolute h-full w-full backdrop-blur-lg overflow-hidden ${animation} `}
     ></div>
   );
 }
