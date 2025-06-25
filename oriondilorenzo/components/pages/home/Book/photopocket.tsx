@@ -34,7 +34,7 @@ export default function PhotoPocket(props: PhotoPocketProps) {
       }}
       className={cn(
         className,
-        'group relative h-3/4 w-full overflow-x-clip overflow-y-clip rounded-t-xl photo-pocket-back shadow-[0_1px_2px_0px_rgba(0,0,0,0.25)]',
+        'photo-pocket-back group relative h-3/4 w-full overflow-x-clip overflow-y-clip rounded-t-xl shadow-[0_1px_2px_0px_rgba(0,0,0,0.25)]',
       )}
     >
       <div className="h-full w-full overflow-y-visible transition-transform duration-300 ease-in-out group-hover:translate-y-[-20px] group-hover:scale-105">

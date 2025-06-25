@@ -31,7 +31,7 @@ export default function Template({ children }: { children: React.ReactNode }) {
       animate="enter"
       exit="exit"
       variants={variants}
-      className='w-full h-full'
+      className="h-full w-full"
     >
       {children}
     </motion.div>
