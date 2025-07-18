@@ -1,4 +1,5 @@
 import './global.css';
+import 'react-photo-view/dist/react-photo-view.css';
 
 export default async function RootLayout({
   children,

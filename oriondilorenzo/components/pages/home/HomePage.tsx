@@ -2,6 +2,7 @@
 import type { EncodeDataAttributeCallback } from '@sanity/react-loader';
 import Image from 'next/image';
 import { createContext, useState } from 'react';
+import { PhotoProvider, PhotoView } from 'react-photo-view';
 import type { Image as Img } from 'sanity';
 
 import ModalContext from '@/app/contexts/ModalContext';
@@ -132,7 +133,17 @@ export function HomePage({ data, encodeDataAttribute }: HomePageProps) {
           <DialogDescription className="sr-only">
             Images from or relating to the project
           </DialogDescription>
-          <GalleryCarousel gallery={modalState?.gallery || []} />
+          <PhotoProvider photoClosable={true}>
+            {modalState.gallery?.map((image, index) => {
+              const galleryImgUrl =
+                image && image?.photo && urlForImage(image.photo as Img)?.url();
+              return (
+                <PhotoView key={index} src={galleryImgUrl}>
+                  <Image src={galleryImgUrl} alt="" width={500} height={500} />
+                </PhotoView>
+              );
+            })}
+          </PhotoProvider>
         </DialogContent>
       </Dialog>
     </div>
@@ -141,22 +152,17 @@ export function HomePage({ data, encodeDataAttribute }: HomePageProps) {
 
 const GalleryCarousel = (props: { gallery: any[] }) => {
   const { gallery } = props;
-  return (
-    <Carousel className="w-full" opts={{ loop: true }}>
-      <CarouselContent>
-        {gallery?.map((image, index) => (
-          <CarouselItem key={index}>
-            <GalleryItem image={image} />
-          </CarouselItem>
-        ))}
-      </CarouselContent>
-      <CarouselPrevious />
-      <CarouselNext />
-    </Carousel>
-  );
+
+  //   <Carousel className="w-full" opts={{ loop: true }}>
+  //     <CarouselContent>
+  //     </CarouselContent>
+  //     <CarouselPrevious />
+  //     <CarouselNext />
+  //   </Carousel>
+  // );
 };
 
-const GalleryItem = ({ image }) => {
+const GalleryItem = ({ image, key }) => {
   const aspectRatio = image.photo.aspectRatio as number;
   let width;
   let height;
@@ -168,24 +174,24 @@ const GalleryItem = ({ image }) => {
     height = Math.round(500 * aspectRatio);
   }
 
-  const galleryImgUrl =
-    image?.photo &&
-    urlForImage(image.photo)?.height(height).width(width).fit('clip').url();
-  return (
-    <div className="p-1">
-      <Card className="border-0">
-        <CardContent className="flex aspect-square items-center justify-center p-6">
-          <Image
-            src={galleryImgUrl}
-            alt={'Gallery image '}
-            width={500}
-            height={500}
-            className="w-full"
-          />
-        </CardContent>
-      </Card>
-    </div>
-  );
+  // return (
+
+  // );
+  // return (
+  //   <div className="p-1">
+  //     <Card className="border-0">
+  //       <CardContent className="flex aspect-square items-center justify-center p-6">
+  //         <Image
+  //           src={galleryImgUrl}
+  //           alt={'Gallery image '}
+  //           width={500}
+  //           height={500}
+  //           className="w-full"
+  //         />
+  //       </CardContent>
+  //     </Card>
+  //   </div>
+  // );
 };
 
 export default HomePage;
