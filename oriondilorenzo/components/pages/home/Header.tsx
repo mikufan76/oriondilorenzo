@@ -13,7 +13,7 @@ export function Header({
   return (
     <div className="absolute flex h-full w-full min-w-[300px] flex-col justify-around px-2 py-4 text-primary sm:flex-row sm:justify-between md:px-4">
       {/* Left Side */}
-      <div className="flex h-5/6 w-full max-w-[1000px] grow flex-col justify-between sm:h-full sm:w-[62.5%] md:px-0">
+      <div className="flex h-4/5 w-full max-w-[1000px] grow flex-col justify-between sm:h-full sm:w-[62.5%] md:px-0">
         <div className="h-1/3 w-full sm:h-1/2">
           <TitlePlate />
           <div className="cascadia-code w-full min-w-[300px] text-wrap px-2 text-center text-xl sm:text-left sm:text-[4vw] 2xl:text-[60px]">
