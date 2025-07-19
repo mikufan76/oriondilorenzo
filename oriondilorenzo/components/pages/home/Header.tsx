@@ -25,7 +25,7 @@ export function Header({
           <Logo className="h-5/6 w-min min-w-[250px] animate-wiggle md:m-[10%]" />
         </div>
       </div>
-      <div className="min- flex h-[15vw] w-full flex-col items-center justify-between p-2 sm:h-full sm:w-1/5 sm:p-6">
+      <div className="min- flex h-1/6 w-full flex-col items-center justify-between p-2 sm:h-full sm:w-1/5 sm:p-6">
         <Navbar projectOnClick={projectOnClick} resumeUrl={resumeUrl} />
       </div>
     </div>

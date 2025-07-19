@@ -9,7 +9,7 @@ import NavbarButton from './NavbarButton';
 
 export default function Navbar({ projectOnClick, resumeUrl }) {
   return (
-    <div className="cascadia-code flex h-full w-full flex-row items-center justify-between sm:flex-col [&>*]:h-[90%] sm:[&>*]:m-4 sm:[&>*]:h-1/6">
+    <div className="cascadia-code flex h-full w-full flex-row items-center justify-between sm:flex-col [&>*]:h-[90%] sm:[&>*]:m-4 ">
       <NavbarButton
         icon={faLinkedin}
         label="LinkedIn"
