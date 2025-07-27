@@ -105,7 +105,7 @@ export default function Book(props: BookProps) {
 
   return (
     <div
-      className={`flex h-full min-h-[400] w-full min-w-[300] max-w-[1200px] items-center justify-center rounded-lg sm:h-[90%] sm:w-[95%] ${bookHeaderFont.className}`}
+      className={`relative flex h-full min-h-[400] w-full min-w-[300] max-w-[1200px] items-center justify-center rounded-lg sm:h-[90%] sm:w-[95%] ${bookHeaderFont.className}`}
     >
       <HTMLFlipBook
         ref={book}
@@ -128,7 +128,7 @@ export default function Book(props: BookProps) {
         showCover={true}
         mobileScrollSupport={true}
         clickEventForward={true}
-        useMouseEvents={useMouseEvents}
+        useMouseEvents={false}
         swipeDistance={30}
         showPageCorners={false}
         disableFlipByClick={true}
@@ -187,6 +187,14 @@ export default function Book(props: BookProps) {
           />
         </div>
       </HTMLFlipBook>
+      <div
+        onClick={() => book.current.pageFlip().flipPrev()}
+        className="absolute left-0 top-0 h-[40%] w-10 bg-red hover:bg-yellow"
+      ></div>
+      <div
+        onClick={() => book.current.pageFlip().flipNext()}
+        className="absolute right-0 top-0 h-[40%] w-10 bg-red hover:bg-yellow"
+      ></div>
     </div>
   );
 }

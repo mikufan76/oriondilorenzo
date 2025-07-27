@@ -29,7 +29,6 @@ export default function Project(props: {
 }) {
   const { coverImage, overview, slug, gallery, projectLinks, title } =
     props.showcaseProject;
-  const useMouseEvents = props.useMouseEvents;
   const coverImgUrl =
     coverImage &&
     urlForImage(coverImage)?.height(300).width(500).fit('crop').url();
@@ -50,7 +49,6 @@ export default function Project(props: {
           <TextArea title={title || ''} overview={overview || ''} />
           <InteractArea
             gallery={gallery}
-            useMouseEvents={useMouseEvents}
             links={projectLinks}
             pageNumber={props.pageNumber}
           />
@@ -79,7 +77,9 @@ const CoverImage = ({ coverImage }) => {
 };
 
 const PostTitle = ({ title }: { title: string }) => {
-  return <div className={`${titleFont.className} mb-2  md:text-xl`}>{title}</div>;
+  return (
+    <div className={`${titleFont.className} mb-2 md:text-xl`}>{title}</div>
+  );
 };
 
 const TextArea = (props: { title: string; overview: any }) => {
@@ -97,12 +97,12 @@ const TextArea = (props: { title: string; overview: any }) => {
   );
 };
 
-const InteractArea = ({ gallery, links, useMouseEvents, pageNumber }) => {
+const InteractArea = ({ gallery, links, pageNumber }) => {
   return (
     (links?.length > 0 || gallery?.length > 0) && (
       <div className="overflow-show h-full w-[200px] md:w-[300px]">
         <LinkArea links={links} pageNumber={pageNumber} />
-        <PhotoPocket gallery={gallery} onMouseEvent={useMouseEvents} />
+        <PhotoPocket gallery={gallery} />
       </div>
     )
   );

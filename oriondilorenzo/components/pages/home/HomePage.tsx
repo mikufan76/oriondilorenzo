@@ -139,7 +139,7 @@ export function HomePage({ data, encodeDataAttribute }: HomePageProps) {
                 image && image?.photo && urlForImage(image.photo as Img)?.url();
               return (
                 <PhotoView key={index} src={galleryImgUrl}>
-                  <Image src={galleryImgUrl} alt="" width={500} height={500} />
+                  {/* <Image src={galleryImgUrl} alt="" width={500} height={500} /> */}
                 </PhotoView>
               );
             })}
