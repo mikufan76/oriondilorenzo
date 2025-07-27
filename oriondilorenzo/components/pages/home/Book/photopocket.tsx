@@ -79,7 +79,7 @@ export default function PhotoPocket(props: PhotoPocketProps) {
                   }}
                   placeholder="blur"
                   blurDataURL={image?.photo?.lqip}
-                  className={`animate-transform absolute  w-[90%] h-auto overflow-visible border-4 border-white bg-white shadow-md shadow-black/90 transition-transform duration-300 ease-in-out group-hover:translate-y-[-10px] group-hover:cursor-zoom-in ${aspectRatio < 1.4 ? 'rotate-0' : 'rotate-0'}`}
+                  className={`animate-transform absolute  w-[90%] h-auto overflow-visible border-4 border-white bg-white shadow-md shadow-black/90 transition-transform duration-300 ease-in-out group-hover:translate-y-[-10px] group-hover:cursor-zoom-in`}
                 />
               </PhotoView>
             </div>
