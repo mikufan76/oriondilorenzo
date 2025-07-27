@@ -1,4 +1,4 @@
-import { Courier_Prime } from 'next/font/google';
+import { EB_Garamond } from 'next/font/google';
 import { Londrina_Solid } from 'next/font/google';
 import Image from 'next/image';
 import { PortableText } from 'next-sanity';
@@ -12,7 +12,7 @@ import { ShowcaseProject } from '@/types';
 import StickyLink from '../../../shared/StickyLink';
 import PhotoPocket from './photopocket';
 
-const bodyFont = Courier_Prime({
+const bodyFont = EB_Garamond({
   subsets: ['latin'],
   weight: ['400', '700'],
 });
@@ -102,7 +102,7 @@ const InteractArea = ({ gallery, links, pageNumber }) => {
     (links?.length > 0 || gallery?.length > 0) && (
       <div className="overflow-show h-full w-[200px] md:w-[300px]">
         <LinkArea links={links} pageNumber={pageNumber} />
-        <PhotoPocket gallery={gallery} />
+        <PhotoPocket gallery={gallery} pageNumber={pageNumber}/>
       </div>
     )
   );

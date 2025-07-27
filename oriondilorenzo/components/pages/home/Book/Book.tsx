@@ -189,11 +189,11 @@ export default function Book(props: BookProps) {
       </HTMLFlipBook>
       <div
         onClick={() => book.current.pageFlip().flipPrev()}
-        className="absolute left-0 top-0 h-[40%] w-10 bg-red hover:bg-yellow"
+        className={`absolute left-0 top-0 h-[40%] w-10 cursor-pointer display`}
       ></div>
       <div
         onClick={() => book.current.pageFlip().flipNext()}
-        className="absolute right-0 top-0 h-[40%] w-10 bg-red hover:bg-yellow"
+        className="absolute right-0 top-0 h-[40%] w-10 cursor-pointer"
       ></div>
     </div>
   );

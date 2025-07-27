@@ -10,27 +10,39 @@ import { loadProject } from '@/sanity/loader/loadQuery';
 import { PhotoModalState } from '@/types';
 import { PhotoProvider, PhotoView } from 'react-photo-view';
 
+const SATURATION = 30;
+const BRIGHTNESS_BASE = 80;
+const BG_SHADE_OFFSET = 20;
+const IMAGE_X_OFFSET = 20;
+const IMAGE_Y_OFFSET = 10;
+
 export type PhotoPocketProps = {
   gallery: any[];
   className?: string;
+  pageNumber: number;
 };
 
 export default function PhotoPocket(props: PhotoPocketProps) {
-  const { gallery, className } = props;
+  const { gallery, className, pageNumber } = props;
   const modalContext = useContext<PhotoModalState>(ModalContext);
 
   if (!gallery || gallery.length === 0) {
     return <></>;
   }
 
+  const hue = Math.random() * 359;
+
   return (
     <div
+      style={{
+        background: `hsl(${hue} ${SATURATION} ${BRIGHTNESS_BASE - BG_SHADE_OFFSET})`,
+      }}
       className={cn(
         className,
-        'photo-pocket-back group relative h-3/4 w-full overflow-x-clip overflow-y-clip rounded-t-xl shadow-[0_1px_2px_0px_rgba(0,0,0,0.25)]',
+        'relative h-3/4 w-full overflow-x-clip overflow-y-clip rounded-t-xl shadow-[0_1px_2px_0px_rgba(0,0,0,0.25)]',
       )}
     >
-      <PhotoProvider>
+      <PhotoProvider className="relative h-full w-full">
         {gallery.map((image, index: number) => {
           const coverImgUrl = image?.photo && urlForImage(image.photo)?.url();
 
@@ -45,23 +57,51 @@ export default function PhotoPocket(props: PhotoPocketProps) {
             height = Math.round(500 * aspectRatio);
           }
 
+          const length = gallery.length;
+          const position = length - index;
+
+          const orientation =
+            pageNumber % 2 === 0
+              ? { left: index * IMAGE_X_OFFSET }
+              : { right: -index * IMAGE_X_OFFSET };
           return (
-            <PhotoView key={index} src={coverImgUrl || ''}>
-              <Image
-                key={index}
-                src={coverImgUrl || ''}
-                alt={'Gallery image'}
-                width={width}
-                height={height}
-                style={{ left: `${index * 20}px` }}
-                placeholder="blur"
-                blurDataURL={image?.photo?.lqip}
-                className="animate-transform absolute bottom-0 ml-2 h-[50%] overflow-visible border-4 border-white bg-white shadow-md shadow-black/90 hover:translate-y-[-10px] hover:cursor-zoom-in"
-              />
-            </PhotoView>
+            <div key={index} className="group">
+              <PhotoView key={index} src={coverImgUrl || ''}>
+                <Image
+                  key={index}
+                  src={coverImgUrl || ''}
+                  alt={'Gallery image'}
+                  width={width}
+                  height={height}
+                  style={{
+                    ...orientation,
+                    bottom: `${position * IMAGE_Y_OFFSET}px`,
+                  }}
+                  placeholder="blur"
+                  blurDataURL={image?.photo?.lqip}
+                  className={`animate-transform absolute  w-[90%] h-auto overflow-visible border-4 border-white bg-white shadow-md shadow-black/90 transition-transform duration-300 ease-in-out group-hover:translate-y-[-10px] group-hover:cursor-zoom-in ${aspectRatio < 1.4 ? 'rotate-0' : 'rotate-0'}`}
+                />
+              </PhotoView>
+            </div>
           );
         })}
       </PhotoProvider>
+      <svg
+        viewBox="0 0 10 10 "
+        height="40%"
+        preserveAspectRatio="none"
+        style={{
+          transform: pageNumber % 2 === 0 ? 'scaleX(-1)' : '',
+        }}
+        className="pointer-events-none absolute bottom-0 left-0 aspect-square w-full overflow-visible shadow-sm"
+      >
+        <polygon
+          points="0,10 10,10, 10,0"
+          style={{
+            fill: `hsl(${hue} ${SATURATION} ${BRIGHTNESS_BASE - 10})`,
+          }}
+        />
+      </svg>
       {/* <div className="photo-pocket absolute bottom-0 h-3/4 w-full overflow-visible shadow-[0_-2px_10px_2px_rgba(0,0,0,0.25)] transition-transform group-hover:translate-y-[10px] group-hover:scale-x-110 group-hover:scale-y-95 group-hover:duration-300"></div> */}
     </div>
   );
