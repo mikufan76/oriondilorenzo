@@ -157,7 +157,7 @@ export default function Book(props: BookProps) {
         {showcaseProjects.map((project, index) => {
           return (
             <div
-              className="page relative h-full w-full border-0 bg-[url('/smallpaper.png')] bg-cover bg-center bg-no-repeat p-2"
+              className="page relative h-full w-full border-0 bg-[url('/smallpaper.webp')] bg-cover bg-center bg-no-repeat p-2"
               key={project.slug}
             >
               <Project
@@ -175,14 +175,14 @@ export default function Book(props: BookProps) {
             className="absolute m-auto h-full w-full overflow-hidden p-1"
             width={500}
             height={300}
-            src={'/backcover.png'}
+            src={'/backcover.webp'}
             alt={''}
           />
           <Image
             className="absolute right-0 top-0 m-auto h-full w-[95%] overflow-hidden p-2 opacity-[85%]"
             width={500}
             height={300}
-            src={'/smallpettime.png'}
+            src={'/smallpettime.webp'}
             alt={'Photo of my dog, gecko, and rubber ducky isopods'}
           />
         </div>

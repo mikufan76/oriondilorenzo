@@ -88,7 +88,7 @@ const TextArea = (props: { title: string; overview: any }) => {
     <div className="text-1 flex w-[70%] flex-col text-pretty p-2">
       <PostTitle title={title} />
       <ScrollArea
-        className={`h-full w-full text-xs md:text-sm ${bodyFont.className} rounded p-2 shadow-inner`}
+        className={`w-fulld h-full ${bodyFont.className} rounded p-2 shadow-inner`}
       >
         <PortableText value={overview || []} />
         <ScrollBar className="bg-gray-300" />
@@ -102,7 +102,7 @@ const InteractArea = ({ gallery, links, pageNumber }) => {
     (links?.length > 0 || gallery?.length > 0) && (
       <div className="overflow-show h-full w-[200px] md:w-[300px]">
         <LinkArea links={links} pageNumber={pageNumber} />
-        <PhotoPocket gallery={gallery} pageNumber={pageNumber}/>
+        <PhotoPocket gallery={gallery} pageNumber={pageNumber} />
       </div>
     )
   );

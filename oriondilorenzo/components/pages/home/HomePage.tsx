@@ -124,74 +124,8 @@ export function HomePage({ data, encodeDataAttribute }: HomePageProps) {
         </ModalContext.Provider>
         <CloseButton onClick={closeBook} />
       </div>
-      <Dialog open={modalState.open}>
-        <DialogContent
-          onClick={closeModal}
-          className="flex w-[80vw] items-center justify-center border-2 lg:max-w-xl"
-        >
-          <DialogTitle className="sr-only">Project Photo Gallery</DialogTitle>
-          <DialogDescription className="sr-only">
-            Images from or relating to the project
-          </DialogDescription>
-          <PhotoProvider photoClosable={true}>
-            {modalState.gallery?.map((image, index) => {
-              const galleryImgUrl =
-                image && image?.photo && urlForImage(image.photo as Img)?.url();
-              return (
-                <PhotoView key={index} src={galleryImgUrl}>
-                  {/* <Image src={galleryImgUrl} alt="" width={500} height={500} /> */}
-                </PhotoView>
-              );
-            })}
-          </PhotoProvider>
-        </DialogContent>
-      </Dialog>
     </div>
   );
 }
-
-const GalleryCarousel = (props: { gallery: any[] }) => {
-  const { gallery } = props;
-
-  //   <Carousel className="w-full" opts={{ loop: true }}>
-  //     <CarouselContent>
-  //     </CarouselContent>
-  //     <CarouselPrevious />
-  //     <CarouselNext />
-  //   </Carousel>
-  // );
-};
-
-const GalleryItem = ({ image, key }) => {
-  const aspectRatio = image.photo.aspectRatio as number;
-  let width;
-  let height;
-  if (aspectRatio > 1) {
-    width = Math.round(500 * aspectRatio);
-    height = 500;
-  } else {
-    width = 500;
-    height = Math.round(500 * aspectRatio);
-  }
-
-  // return (
-
-  // );
-  // return (
-  //   <div className="p-1">
-  //     <Card className="border-0">
-  //       <CardContent className="flex aspect-square items-center justify-center p-6">
-  //         <Image
-  //           src={galleryImgUrl}
-  //           alt={'Gallery image '}
-  //           width={500}
-  //           height={500}
-  //           className="w-full"
-  //         />
-  //       </CardContent>
-  //     </Card>
-  //   </div>
-  // );
-};
 
 export default HomePage;

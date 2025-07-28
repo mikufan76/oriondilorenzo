@@ -44,7 +44,13 @@ export default function PhotoPocket(props: PhotoPocketProps) {
     >
       <PhotoProvider className="relative h-full w-full">
         {gallery.map((image, index: number) => {
-          const coverImgUrl = image?.photo && urlForImage(image.photo)?.url();
+          const coverImgUrl =
+            image?.photo &&
+            urlForImage(image.photo)
+              ?.maxWidth(500)
+              ?.maxHeight(500)
+              .fit('max')
+              .url();
 
           const aspectRatio = image.photo.aspectRatio as number;
           let width;
@@ -79,7 +85,7 @@ export default function PhotoPocket(props: PhotoPocketProps) {
                   }}
                   placeholder="blur"
                   blurDataURL={image?.photo?.lqip}
-                  className={`animate-transform absolute  w-[90%] h-auto overflow-visible border-4 border-white bg-white shadow-md shadow-black/90 transition-transform duration-300 ease-in-out group-hover:translate-y-[-10px] group-hover:cursor-zoom-in`}
+                  className={`animate-transform absolute h-auto w-[90%] overflow-visible border-4 border-white bg-white shadow-md shadow-black/90 transition-transform duration-300 ease-in-out group-hover:translate-y-[-10px] group-hover:cursor-zoom-in`}
                 />
               </PhotoView>
             </div>
