@@ -119,9 +119,8 @@ export interface linksPayload {
   linksLinks?: LinkItem[];
 }
 
-export type PhotoModalState = (payload: any[]) => void;
+export type PhotoModalState = number;
 
 export interface PhotoModalPayload {
-  open: boolean;
-  gallery?: Image[];
+  pageNumber: number;
 }

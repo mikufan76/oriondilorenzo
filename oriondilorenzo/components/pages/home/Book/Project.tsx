@@ -7,10 +7,12 @@ import { Button } from '@/components/ui/Button';
 import { ScrollArea, ScrollBar } from '@/components/ui/ScrollArea';
 import { urlForImage } from '@/sanity/lib/utils';
 import project from '@/sanity/schemas/documents/project';
-import { ShowcaseProject } from '@/types';
+import { PhotoModalState, ShowcaseProject } from '@/types';
 
 import StickyLink from '../../../shared/StickyLink';
 import PhotoPocket from './photopocket';
+import ModalContext from '@/app/contexts/ModalContext';
+import { useContext } from 'react';
 
 const bodyFont = EB_Garamond({
   subsets: ['latin'],
@@ -27,8 +29,13 @@ export default function Project(props: {
   useMouseEvents: (event: boolean) => void;
   pageNumber: number;
 }) {
-  const { coverImage, overview, slug, gallery, projectLinks, title } =
+  const { coverImage, overview, gallery, projectLinks, title } =
     props.showcaseProject;
+  const currentPage = useContext<PhotoModalState>(ModalContext);
+  if (props.pageNumber - currentPage > 2) {
+    return <></>;
+  }
+
   const coverImgUrl =
     coverImage &&
     urlForImage(coverImage)?.height(300).width(500).fit('crop').url();

@@ -2,10 +2,7 @@
 import type { EncodeDataAttributeCallback } from '@sanity/react-loader';
 import Image from 'next/image';
 import { createContext, useState } from 'react';
-import { PhotoProvider, PhotoView } from 'react-photo-view';
-import type { Image as Img } from 'sanity';
 
-import ModalContext from '@/app/contexts/ModalContext';
 import Book from '@/components/pages/home/Book/Book';
 import BgBlur from '@/components/ui/BgBlur';
 import { Button } from '@/components/ui/Button';
@@ -51,18 +48,6 @@ enum BookState {
 
 export function HomePage({ data, encodeDataAttribute }: HomePageProps) {
   const [bookState, setBookState] = useState<BookState>(BookState.Hidden);
-  const [modalState, setModalState] = useState<PhotoModalPayload>({
-    open: false,
-    gallery: [],
-  });
-
-  const closeModal = () => {
-    setModalState({ open: false, gallery: [] });
-  };
-
-  const openModal = (gallery: Img[]) => {
-    setModalState({ open: true, gallery });
-  };
 
   let style =
     'h-full w-full flex flex-row justify-center items-center relative p-0';
@@ -115,13 +100,11 @@ export function HomePage({ data, encodeDataAttribute }: HomePageProps) {
         <BgBlur opened={bookState !== BookState.Closed} onClick={closeBook} />
       )}
       <div className={style}>
-        <ModalContext.Provider value={openModal}>
-          <Book
-            data={data}
-            encodeDataAttribute={encodeDataAttribute}
-            timer={timer}
-          />
-        </ModalContext.Provider>
+        <Book
+          data={data}
+          encodeDataAttribute={encodeDataAttribute}
+          timer={timer}
+        />
         <CloseButton onClick={closeBook} />
       </div>
     </div>

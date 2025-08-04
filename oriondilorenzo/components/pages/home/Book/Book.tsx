@@ -2,18 +2,15 @@
 import { EncodeDataAttributeCallback } from '@sanity/react-loader';
 import { Coming_Soon, Courier_Prime } from 'next/font/google';
 import Image from 'next/image';
-import { PortableText } from 'next-sanity';
-import { use, useRef, useState } from 'react';
+import { useRef, useState } from 'react';
 import HTMLFlipBook from 'react-pageflip';
 
-import { Button } from '@/components/ui/Button';
-import { DataTable } from '@/components/ui/DataTable';
-import { ScrollArea } from '@/components/ui/ScrollArea';
 import { urlForImage } from '@/sanity/lib/utils';
-import type { HomePagePayload } from '@/types';
+import type { HomePagePayload, PhotoModalPayload } from '@/types';
 
 import BookIntro from './ BookIntro';
 import Project from './Project';
+import ModalContext from '@/app/contexts/ModalContext';
 
 const bookHeaderFont = Coming_Soon({
   subsets: ['latin'],
@@ -38,6 +35,9 @@ export default function Book(props: BookProps) {
   const book = useRef(null) as any;
   const coverImgUrl =
     cover && urlForImage(cover)?.height(700).width(500).fit('crop').url();
+  const [modalState, setModalState] = useState<PhotoModalPayload>({
+    pageNumber: 1,
+  });
 
   const [useMouseEvents, setUseMouseEvents] = useState(true);
 
@@ -107,94 +107,97 @@ export default function Book(props: BookProps) {
     <div
       className={`relative flex h-full min-h-[400] w-full min-w-[300] max-w-[1200px] items-center justify-center rounded-lg sm:h-[90%] sm:w-[95%] ${bookHeaderFont.className}`}
     >
-      <HTMLFlipBook
-        ref={book}
-        width={width}
-        height={height}
-        style={{}}
-        className={''}
-        size={'stretch'}
-        startPage={0}
-        maxWidth={width * 5}
-        maxHeight={height * 5}
-        minWidth={250}
-        minHeight={350}
-        drawShadow={false}
-        flippingTime={800}
-        usePortrait={true}
-        startZIndex={0}
-        autoSize={true}
-        maxShadowOpacity={0.5}
-        showCover={true}
-        mobileScrollSupport={true}
-        clickEventForward={true}
-        useMouseEvents={false}
-        swipeDistance={30}
-        showPageCorners={false}
-        disableFlipByClick={true}
-      >
-        {/* front cover */}
-        <div className="page h-full w-full rounded-xl bg-brown">
-          {coverImgUrl && (
+      <ModalContext.Provider value={modalState}>
+        <HTMLFlipBook
+          onFlip={(pageNumber) => setModalState({ pageNumber })}
+          ref={book}
+          width={width}
+          height={height}
+          style={{}}
+          className={''}
+          size={'stretch'}
+          startPage={0}
+          maxWidth={width * 5}
+          maxHeight={height * 5}
+          minWidth={250}
+          minHeight={350}
+          drawShadow={false}
+          flippingTime={800}
+          usePortrait={true}
+          startZIndex={0}
+          autoSize={true}
+          maxShadowOpacity={0.5}
+          showCover={true}
+          mobileScrollSupport={true}
+          clickEventForward={true}
+          useMouseEvents={false}
+          swipeDistance={30}
+          showPageCorners={false}
+          disableFlipByClick={true}
+        >
+          {/* front cover */}
+          <div className="page h-full w-full rounded-xl bg-brown">
+            {coverImgUrl && (
+              <Image
+                className="m-auto h-full w-full overflow-hidden p-1"
+                width={500}
+                height={300}
+                src={coverImgUrl}
+                alt={''}
+              />
+            )}
+          </div>
+          {/* PAGE 1 */}
+          <div className="page h-full w-full bg-brown p-2">
+            <BookIntro
+              overview={overview}
+              columns={columns}
+              showcaseProjects={showcaseProjects}
+            />
+          </div>
+          {/* PROJECT POSTS */}
+          {showcaseProjects.map((project, index) => {
+            return (
+              <div
+                className="page relative h-full w-full border-0 bg-[url('/smallpaper.webp')] bg-cover bg-center bg-no-repeat p-2"
+                key={project.slug}
+              >
+                <Project
+                  showcaseProject={project}
+                  useMouseEvents={hideMouse}
+                  pageNumber={index}
+                />
+              </div>
+            );
+          })}
+
+          {/* back cover */}
+          <div className="page relative h-full w-full rounded-xl bg-brown">
             <Image
-              className="m-auto h-full w-full overflow-hidden p-1"
+              className="absolute m-auto h-full w-full overflow-hidden p-1"
               width={500}
               height={300}
-              src={coverImgUrl}
+              src={'/backcover.webp'}
               alt={''}
             />
-          )}
-        </div>
-        {/* PAGE 1 */}
-        <div className="page h-full w-full bg-brown p-2">
-          <BookIntro
-            overview={overview}
-            columns={columns}
-            showcaseProjects={showcaseProjects}
-          />
-        </div>
-        {/* PROJECT POSTS */}
-        {showcaseProjects.map((project, index) => {
-          return (
-            <div
-              className="page relative h-full w-full border-0 bg-[url('/smallpaper.webp')] bg-cover bg-center bg-no-repeat p-2"
-              key={project.slug}
-            >
-              <Project
-                showcaseProject={project}
-                useMouseEvents={hideMouse}
-                pageNumber={index}
-              />
-            </div>
-          );
-        })}
-
-        {/* back cover */}
-        <div className="page relative h-full w-full rounded-xl bg-brown">
-          <Image
-            className="absolute m-auto h-full w-full overflow-hidden p-1"
-            width={500}
-            height={300}
-            src={'/backcover.webp'}
-            alt={''}
-          />
-          <Image
-            className="absolute right-0 top-0 m-auto h-full w-[95%] overflow-hidden p-2 opacity-[85%]"
-            width={500}
-            height={300}
-            src={'/smallpettime.webp'}
-            alt={'Photo of my dog, gecko, and rubber ducky isopods'}
-          />
-        </div>
-      </HTMLFlipBook>
-      <div
-        onClick={() => book.current.pageFlip().flipPrev()}
-        className={`absolute left-0 top-0 h-[40%] w-10 cursor-pointer display`}
-      ></div>
-      <div
-        onClick={() => book.current.pageFlip().flipNext()}
-        className="absolute right-0 top-0 h-[40%] w-10 cursor-pointer"
-      ></div>
+            <Image
+              className="absolute right-0 top-0 m-auto h-full w-[95%] overflow-hidden p-2 opacity-[85%]"
+              width={500}
+              height={300}
+              src={'/smallpettime.webp'}
+              alt={'Photo of my dog, gecko, and rubber ducky isopods'}
+            />
+          </div>
+        </HTMLFlipBook>
+        <div
+          onClick={() => book.current.pageFlip().flipPrev()}
+          className={`display absolute left-0 top-0 h-[40%] w-10 cursor-pointer`}
+        ></div>
+        <div
+          onClick={() => book.current.pageFlip().flipNext()}
+          className="absolute right-0 top-0 h-[40%] w-10 cursor-pointer"
+        ></div>
+      </ModalContext.Provider>
     </div>
   );
 }

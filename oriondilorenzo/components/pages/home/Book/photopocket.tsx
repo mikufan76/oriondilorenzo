@@ -24,13 +24,14 @@ export type PhotoPocketProps = {
 
 export default function PhotoPocket(props: PhotoPocketProps) {
   const { gallery, className, pageNumber } = props;
-  const modalContext = useContext<PhotoModalState>(ModalContext);
 
   if (!gallery || gallery.length === 0) {
     return <></>;
   }
 
-  const hue = Math.random() * 359;
+
+
+  const hue = (pageNumber * 30) % 360;
 
   return (
     <div
@@ -48,9 +49,10 @@ export default function PhotoPocket(props: PhotoPocketProps) {
             image?.photo &&
             urlForImage(image.photo)
               ?.maxWidth(500)
+              ?.fit('max')
               ?.maxHeight(500)
-              .fit('max')
-              .url();
+              ?.dpr(1)
+              ?.url();
 
           const aspectRatio = image.photo.aspectRatio as number;
           let width;
@@ -72,7 +74,18 @@ export default function PhotoPocket(props: PhotoPocketProps) {
               : { right: -index * IMAGE_X_OFFSET };
           return (
             <div key={index} className="group">
-              <PhotoView key={index} src={coverImgUrl || ''}>
+              <PhotoView
+                key={index}
+                render={() => (
+                  <Image
+                    key={index}
+                    src={coverImgUrl || ''}
+                    alt={'Gallery image'}
+                    width={width}
+                    height={height}
+                  />
+                )}
+              >
                 <Image
                   key={index}
                   src={coverImgUrl || ''}
