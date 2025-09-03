@@ -1,5 +1,12 @@
 /** @type {import('next').NextConfig} */
 const config = {
+  redirects: async () => [
+    {
+      source: '/links',
+      destination: '/',
+      permanent: true,
+    },
+  ],
   reactStrictMode: false,
   images: {
     remotePatterns: [{ hostname: 'cdn.sanity.io' }],
