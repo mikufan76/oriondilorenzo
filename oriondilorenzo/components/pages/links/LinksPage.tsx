@@ -12,7 +12,7 @@ export function LinksPage({ data }: linksPageProps) {
   // Default to an empty object to allow previews on non-existent documents
   const { title, linksLinks } = data ?? {};
   return (
-    <div className="mt-4 grid h-full grid-cols-1 gap-5 xl:grid-cols-2">
+    <div className="mt-4 grid h-full grid-cols-1 gap-5 xl:grid-cols-2 text-white px-4">
       <div className="w-full">
         {/* Title */}
         <div className="mb-2 text-3xl">{title && title}</div>
