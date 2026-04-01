@@ -41,14 +41,14 @@ export default function Book(props: BookProps) {
 
   const [useMouseEvents, setUseMouseEvents] = useState(true);
 
-  timer.then((result) => {
-    if (book.current && result) {
-      const pageFlip = book.current.pageFlip();
-      if (pageFlip.getCurrentPageIndex() === 0) {
-        pageFlip.flip(1);
-      }
-    }
-  });
+  // timer.then((result) => {
+  //   if (book.current && result) {
+  //     const pageFlip = book.current.pageFlip();
+  //     if (pageFlip.getCurrentPageIndex() === 0) {
+  //       pageFlip.flip(1);
+  //     }
+  //   }
+  // });
 
   const hideMouse = (event: boolean) => {
     if (event !== useMouseEvents) {
