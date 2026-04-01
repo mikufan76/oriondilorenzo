@@ -41,6 +41,13 @@ export interface HomePageProps {
   encodeDataAttribute?: EncodeDataAttributeCallback;
 }
 
+// Preload cover image to avoid lag when book opens
+function PreloadCoverImage({ coverImage }: { coverImage?: Img }) {
+  if (!coverImage) return null;
+  const imageUrl = urlForImage(coverImage)?.height(700).width(500).fit('crop').url();
+  return <link rel="preload" as="image" href={imageUrl} />;
+}
+
 enum BookState {
   Hidden,
   Closed,
@@ -64,18 +71,18 @@ export function HomePage({ data, encodeDataAttribute }: HomePageProps) {
   };
 
   let style =
-    'h-full w-full flex flex-row justify-center items-center relative p-0';
+    'h-full w-full flex flex-row justify-center items-center relative p-0 will-change-transform transition-opacity duration-300';
 
   switch (bookState) {
     case BookState.Hidden:
-      style += ' translate-y-[-12312312vw]';
+      style += ' pointer-events-none opacity-0';
       break;
     case BookState.Closed:
       style += ' animate-slide-out-book';
       break;
     case BookState.Opened:
     case BookState.Open:
-      style += ' animate-in slide-in-from-bottom duration-500 ease-out';
+      style += ' animate-in slide-in-from-bottom duration-500 ease-out opacity-100';
       break;
   }
 
@@ -95,7 +102,7 @@ export function HomePage({ data, encodeDataAttribute }: HomePageProps) {
 
   const timer = new Promise<boolean>((resolve, reject) => {
     setTimeout(() => {
-      if (bookState === BookState.Open) {
+      if (bookState === BookState.Open || bookState === BookState.Opened) {
         resolve(true);
       } else {
         resolve(false);
@@ -103,8 +110,11 @@ export function HomePage({ data, encodeDataAttribute }: HomePageProps) {
     }, 500);
   });
 
+  const coverImage = data?.cover;
+
   return (
     <div className="relative h-full w-full overflow-visible">
+      <PreloadCoverImage coverImage={coverImage} />
       {/* Header */}
       <Header
         projectOnClick={handleBookClick}
@@ -113,6 +123,7 @@ export function HomePage({ data, encodeDataAttribute }: HomePageProps) {
       {bookState !== BookState.Hidden && (
         <BgBlur opened={bookState !== BookState.Closed} onClick={closeBook} />
       )}
+      {/* Book - Always rendered but hidden via CSS to avoid remounting cost */}
       <div className={style}>
         <ModalContext.Provider value={openModal}>
           <Book
@@ -121,7 +132,7 @@ export function HomePage({ data, encodeDataAttribute }: HomePageProps) {
             timer={timer}
           />
         </ModalContext.Provider>
-        <CloseButton onClick={closeBook} />
+        {bookState !== BookState.Hidden && <CloseButton onClick={closeBook} />}
       </div>
       <Dialog open={modalState.open}>
         <DialogContent
