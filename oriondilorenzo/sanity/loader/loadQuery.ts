@@ -6,6 +6,8 @@ import { draftMode } from 'next/headers';
 import { client } from '@/sanity/lib/client';
 import {
   aboutPageQuery,
+  allComicsQuery,
+  comicBySlugQuery,
   homePageQuery,
   homePageTitleQuery,
   linksPageQuery,
@@ -19,6 +21,7 @@ import {
   HomePagePayload,
   linksPayload,
   ProjectPayload,
+  SanityComic,
   SettingsPayload,
 } from '@/types';
 
@@ -119,6 +122,22 @@ export function loadProject(slug: string) {
     projectBySlugQuery,
     { slug },
     { next: { tags: [`project:${slug}`] } },
+  );
+}
+
+export function loadAllComics() {
+  return loadQuery<SanityComic[] | null>(
+    allComicsQuery,
+    {},
+    { next: { tags: ['comic'] } },
+  );
+}
+
+export function loadComic(slug: string) {
+  return loadQuery<SanityComic | null>(
+    comicBySlugQuery,
+    { slug },
+    { next: { tags: [`comic:${slug}`] } },
   );
 }
 

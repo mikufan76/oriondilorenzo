@@ -194,3 +194,41 @@ export const settingsQuery = groq`
     displayLastUpdated,
   }
 `;
+
+export const allComicsQuery = groq`
+  *[_type == "comic"] | order(title asc){
+    _id,
+    title,
+    description,
+    "slug": slug.current,
+    coverImage{
+      _type,
+      asset,
+      "lqip": asset->metadata.lqip,
+    },
+  }
+`;
+
+export const comicBySlugQuery = groq`
+  *[_type == "comic" && slug.current == $slug][0]{
+    _id,
+    title,
+    description,
+    "slug": slug.current,
+    aspectRatio,
+    minSize,
+    maxSize,
+    mobileMinSize,
+    mobileMaxSize,
+    showCover,
+    flippingTime,
+    mobileScrollSupport,
+    pages[]{
+      image{
+        _type,
+        asset,
+        "lqip": asset->metadata.lqip,
+      },
+    },
+  }
+`;

@@ -14,6 +14,7 @@ import { apiVersion, dataset, projectId, studioUrl } from '@/sanity/lib/api';
 import { Logo } from '@/sanity/plugins/Logo';
 import * as resolve from '@/sanity/plugins/resolve';
 import { pageStructure, singletonPlugin } from '@/sanity/plugins/settings';
+import comicBook from '@/sanity/schemas/documents/comicBook';
 import project from '@/sanity/schemas/documents/project';
 import about from '@/sanity/schemas/singletons/about';
 import home from '@/sanity/schemas/singletons/home';
@@ -40,6 +41,7 @@ export default defineConfig({
       settings,
       // Documents
       project,
+      comicBook,
     ],
   },
   plugins: [

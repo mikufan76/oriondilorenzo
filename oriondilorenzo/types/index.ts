@@ -119,6 +119,27 @@ export interface linksPayload {
   linksLinks?: LinkItem[];
 }
 
+export interface SanityComicPage {
+  image: Image;
+}
+
+export interface SanityComic {
+  _id: string;
+  title: string;
+  description?: string;
+  slug: string;
+  coverImage: Image;
+  pages: SanityComicPage[];
+  aspectRatio: number;
+  minSize: number;
+  maxSize: number;
+  mobileMinSize?: number;
+  mobileMaxSize?: number;
+  showCover: boolean;
+  flippingTime: number;
+  mobileScrollSupport: boolean;
+}
+
 export type PhotoModalState = (payload: any[]) => void;
 
 export interface PhotoModalPayload {
