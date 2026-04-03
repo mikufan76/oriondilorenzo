@@ -10,7 +10,7 @@ const SVGComponent = (props) => {
   const starStyle = 'h-full aspect-square';
   return (
     <div className={cn(`flex h-full w-full flex-row`, props.className)}>
-      <Star className={`block sm:hidden ${starStyle}`} />
+      <Star className={`block sm:${props?.shown ? '' : 'hidden'} ${starStyle}`} />
       <svg
         xmlns="http://www.w3.org/2000/svg"
         className="h-full w-full shrink scale-[103%] sm:scale-100"
@@ -20,7 +20,7 @@ const SVGComponent = (props) => {
           y1="50%"
           x2="100%"
           y2="50%"
-          className="stroke-[1.5%]"
+          className={`stroke-[${props?.strokeWidth ? props.strokeWidth : '1.5%'}]`}
           stroke="var(--primary-color)"
         />
       </svg>

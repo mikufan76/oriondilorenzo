@@ -6,6 +6,7 @@ import HTMLFlipBook from 'react-pageflip';
 import { urlForImage } from '@/sanity/lib/utils';
 import type { SanityComic } from '@/types';
 import ComicSidebar from './ComicSidebar';
+import HorizontalNavbar from '@/components/shared/ODNavbar';
 
 export interface ComicProps {
   data: SanityComic;
@@ -72,7 +73,10 @@ export function Comic({ data, allComics = [] }: ComicProps) {
   });
 
   return (
-    <div className="relative flex h-full w-full items-center justify-center overflow-hidden">
+    <div id="comic-container" className="relative flex h-full w-full items-center justify-center overflow-hidden flex-col">
+      <div className='absolute top-0 w-full h-[10%] border-2 border-red'>
+        <HorizontalNavbar />
+      </div>
       <ComicSidebar
         allComics={allComics}
         currentComicId={data._id}
@@ -84,7 +88,7 @@ export function Comic({ data, allComics = [] }: ComicProps) {
       {/* Main Content */}
       <div
         ref={containerRef}
-        className="relative flex h-full w-full flex-1 items-center justify-center"
+        className="relative flex w-auto h-[90%] items-center justify-center border-blue border-2"
       >
         <HTMLFlipBook
           width={dimensions.width}
@@ -93,7 +97,7 @@ export function Comic({ data, allComics = [] }: ComicProps) {
           maxWidth={data.maxSize || 1000}
           minHeight={Math.round((data.minSize || 300) / (data.aspectRatio || 0.75))}
           maxHeight={Math.round((data.maxSize || 1000) / (data.aspectRatio || 0.75))}
-          size="fixed"
+          size="stretch"
           showCover={data.showCover !== false}
           flippingTime={data.flippingTime || 1000}
           usePortrait={isMobilePortrait}
@@ -101,7 +105,7 @@ export function Comic({ data, allComics = [] }: ComicProps) {
           style={{}}
           className=""
           startPage={0}
-          autoSize={false}
+          autoSize={true}
           maxShadowOpacity={1}
           showPageCorners={true}
           disableFlipByClick={false}

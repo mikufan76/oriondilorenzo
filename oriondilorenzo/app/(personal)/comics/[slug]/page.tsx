@@ -32,7 +32,7 @@ export default async function ComicRoute({ params }: { params: Params }) {
   }
 
   return (
-    <div className="flex h-full w-full items-center justify-center p-4">
+    <div className="flex h-full w-full items-center justify-center">
       <Comic data={initial.data} allComics={allComicsData.data || []} />
     </div>
   );
