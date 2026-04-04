@@ -16,7 +16,7 @@ export default function HorizontalNavbar() {
             <div className='relative w-full h-full flex items-center justify-center py-2 '>
                 <Name className='absolute top-1 h-[18px] w-auto' />
                 <nav className='relative w-min h-full flex items-center justify-between flex-col'>
-                    <Starbar className=" absolute h-10 w-full pointer-events-none" strokeWidth={"4px"} shown={true} />
+                    <Starbar className=" absolute h-10 w-full pointer-events-none" strokeWidth={"1.5px"} shown={true} />
                     <div className="cascadia-code flex h-full w-min px-4 flex-row items-center justify-center gap-6 bg-transparent px-6 translate-y-1/2">
                         <NavbarButton
                             icon={faHome}
@@ -35,7 +35,7 @@ export default function HorizontalNavbar() {
                             newTab={true}
                         />
                     </div>
-                    <Starbar className="h-10 w-full pointer-events-none" strokeWidth={"4px"} shown={true} />
+                    <Starbar className="h-10 w-full pointer-events-none" strokeWidth={"1.5px"} shown={true} />
                 </nav>
             </div>
         </div>
