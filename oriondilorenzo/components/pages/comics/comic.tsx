@@ -74,21 +74,11 @@ export function Comic({ data, allComics = [] }: ComicProps) {
 
   return (
     <div id="comic-container" className="relative flex h-full w-full items-center justify-center overflow-hidden flex-col">
-      <div className='absolute top-0 w-full h-[10%] border-2 border-red'>
-        <HorizontalNavbar />
-      </div>
-      <ComicSidebar
-        allComics={allComics}
-        currentComicId={data._id}
-        isOpen={sidebarOpen}
-        onClose={() => setSidebarOpen(false)}
-        onOpen={() => setSidebarOpen(true)}
-      />
-
+      <HorizontalNavbar />
       {/* Main Content */}
       <div
         ref={containerRef}
-        className="relative flex w-auto h-[90%] items-center justify-center border-blue border-2"
+        className="relative flex w-auto h-[90%] items-center justify-center"
       >
         <HTMLFlipBook
           width={dimensions.width}

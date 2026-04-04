@@ -14,6 +14,7 @@ const buttonVariants = cva(
     variants: {
       variant: {
         default: "text-bold flex aspect-square h-min w-min items-center justify-center rounded border-2 border-primary bg-bg p-1 text-primary hover:bg-primary hover:text-bg",
+        navbar: "text-bold flex aspect-square h-min w-min items-center justify-center rounded p-1 text-primary hover:bg-primary hover:text-bg",
         destructive:
           'bg-destructive text-destructive-foreground hover:bg-destructive/90',
         outline:
