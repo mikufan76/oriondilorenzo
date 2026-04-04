@@ -78,7 +78,7 @@ export function Comic({ data, allComics = [] }: ComicProps) {
       {/* Main Content */}
       <div
         ref={containerRef}
-        className="relative flex w-auto h-[90%] items-center justify-center"
+        className="relative flex w-auto h-full items-center justify-center"
       >
         <HTMLFlipBook
           width={dimensions.width}

@@ -12,8 +12,8 @@ import { TooltipContent, TooltipTrigger, Tooltip } from '../ui/ToolTip';
 
 export default function HorizontalNavbar() {
     return (
-        <div className='absolute top-0 w-full h-[10%]'>
-            <div className='relative w-full h-full flex items-center justify-center py-2'>
+        <div className='w-full h-[10%]'>
+            <div className='relative w-full h-full flex items-center justify-center py-2 '>
                 <Name className='absolute top-1 h-[18px] w-auto' />
                 <nav className='relative w-min h-full flex items-center justify-between flex-col'>
                     <Starbar className=" absolute h-10 w-full pointer-events-none" strokeWidth={"4px"} shown={true} />
