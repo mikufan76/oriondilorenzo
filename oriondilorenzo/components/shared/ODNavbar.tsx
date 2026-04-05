@@ -12,7 +12,7 @@ import { TooltipContent, TooltipTrigger, Tooltip } from '../ui/ToolTip';
 
 export default function HorizontalNavbar() {
     return (
-        <div className='w-full h-[10%] scale-110'>
+        <div className='w-full h-[10%] scale-110 z-[400]'>
             <div className='relative w-full h-full flex items-center justify-center pt-3 '>
                 <Name className='absolute top-2 h-[17px] w-auto px-2' />
                 <nav className='relative w-min h-full flex items-center justify-between flex-col'>
