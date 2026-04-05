@@ -12,7 +12,7 @@ export default function NavbarButton(props: NavbarButton) {
   const IconEle = () => (
     <Icon
       icon={icon}
-      className="aspect-square h-[40px] w-autorounded-lg group-hover:text-hilight sm:h-[50%] md:h-4/6"
+      className="aspect-square min-h-[40px] min-w-[40px] h-[40px] w-auto rounded-lg group-hover:text-hilight sm:h-[50%] md:h-4/6"
     />
   );
   const LabelEle = () => (
