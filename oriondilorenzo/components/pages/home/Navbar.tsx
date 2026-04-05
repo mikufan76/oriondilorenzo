@@ -1,15 +1,18 @@
 import { faLinkedin, faSquareGithub } from '@fortawesome/free-brands-svg-icons';
 import {
   faLayerGroup,
+  faNewspaper,
   faSquareArrowUpRight,
-  faSquareEnvelope,
+  faBoxArchive,
+  faFolderOpen,
+  faBookOpen,
 } from '@fortawesome/free-solid-svg-icons';
 
 import NavbarButton from './NavbarButton';
 
 export default function Navbar({ projectOnClick, resumeUrl }) {
   return (
-    <div className="cascadia-code flex h-full w-full flex-row items-center justify-between sm:flex-col [&>*]:h-[90%] sm:[&>*]:m-4 sm:[&>*]:h-1/6">
+    <div className="cascadia-code flex h-full w-full flex-row gap-2 items-center sm:flex-col sm:gap-4 [&>*]:flex-1 [&>*]:min-w-0 sm:[&>*]:h-1/6">
       <NavbarButton
         icon={faLinkedin}
         label="LinkedIn"
@@ -21,11 +24,6 @@ export default function Navbar({ projectOnClick, resumeUrl }) {
         href="https://github.com/mikufan76"
       />
       <NavbarButton
-        icon={faSquareEnvelope}
-        label="Email"
-        href="mailto:contact@oriondilorenzo.com"
-      />
-      <NavbarButton
         icon={faSquareArrowUpRight}
         label="Resume"
         href={resumeUrl}
@@ -35,6 +33,12 @@ export default function Navbar({ projectOnClick, resumeUrl }) {
         icon={faLayerGroup}
         onClick={projectOnClick}
         label="Projects"
+      />
+
+      <NavbarButton
+        icon={faBookOpen}
+        label="Comics"
+        href={"./comics"}
       />
     </div>
   );

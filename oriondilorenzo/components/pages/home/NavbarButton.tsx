@@ -12,7 +12,7 @@ export default function NavbarButton(props: NavbarButton) {
   const IconEle = () => (
     <Icon
       icon={icon}
-      className="aspect-square h-[40px] rounded-lg group-hover:text-hilight sm:h-[50%] md:h-5/6"
+      className="aspect-square h-[40px] w-autorounded-lg group-hover:text-hilight sm:h-[50%] md:h-4/6"
     />
   );
   const LabelEle = () => (
@@ -21,7 +21,7 @@ export default function NavbarButton(props: NavbarButton) {
     </label>
   );
   const wrapperClass =
-    'flex flex-col justify-center items-center sm:h-full h-[40px]  transition-all rounded group hover:scale-110  hover:border-hilight border-2 border-transparent hover:shadow-glow cursor-pointer';
+    'flex flex-col justify-center items-center sm:h-full h-[40px]  transition-all rounded group hover:scale-110  hover:border-hilight border-2 border-transparent hover:shadow-glow cursor-pointer px-2';
   if (href) {
     return (
       <a href={href} className={wrapperClass}>

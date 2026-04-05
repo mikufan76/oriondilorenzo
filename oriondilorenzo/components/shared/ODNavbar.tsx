@@ -28,12 +28,6 @@ export default function HorizontalNavbar() {
                             label="Comics"
                             href="/comics"
                         />
-                        <NavbarButton
-                            icon={faLinkedin}
-                            label="LinkedIn"
-                            href="https://www.linkedin.com/in/orion-dilorenzo"
-                            newTab={true}
-                        />
                     </div>
                     <Starbar className="h-10 w-full pointer-events-none" strokeWidth={"1.5px"} shown={true} />
                 </nav>
