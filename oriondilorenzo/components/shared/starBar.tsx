@@ -1,6 +1,7 @@
 import { cn } from '@/sanity/lib/utils';
 
 import Star from './svgs/star';
+import { transform } from 'next/dist/build/swc';
 
 const SVGComponent = (props) => {
   ;
@@ -8,7 +9,7 @@ const SVGComponent = (props) => {
   return (
     <div className={cn(`flex h-full w-full flex-row`, props.className)}>
       <Star
-        style={props?.shown && { display: 'block' }}
+        style={props?.shown && { display: 'block', transform: 'translateX(1px)' }}
         className={`block sm:hidden ${starStyle}`} />
       <svg
         xmlns="http://www.w3.org/2000/svg"
