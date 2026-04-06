@@ -228,6 +228,7 @@ export const comicBySlugQuery = groq`
         _type,
         asset,
         "lqip": asset->metadata.lqip,
+        "aspectRatio": asset->metadata.dimensions
       },
     },
   }

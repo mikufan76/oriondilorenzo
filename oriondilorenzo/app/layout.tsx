@@ -11,7 +11,7 @@ export default async function RootLayout({
       <body>
         <TooltipProvider>
           <div className="z-1 overflow-clip flex h-screen w-screen items-center justify-center bg-[url(/header-bg.png)] bg-cover p-[2%]">
-            <div className="h-full w-full bg-bg z-10 overflow-visible">{children}</div>
+            <div className="h-full w-full bg-bg z-10 overflow-clip">{children}</div>
           </div>
         </TooltipProvider>
       </body>

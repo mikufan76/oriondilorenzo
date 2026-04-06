@@ -76,15 +76,6 @@ export default defineType({
       validation: (rule) => rule.required().min(1),
     }),
     defineField({
-      name: 'aspectRatio',
-      title: 'Aspect Ratio',
-      description:
-        'Target aspect ratio for the flipbook (e.g., 0.75 for 3:4 portrait).',
-      type: 'number',
-      validation: (rule) => rule.required().positive(),
-      initialValue: 0.75,
-    }),
-    defineField({
       name: 'minSize',
       title: 'Minimum Width',
       description: 'Minimum width of the flipbook in pixels (default at all breakpoints unless overridden).',

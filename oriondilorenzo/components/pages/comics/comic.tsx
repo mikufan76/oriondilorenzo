@@ -6,7 +6,7 @@ import HTMLFlipBook from 'react-pageflip';
 import { urlForImage } from '@/sanity/lib/utils';
 import type { SanityComic } from '@/types';
 import ComicSidebar from './ComicSidebar';
-import HorizontalNavbar from '@/components/shared/ODNavbar';
+import HorizontalNavbar, { MobileHorizontalNavbar } from '@/components/shared/ODNavbar';
 
 export interface ComicProps {
   data: SanityComic;
@@ -16,53 +16,33 @@ export interface ComicProps {
 export function Comic({ data, allComics = [] }: ComicProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const [isMobilePortrait, setIsMobilePortrait] = useState(false);
-  const [dimensions, setDimensions] = useState({ width: 400, height: 533 });
-  const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [isMobileLandscape, setIsMobileLandscape] = useState(false);
+  const pageWidth = ((data?.pages[0]?.image?.aspectRatio) as any)?.width || 0;
+  const pageHeight = ((data?.pages[0]?.image?.aspectRatio) as any)?.height || 0;
+  const [dimensions, setDimensions] = useState({ width: pageWidth, height: pageHeight });
+  const aspectRatio = (pageWidth * 2) / pageHeight || 0.75
+  console.log(JSON.stringify(data.pages[0]))
 
   useEffect(() => {
-    const checkMobilePortrait = () => {
+    const checkMobile = () => {
       // Check if it's a mobile device AND in portrait mode (height > width)
       const isMobile = window.innerWidth < 768; // iPad is typically > 768px
       const isPortrait = window.innerHeight > window.innerWidth;
-      setIsMobilePortrait(isMobile && isPortrait);
+      setIsMobilePortrait(isMobile && isPortrait)
+      setIsMobileLandscape(window.innerHeight < 400)
 
-      // Calculate responsive dimensions
-      let width = 400;
-      let height = 533;
-
-      if (window.innerWidth < 480) {
-        // Small mobile: use 90% of viewport width with constraints
-        width = Math.min(Math.max(window.innerWidth * 0.9, data.minSize || 300), data.maxSize || 1000);
-      } else if (window.innerWidth < 768) {
-        // Mobile/tablet: use 85% of viewport width in portrait, 70% in landscape
-        const percentage = window.innerHeight > window.innerWidth ? 0.85 : 0.7;
-        width = Math.min(Math.max(window.innerWidth * percentage, data.minSize || 300), data.maxSize || 1000);
-      } else {
-        // Desktop: use default 522px
-        width = 522;
-      }
-
-      height = Math.round(width / (data.aspectRatio || 0.75));
-
-      // Ensure height doesn't exceed viewport height with some padding
-      const maxHeight = window.innerHeight - 40; // 40px padding for safety
-      if (height > maxHeight) {
-        height = maxHeight;
-        width = Math.round(height * (data.aspectRatio || 0.75));
-      }
-
-      setDimensions({ width, height });
     };
 
-    checkMobilePortrait();
-    window.addEventListener('resize', checkMobilePortrait);
-    window.addEventListener('orientationchange', checkMobilePortrait);
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    window.addEventListener('orientationchange', checkMobile);
 
     return () => {
-      window.removeEventListener('resize', checkMobilePortrait);
-      window.removeEventListener('orientationchange', checkMobilePortrait);
+      window.removeEventListener('resize', checkMobile);
+      window.removeEventListener('orientationchange', checkMobile);
+
     };
-  }, [data.aspectRatio, data.minSize, data.maxSize]);
+  }, [aspectRatio]);
 
   // Convert Sanity images to URLs
   const pageImages = data.pages.map((page) => {
@@ -73,27 +53,26 @@ export function Comic({ data, allComics = [] }: ComicProps) {
   });
 
   return (
-    <div id="comic-container" className="relative flex h-full w-full items-center justify-center overflow-hidden flex-col">
-      <HorizontalNavbar />
+    <div id="comic-wrapper" className="relative h-full w-full flex flex-col justify-around items-center">
+      {isMobileLandscape ? <MobileHorizontalNavbar /> : <HorizontalNavbar />}
       {/* Main Content */}
-      <div
-        ref={containerRef}
-        className="relative flex w-auto h-full items-center justify-center scale-[125%] lg:scale-[150%]"
-      >
+      <div id="comic-container" className='flex items-center w-auto h-5/6 max-w-[98%] max-h-full' style={!isMobilePortrait ? { aspectRatio: aspectRatio } : {}}>
+
         <HTMLFlipBook
+          key={isMobilePortrait ? 'portrait' : isMobileLandscape ? 'mobile-landscape' : 'landscape'}
           width={dimensions.width}
           height={dimensions.height}
-          minWidth={data.minSize || 300}
-          maxWidth={data.maxSize || 1000}
-          minHeight={Math.round((data.minSize || 300) / (data.aspectRatio || 0.75))}
-          maxHeight={Math.round((data.maxSize || 1000) / (data.aspectRatio || 0.75))}
+          minWidth={300}
+          maxWidth={data.maxSize || 2000}
+          minHeight={200}
+          maxHeight={2000}
           size="stretch"
           showCover={data.showCover !== false}
           flippingTime={data.flippingTime || 1000}
-          usePortrait={isMobilePortrait}
+          usePortrait={!isMobileLandscape}
           mobileScrollSupport={data.mobileScrollSupport !== false}
           style={{}}
-          className=""
+          className=" "
           startPage={0}
           autoSize={true}
           maxShadowOpacity={1}

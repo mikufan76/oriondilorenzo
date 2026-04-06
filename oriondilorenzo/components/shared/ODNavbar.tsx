@@ -12,12 +12,12 @@ import { TooltipContent, TooltipTrigger, Tooltip } from '../ui/ToolTip';
 
 export default function HorizontalNavbar() {
     return (
-        <div className='w-full h-[10%] scale-110 z-[400]'>
+        <div className='relative w-full h-[10%]'>
             <div className='relative w-full h-full flex items-center justify-center pt-3 '>
                 <Name className='absolute top-2 h-[17px] w-auto px-2' />
-                <nav className='relative w-min h-full flex items-center justify-between flex-col'>
+                <nav className='relative w-5/6 h-full flex items-center justify-between flex-col'>
                     <Starbar className=" absolute h-10 w-full pointer-events-none" strokeWidth={"1.5px"} shown={true} />
-                    <div className="cascadia-code flex h-full w-min px-4 flex-row items-center justify-center gap-6 bg-transparent px-6 translate-y-1/2">
+                    <div className="cascadia-code flex h-full w-full px-4 flex-row items-center justify-center gap-6 bg-transparent px-6 translate-y-1/2">
                         <NavbarButton
                             icon={faHome}
                             label="Home"
@@ -34,6 +34,25 @@ export default function HorizontalNavbar() {
             </div>
         </div>
     );
+}
+
+export function MobileHorizontalNavbar() {
+    return <div className='relative w-full flex items-center justify-center h-[10%]'>
+        <nav className='w-5/6 h-full flex items-center justify-between flex-col'>
+            <div className="cascadia-code flex h-full w-full px-4 flex-row items-center justify-center bg-transparent">
+                <NavbarButton
+                    icon={faHome}
+                    label="Home"
+                    href="/"
+                />
+                <NavbarButton
+                    icon={faBookOpen}
+                    label="Comics"
+                    href="/comics"
+                />
+            </div>
+        </nav>
+    </div>
 }
 
 function NavbarButton({ icon, label, href, newTab = false }) {
