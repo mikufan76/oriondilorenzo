@@ -53,9 +53,9 @@ export function Comic({ data, allComics = [] }: ComicProps) {
   });
 
   return (
-    <div id="comic-wrapper" className="relative h-full w-full flex justify-between items-center"
+    <div id="comic-wrapper" className="relative h-full w-full flex justify-around items-center"
 
-      style={isMobileLandscape ? { flexDirection: "row" } : { flexDirection: "column" }}
+      style={ { flexDirection: "column" }}
     >
       {isMobileLandscape ? <MobileHorizontalNavbar /> : <HorizontalNavbar />}
       {/* Main Content */}
