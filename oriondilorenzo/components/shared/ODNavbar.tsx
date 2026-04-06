@@ -37,9 +37,9 @@ export default function HorizontalNavbar() {
 }
 
 export function MobileHorizontalNavbar() {
-    return <div className='relative w-full flex items-center justify-center h-[10%]'>
+    return <div className='relative w-1/6 flex flex-col items-center justify-center h-full'>
         <nav className='w-5/6 h-full flex items-center justify-between flex-col'>
-            <div className="cascadia-code flex h-full w-full px-4 flex-row items-center justify-center bg-transparent">
+            <div className="cascadia-code flex h-full w-full px-4 flex-col items-center justify-center bg-transparent">
                 <NavbarButton
                     icon={faHome}
                     label="Home"

@@ -21,7 +21,7 @@ export function Comic({ data, allComics = [] }: ComicProps) {
   const pageHeight = ((data?.pages[0]?.image?.aspectRatio) as any)?.height || 0;
   const [dimensions, setDimensions] = useState({ width: pageWidth, height: pageHeight });
   const aspectRatio = (pageWidth * 2) / pageHeight || 0.75
-  console.log(JSON.stringify(data.pages[0]))
+  // console.log(JSON.stringify(data.pages[0]))
 
   useEffect(() => {
     const checkMobile = () => {
@@ -29,7 +29,7 @@ export function Comic({ data, allComics = [] }: ComicProps) {
       const isMobile = window.innerWidth < 768; // iPad is typically > 768px
       const isPortrait = window.innerHeight > window.innerWidth;
       setIsMobilePortrait(isMobile && isPortrait)
-      setIsMobileLandscape(window.innerHeight < 400)
+      setIsMobileLandscape(!isPortrait && window.innerHeight < 500)
 
     };
 
@@ -53,16 +53,20 @@ export function Comic({ data, allComics = [] }: ComicProps) {
   });
 
   return (
-    <div id="comic-wrapper" className="relative h-full w-full flex flex-col justify-around items-center">
+    <div id="comic-wrapper" className="relative h-full w-full flex justify-between items-center"
+
+      style={isMobileLandscape ? { flexDirection: "row" } : { flexDirection: "column" }}
+    >
       {isMobileLandscape ? <MobileHorizontalNavbar /> : <HorizontalNavbar />}
       {/* Main Content */}
-      <div id="comic-container" className='flex items-center w-auto h-5/6 max-w-[98%] max-h-full' style={!isMobilePortrait ? { aspectRatio: aspectRatio } : {}}>
+      <div id="comic-container" className='flex items-center w-auto h-5/6 max-w-[98%] max-h-full pb-4' style={!isMobilePortrait ? { aspectRatio: aspectRatio } : {}}>
 
         <HTMLFlipBook
+          ref={containerRef}
           key={isMobilePortrait ? 'portrait' : isMobileLandscape ? 'mobile-landscape' : 'landscape'}
           width={dimensions.width}
           height={dimensions.height}
-          minWidth={300}
+          minWidth={isMobileLandscape? 100 : 300}
           maxWidth={data.maxSize || 2000}
           minHeight={200}
           maxHeight={2000}
