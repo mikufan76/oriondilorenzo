@@ -17,14 +17,9 @@ export default function BookIntro({ overview, columns, showcaseProjects }) {
       id="page-wrapper"
       className="flex h-full w-full flex-col justify-between rounded-lg bg-[url('/smallpaper.png')] bg-cover bg-center bg-no-repeat p-2 text-bg"
     >
-      <div id="intro" className="h-1/3 w-full flex-none">
+      <div id="intro" className="h-1/3 w-full flex-col">
         <div className="h-min w-full lg:text-2xl">
-          SITE UNDER CONSTRUCTION!
-          <div className="flex h-[2em] w-5/6 flex-row lg:text-lg">
-            <StickyLink
-              url="mailto:contact@oriondilorenzo.com"
-              title="Questions? Email contact@oriondilorenzo.com"
-            />
+          <div className="flex h-max w-5/6 flex-row lg:text-lg">
           </div>
         </div>
         <div

@@ -71,7 +71,7 @@ export function HomePage({ data, encodeDataAttribute }: HomePageProps) {
   };
 
   let style =
-    'h-full w-full flex flex-row justify-center items-center relative p-0 will-change-transform transition-opacity duration-300';
+    'absolute inset-0 flex flex-row justify-center items-center p-0 will-change-transform transition-opacity duration-300';
 
   switch (bookState) {
     case BookState.Hidden:

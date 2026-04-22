@@ -105,7 +105,8 @@ export default function Book(props: BookProps) {
 
   return (
     <div
-      className={`flex h-full min-h-[400] w-full min-w-[300] max-w-[1200px] items-center justify-center rounded-lg sm:h-[90%] sm:w-[95%] ${bookHeaderFont.className}`}
+      className={`flex h-[90%] w-auto max-h-full max-w-[95%] items-center justify-center rounded-lg ${bookHeaderFont.className}`}
+      style={{ aspectRatio: `${width * 2}/${height}` }}
     >
       <HTMLFlipBook
         ref={book}
